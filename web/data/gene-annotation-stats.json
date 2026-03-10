@@ -1,0 +1,91 @@
+{
+  "generated": "2026-03-04T21:18:12Z",
+  "stats": {
+    "cholera": {
+      "annotated": 8754,
+      "total": 10000,
+      "gene_intervals": 3802,
+      "genome_len": 2948351
+    },
+    "dengue": {
+      "annotated": 9911,
+      "total": 10000,
+      "gene_intervals": 5,
+      "genome_len": 10735
+    },
+    "ebola": {
+      "annotated": 9926,
+      "total": 10000,
+      "gene_intervals": 7,
+      "genome_len": 18282
+    },
+    "hepatitis-b": {
+      "annotated": 5623,
+      "total": 10000,
+      "gene_intervals": 6,
+      "genome_len": 3743
+    },
+    "hiv-1": {
+      "annotated": 4910,
+      "total": 10000,
+      "gene_intervals": 10,
+      "genome_len": 8963
+    },
+    "human-grch38": {
+      "annotated": 0,
+      "total": 10000,
+      "reason": "no enrichment"
+    },
+    "influenza-a": {
+      "annotated": 1543,
+      "total": 10000,
+      "gene_intervals": 12,
+      "genome_len": 2307
+    },
+    "mers": {
+      "annotated": 8752,
+      "total": 10000,
+      "gene_intervals": 10,
+      "genome_len": 29807
+    },
+    "mpox": {
+      "annotated": 9595,
+      "total": 10000,
+      "gene_intervals": 179,
+      "genome_len": 196375
+    },
+    "refseq-viral": {
+      "annotated": 0,
+      "total": 10000,
+      "reason": "no enrichment"
+    },
+    "rsv": {
+      "annotated": 9818,
+      "total": 10000,
+      "gene_intervals": 10,
+      "genome_len": 15067
+    },
+    "sars-cov-2": {
+      "annotated": 9985,
+      "total": 10000,
+      "gene_intervals": 11,
+      "genome_len": 29674
+    },
+    "tuberculosis": {
+      "annotated": 6415,
+      "total": 10000,
+      "gene_intervals": 4008,
+      "genome_len": 4410929
+    },
+    "zika": {
+      "annotated": 4801,
+      "total": 10000,
+      "gene_intervals": 223,
+      "genome_len": 191071
+    }
+  },
+  "totals": {
+    "annotated": 90033,
+    "targets": 140000
+  }
+}

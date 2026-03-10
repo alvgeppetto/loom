@@ -1,0 +1,37 @@
+[package]
+name = "brenda"
+version = "0.1.0"
+edition = "2024"
+description = "BWT/FM-index construction and search engine"
+license = "MIT"
+
+[dependencies]
+# FM-index implementation
+fm-index = "0.2"
+
+# Error handling
+thiserror = "2"
+anyhow = "1"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+bincode = "1"
+postcard = { version = "1", features = ["alloc", "use-std"] }
+
+# File walking
+walkdir = "2"
+
+# Encryption
+aes-gcm = "0.10"
+argon2 = "0.5"
+rand = "0.8"
+hkdf = "0.12"
+sha2 = "0.10"
+tempfile = "3"
+
+# Streaming decompression
+flate2 = "1"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+xz2 = "0.1"

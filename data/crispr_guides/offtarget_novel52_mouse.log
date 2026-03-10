@@ -1,0 +1,84 @@
+[offtarget] Loaded 37 unique guides, max_mismatches=3
+[offtarget] Guide index: 0 entries (37 fwd + RC), 0 seed buckets
+[offtarget] Scanning reference genome: /Volumes/T9/loom-openscience/raw/mouse/mouse.fna
+[offtarget] 61 chromosomes/contigs found
+[offtarget]   NC_000067.7 — 186.1 Mb, 0 hits in 0.01s
+[offtarget]   NT_166280.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_166281.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_166282.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NT_162750.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NW_023337852.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166338.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NC_000068.8 — 173.3 Mb, 0 hits in 0.01s
+[offtarget]   NC_000069.7 — 152.3 Mb, 0 hits in 0.01s
+[offtarget]   NC_000070.7 — 149.6 Mb, 0 hits in 0.00s
+[offtarget]   NT_187055.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NC_000071.7 — 144.7 Mb, 0 hits in 0.01s
+[offtarget]   NT_187056.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_187057.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_187058.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_166438.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_187059.1 — 0.9 Mb, 0 hits in 0.00s
+[offtarget]   NC_000072.7 — 142.7 Mb, 0 hits in 0.01s
+[offtarget]   NC_000073.7 — 138.3 Mb, 0 hits in 0.01s
+[offtarget]   NT_166307.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NC_000074.7 — 124.1 Mb, 0 hits in 0.00s
+[offtarget]   NC_000075.7 — 118.6 Mb, 0 hits in 0.00s
+[offtarget]   NC_000076.7 — 124.5 Mb, 0 hits in 0.00s
+[offtarget]   NC_000077.7 — 116.3 Mb, 0 hits in 0.00s
+[offtarget]   NC_000078.7 — 114.5 Mb, 0 hits in 0.00s
+[offtarget]   NC_000079.7 — 115.3 Mb, 0 hits in 0.00s
+[offtarget]   NC_000080.7 — 119.3 Mb, 0 hits in 0.00s
+[offtarget]   NC_000081.7 — 99.3 Mb, 0 hits in 0.00s
+[offtarget]   NC_000082.7 — 93.5 Mb, 0 hits in 0.00s
+[offtarget]   NC_000083.7 — 90.9 Mb, 0 hits in 0.00s
+[offtarget]   NC_000084.7 — 86.5 Mb, 0 hits in 0.00s
+[offtarget]   NC_000085.7 — 58.6 Mb, 0 hits in 0.00s
+[offtarget]   NC_000086.8 — 161.6 Mb, 0 hits in 0.01s
+[offtarget]   NT_165789.3 — 0.5 Mb, 0 hits in 0.00s
+[offtarget]   NC_000087.8 — 87.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_187060.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_187061.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_187062.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NT_187063.1 — 0.2 Mb, 0 hits in 0.00s
+[offtarget]   NT_166451.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166462.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166465.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166466.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166467.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166469.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166474.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166476.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166478.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166443.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166444.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166480.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166456.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166471.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166473.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166454.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166463.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NT_166450.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_166452.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NT_187064.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NW_023337853.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NC_005089.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget] Done. 0 total hits across 61 chroms in 4.1s → data/crispr_guides/offtargets_novel52_mouse_3mm.csv
+        4.17 real         3.54 user         0.94 sys
+          2936864768  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              179462  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   8  voluntary context switches
+               12191  involuntary context switches
+         63870075313  instructions retired
+         15742793025  cycles elapsed
+          2933197272  peak memory footprint

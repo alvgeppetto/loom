@@ -1,0 +1,125 @@
+[guide-conservation] Loaded 89 guides from data/crispr_guides/novel_targets_for_conservation.tsv
+[guide-conservation] Built Aho-Corasick automaton for 178 patterns (89 guides × 2)
+[guide-conservation] Scanning /Volumes/T9/loom-openscience/raw/sars-cov-2/ncbi_dataset/data/genomic.fna...
+[guide-conservation]    1000000 genomes scanned  (5858 genomes/s, 2.8 min elapsed)
+[guide-conservation]    2000000 genomes scanned  (5807 genomes/s, 5.7 min elapsed)
+[guide-conservation]    3000000 genomes scanned  (5757 genomes/s, 8.7 min elapsed)
+[guide-conservation]    4000000 genomes scanned  (5737 genomes/s, 11.6 min elapsed)
+[guide-conservation]    5000000 genomes scanned  (5727 genomes/s, 14.6 min elapsed)
+[guide-conservation]    6000000 genomes scanned  (5715 genomes/s, 17.5 min elapsed)
+[guide-conservation]    7000000 genomes scanned  (5740 genomes/s, 20.3 min elapsed)
+[guide-conservation]    8000000 genomes scanned  (5771 genomes/s, 23.1 min elapsed)
+[guide-conservation]    9000000 genomes scanned  (5766 genomes/s, 26.0 min elapsed)
+[guide-conservation] Done: 9193298 genomes in 1594.6s (5765 genomes/s)
+
+Guide                             Hits        Total       Rate
+--------------------------------------------------------------
+ORF1b_nsp12-16__RdRp_15271      9100186      9193298     98.99%
+ORF1b_nsp12-16__RdRp_15876      9132037      9193298     99.33%
+ORF1b_nsp12-16__RdRp_16813      9107946      9193298     99.07%
+ORF1b_nsp12-16__RdRp_17078      9099697      9193298     98.98%
+ORF1b_nsp12-16__RdRp_17431      9114200      9193298     99.14%
+ORF1b_nsp12-16__RdRp_19218      9111224      9193298     99.11%
+ORF1a_nsp1-11_3614             8996611      9193298     97.86%
+ORF1a_nsp1-11_13454            8934295      9193298     97.18%
+ORF1b_nsp12-16__RdRp_14742      8967280      9193298     97.54%
+ORF1b_nsp12-16__RdRp_15040      9048437      9193298     98.42%
+ORF1b_nsp12-16__RdRp_16176      9006286      9193298     97.97%
+ORF1b_nsp12-16__RdRp_17592      8961328      9193298     97.48%
+ORF1b_nsp12-16__RdRp_17761      9013531      9193298     98.04%
+intergenic_26220               9093123      9193298     98.91%
+E_Envelope_26319               8979268      9193298     97.67%
+S_Spike_25353                  9097832      9193298     98.96%
+N_Nucleocapsid_29516           8866153      9193298     96.44%
+ORF1a_nsp1-11_1127             9072761      9193298     98.69%
+ORF1a_nsp1-11_5744             9066984      9193298     98.63%
+ORF1a_nsp1-11_9897             9087164      9193298     98.85%
+ORF1a_nsp1-11_10456            9116902      9193298     99.17%
+ORF1a_nsp1-11_10531            9102615      9193298     99.01%
+ORF1a_nsp1-11_12015            9086668      9193298     98.84%
+ORF1a_nsp1-11_12208            9066438      9193298     98.62%
+ORF1a_nsp1-11_12244            9067595      9193298     98.63%
+ORF1a_nsp1-11_12829            9072276      9193298     98.68%
+ORF1a_nsp1-11_12888            9094618      9193298     98.93%
+ORF1a_nsp1-11_13142            9090035      9193298     98.88%
+ORF1b_nsp12-16__RdRp_13782      9121725      9193298     99.22%
+ORF1b_nsp12-16__RdRp_14280      9065522      9193298     98.61%
+ORF1b_nsp12-16__RdRp_14641      9083517      9193298     98.81%
+ORF1b_nsp12-16__RdRp_14688      9083871      9193298     98.81%
+ORF1b_nsp12-16__RdRp_15614      9116473      9193298     99.16%
+ORF1b_nsp12-16__RdRp_15791      9119137      9193298     99.19%
+ORF1b_nsp12-16__RdRp_15832      9102144      9193298     99.01%
+ORF1b_nsp12-16__RdRp_17007      9075337      9193298     98.72%
+ORF1b_nsp12-16__RdRp_17561      9111394      9193298     99.11%
+ORF1b_nsp12-16__RdRp_19617      9087604      9193298     98.85%
+5'UTR_241                      8322847      9193298     90.53%
+ORF1a_nsp1-11_4526             8775711      9193298     95.46%
+ORF1a_nsp1-11_7870             8991930      9193298     97.81%
+ORF1a_nsp1-11_8909             8776049      9193298     95.46%
+ORF1a_nsp1-11_9727             9009809      9193298     98.00%
+ORF1a_nsp1-11_9949             9044380      9193298     98.38%
+ORF1a_nsp1-11_12958            9047695      9193298     98.42%
+ORF1a_nsp1-11_13355            8888354      9193298     96.68%
+ORF1b_nsp12-16__RdRp_13683      8928339      9193298     97.12%
+ORF1b_nsp12-16__RdRp_14487      9057735      9193298     98.53%
+ORF1b_nsp12-16__RdRp_14715      8950881      9193298     97.36%
+ORF1b_nsp12-16__RdRp_14813      8968302      9193298     97.55%
+ORF1b_nsp12-16__RdRp_14872      8896614      9193298     96.77%
+ORF1b_nsp12-16__RdRp_15387      8671948      9193298     94.33%
+ORF1b_nsp12-16__RdRp_15445      8701348      9193298     94.65%
+ORF1b_nsp12-16__RdRp_15920      8740140      9193298     95.07%
+ORF1b_nsp12-16__RdRp_17245      9057641      9193298     98.52%
+ORF1b_nsp12-16__RdRp_18089      8776226      9193298     95.46%
+ORF1b_nsp12-16__RdRp_18190      8819877      9193298     95.94%
+ORF1b_nsp12-16__RdRp_19821      9005040      9193298     97.95%
+ORF1b_nsp12-16__RdRp_20590      9044190      9193298     98.38%
+ORF1b_nsp12-16__RdRp_21110      8875529      9193298     96.54%
+ORF1b_nsp12-16__RdRp_21147      8796243      9193298     95.68%
+E_Envelope_26274               9049133      9193298     98.43%
+E_Envelope_26429               8898257      9193298     96.79%
+M_Membrane_26565               8948944      9193298     97.34%
+S_Spike_23340                  9125770      9193298     99.27%
+N_Nucleocapsid_28370           9051535      9193298     98.46%
+N_Nucleocapsid_28482           9003213      9193298     97.93%
+N_Nucleocapsid_28726           9054521      9193298     98.49%
+N_Nucleocapsid_28949           9022755      9193298     98.14%
+N_Nucleocapsid_29117           9068010      9193298     98.64%
+N_Nucleocapsid_29203           9010099      9193298     98.01%
+N_Nucleocapsid_29254           8893356      9193298     96.74%
+N_Nucleocapsid_29332           8961998      9193298     97.48%
+ORF1a_nsp1-11_6419             8573069      9193298     93.25%
+ORF1b_nsp12-16__RdRp_19287      8230004      9193298     89.52%
+ORF3a_25784                    8850796      9193298     96.27%
+intergenic_26513               8984429      9193298     97.73%
+ORF10_29633                    8567214      9193298     93.19%
+ORF10_29661                    8346696      9193298     90.79%
+3'UTR_29717                    7820975      9193298     85.07%
+M_Membrane_26995               8260451      9193298     89.85%
+M_Membrane_27023               8276633      9193298     90.03%
+S_Spike_23931                  8981123      9193298     97.69%
+S_Spike_24797                  9070445      9193298     98.66%
+5'UTR_167                      8260501      9193298     89.85%
+ORF8_28251                     8368243      9193298     91.03%
+5'UTR_44                       3374446      9193298     36.71%
+5'UTR_203                      5389869      9193298     58.63%
+ORF7b_27863                    7808010      9193298     84.93%
+
+[guide-conservation] Results written to data/crispr_guides/novel_targets_same_corpus.json
+     1594.60 real      1378.62 user        73.28 sys
+            12648448  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                 970  page reclaims
+                   9  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  29  voluntary context switches
+              786226  involuntary context switches
+      23774538296419  instructions retired
+       5468985285273  cycles elapsed
+             7340416  peak memory footprint

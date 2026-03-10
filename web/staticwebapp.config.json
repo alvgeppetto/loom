@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "allowedRoles": ["anonymous"]
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/crispr-search.html"
+  },
+  "mimeTypes": {
+    ".wasm": "application/wasm"
+  },
+  "globalHeaders": {
+    "Cache-Control": "no-cache"
+  }
+}

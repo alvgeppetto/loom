@@ -1,0 +1,72 @@
+[
+  {
+    "guide_id": "DETECTR_N",
+    "sequence": "GACCCCAAAATCAGCGAAAT",
+    "hits": 8660883,
+    "total_genomes": 9193298,
+    "conservation_pct": 94.21
+  },
+  {
+    "guide_id": "DETECTR_E",
+    "sequence": "TTACAAACATTGGCCGCAAA",
+    "hits": 9040944,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.34
+  },
+  {
+    "guide_id": "PACMAN_N1",
+    "sequence": "GTTCCAATTAACACCAATAGC",
+    "hits": 8975370,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.63
+  },
+  {
+    "guide_id": "PACMAN_N2",
+    "sequence": "GATTACAAACATTGGCCGCAA",
+    "hits": 9039127,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.32
+  },
+  {
+    "guide_id": "PACMAN_RdRp1",
+    "sequence": "ACCTTTCAAACTCAACATCAACCA",
+    "hits": 0,
+    "total_genomes": 9193298,
+    "conservation_pct": 0.0
+  },
+  {
+    "guide_id": "PACMAN_RdRp2",
+    "sequence": "TGATAGAAGTGCAAGGTTACAAG",
+    "hits": 8847364,
+    "total_genomes": 9193298,
+    "conservation_pct": 96.24
+  },
+  {
+    "guide_id": "SHERLOCK_S",
+    "sequence": "CCAGAACTCAATTACCCCCTG",
+    "hits": 5817562,
+    "total_genomes": 9193298,
+    "conservation_pct": 63.28
+  },
+  {
+    "guide_id": "SHERLOCK_Orf1ab",
+    "sequence": "CTTCGATTGTGTGCGTACTGC",
+    "hits": 8967912,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.55
+  },
+  {
+    "guide_id": "CARVER_CoV_con1",
+    "sequence": "AAAGGTTTACCCAATAATACTGCG",
+    "hits": 78,
+    "total_genomes": 9193298,
+    "conservation_pct": 0.0
+  },
+  {
+    "guide_id": "CARVER_CoV_con2",
+    "sequence": "GCCAACAACAAAGGTTACTTTTGG",
+    "hits": 0,
+    "total_genomes": 9193298,
+    "conservation_pct": 0.0
+  }
+]

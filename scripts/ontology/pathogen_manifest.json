@@ -1,0 +1,131 @@
+{
+  "_comment": "LOOM pathogen → ontology ID manifest. Verified against NCBI Taxonomy, Disease Ontology, MONDO, ICD-11 (2026-03).",
+  "pathogens": {
+    "cholera": {
+      "species": "Vibrio cholerae",
+      "ncbi_taxid": 666,
+      "doid": "DOID:1498",
+      "mondo": "MONDO:0015766",
+      "icd11": "1A00",
+      "who_priority": false,
+      "transmission": "waterborne",
+      "genome_type": "dsDNA"
+    },
+    "dengue": {
+      "species": "Dengue virus",
+      "ncbi_taxid": 12637,
+      "doid": "DOID:12205",
+      "mondo": "MONDO:0005502",
+      "icd11": "1D20",
+      "who_priority": true,
+      "transmission": "vector-borne",
+      "genome_type": "ssRNA(+)"
+    },
+    "ebola": {
+      "species": "Zaire ebolavirus",
+      "ncbi_taxid": 186538,
+      "doid": "DOID:4325",
+      "mondo": "MONDO:0005737",
+      "icd11": "1D60",
+      "who_priority": true,
+      "transmission": "contact",
+      "genome_type": "ssRNA(-)"
+    },
+    "hepatitis-b": {
+      "species": "Hepatitis B virus",
+      "ncbi_taxid": 10407,
+      "doid": "DOID:2043",
+      "mondo": "MONDO:0005344",
+      "icd11": "1E50.1",
+      "who_priority": false,
+      "transmission": "bloodborne",
+      "genome_type": "dsDNA-RT"
+    },
+    "hiv-1": {
+      "species": "Human immunodeficiency virus 1",
+      "ncbi_taxid": 11676,
+      "doid": "DOID:526",
+      "mondo": "MONDO:0005109",
+      "icd11": "1C62.0",
+      "who_priority": false,
+      "transmission": "bloodborne",
+      "genome_type": "ssRNA-RT"
+    },
+    "influenza-a": {
+      "species": "Influenza A virus",
+      "ncbi_taxid": 11320,
+      "doid": "DOID:8469",
+      "mondo": "MONDO:0005812",
+      "icd11": "1E30",
+      "who_priority": true,
+      "transmission": "respiratory",
+      "genome_type": "ssRNA(-)"
+    },
+    "mers": {
+      "species": "Middle East respiratory syndrome-related coronavirus",
+      "ncbi_taxid": 1335626,
+      "doid": "DOID:0080642",
+      "mondo": "MONDO:0100116",
+      "icd11": "1D65",
+      "who_priority": true,
+      "transmission": "respiratory",
+      "genome_type": "ssRNA(+)"
+    },
+    "mpox": {
+      "species": "Monkeypox virus",
+      "ncbi_taxid": 10244,
+      "doid": "DOID:3292",
+      "mondo": "MONDO:0002594",
+      "icd11": "1E70",
+      "who_priority": true,
+      "transmission": "contact",
+      "genome_type": "dsDNA"
+    },
+    "rsv": {
+      "species": "Human respiratory syncytial virus",
+      "ncbi_taxid": 12814,
+      "doid": "DOID:1273",
+      "mondo": "MONDO:0001577",
+      "icd11": "1E31",
+      "who_priority": false,
+      "transmission": "respiratory",
+      "genome_type": "ssRNA(-)"
+    },
+    "sars-cov-2": {
+      "species": "Severe acute respiratory syndrome coronavirus 2",
+      "ncbi_taxid": 2697049,
+      "doid": "DOID:0080600",
+      "mondo": "MONDO:0100096",
+      "icd11": "RA01",
+      "who_priority": true,
+      "transmission": "respiratory",
+      "genome_type": "ssRNA(+)"
+    },
+    "tuberculosis": {
+      "species": "Mycobacterium tuberculosis",
+      "ncbi_taxid": 1773,
+      "doid": "DOID:399",
+      "mondo": "MONDO:0018076",
+      "icd11": "1B10",
+      "who_priority": false,
+      "transmission": "respiratory",
+      "genome_type": "dsDNA"
+    },
+    "zika": {
+      "species": "Zika virus",
+      "ncbi_taxid": 64320,
+      "doid": "DOID:0060478",
+      "mondo": "MONDO:0018661",
+      "icd11": "1D4D",
+      "who_priority": true,
+      "transmission": "vector-borne",
+      "genome_type": "ssRNA(+)"
+    }
+  },
+  "animals": {
+    "bat-rousettus": { "species": "Rousettus aegyptiacus", "ncbi_taxid": 9407 },
+    "chicken": { "species": "Gallus gallus", "ncbi_taxid": 9031 },
+    "pig": { "species": "Sus scrofa", "ncbi_taxid": 9823 },
+    "human-grch38": { "species": "Homo sapiens", "ncbi_taxid": 9606 }
+  }
+}

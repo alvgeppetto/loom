@@ -1,0 +1,1028 @@
+{
+  "description": "In silico characterization of all 52 novel SARS-CoV-2 CRISPR targets",
+  "date": "2026-03-08",
+  "signals": [
+    "homopolymer_runs",
+    "rnafold_mfe",
+    "melting_temperature"
+  ],
+  "conditions": {
+    "rnafold": "ViennaRNA RNAfold, default parameters, --noPS",
+    "tm": "nearest-neighbor (SantaLucia 1998), 250 nM oligo, 50 mM Na+",
+    "homopolymer": "max consecutive identical nucleotides"
+  },
+  "summary": {
+    "total_targets": 52,
+    "homopolymer_ge4": 12,
+    "homopolymer_flagged_positions": [
+      16813,
+      1127,
+      9897,
+      12244,
+      17007,
+      19617,
+      4526,
+      17245,
+      18190,
+      21110,
+      6419,
+      28251
+    ],
+    "mfe_le_minus5": 3,
+    "tm_range_celsius": [
+      37.9,
+      59.8
+    ],
+    "tm_mean_celsius": 48.4
+  },
+  "targets": [
+    {
+      "rank": 1,
+      "position": 16813,
+      "sequence": "GAGAGTACACCTTTGAAAAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 99.07,
+      "gc_pct": 35.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 47.4,
+      "max_homopolymer_run": 5,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 5,
+        "C": 2,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 2,
+      "position": 17078,
+      "sequence": "TGGTACTGGTAAGAGTCATT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 98.98,
+      "gc_pct": 40.0,
+      "mfe_kcal": -0.4,
+      "tm_celsius": 49.3,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 3,
+      "position": 17431,
+      "sequence": "CTGCTCAATTACCTGCACCA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 99.14,
+      "gc_pct": 50.0,
+      "mfe_kcal": -1.3,
+      "tm_celsius": 54.6,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 4,
+      "position": 19218,
+      "sequence": "ATTGTTTGTAGATTTGACAC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 99.11,
+      "gc_pct": 30.0,
+      "mfe_kcal": -0.3,
+      "tm_celsius": 46.0,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 5,
+      "position": 3614,
+      "sequence": "TTGTCGGCCCAAATGTTAAC",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 97.86,
+      "gc_pct": 45.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 53.4,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 3,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 6,
+      "position": 17592,
+      "sequence": "GTTTATGATAATAAGCTTAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 97.48,
+      "gc_pct": 20.0,
+      "mfe_kcal": -3.5,
+      "tm_celsius": 40.0,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 7,
+      "position": 17761,
+      "sequence": "TTTCACCTTATAATTCACAG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.04,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 44.7,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 8,
+      "position": 26220,
+      "sequence": "CTTATGTACTCATTCGTTTC",
+      "gene": "ORF3a",
+      "pam": "Cas9",
+      "conservation_pct": 98.91,
+      "gc_pct": 35.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 45.9,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 9,
+      "position": 1127,
+      "sequence": "TTGAAAAGAAAAAGCTTGAT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 98.69,
+      "gc_pct": 25.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 46.0,
+      "max_homopolymer_run": 5,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 5,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 10,
+      "position": 5744,
+      "sequence": "ACACTGGTAATTACCAGTGT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 98.63,
+      "gc_pct": 40.0,
+      "mfe_kcal": -10.4,
+      "tm_celsius": 52.2,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 11,
+      "position": 9897,
+      "sequence": "TAATAAGTACAAGTATTTTA",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.85,
+      "gc_pct": 15.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 37.9,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 1,
+        "T": 4
+      }
+    },
+    {
+      "rank": 12,
+      "position": 10456,
+      "sequence": "ACTATTAAGGGTTCATTCCT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 99.17,
+      "gc_pct": 35.0,
+      "mfe_kcal": -2.0,
+      "tm_celsius": 47.1,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "G",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 3,
+        "T": 2
+      }
+    },
+    {
+      "rank": 13,
+      "position": 10531,
+      "sequence": "TGTTACATGCACCATATGGA",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 99.01,
+      "gc_pct": 40.0,
+      "mfe_kcal": -0.3,
+      "tm_celsius": 50.8,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "C",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 14,
+      "position": 12015,
+      "sequence": "CATGCAGGGTGCTGTAGACA",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.84,
+      "gc_pct": 55.0,
+      "mfe_kcal": -4.6,
+      "tm_celsius": 56.4,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "G",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 3,
+        "T": 1
+      }
+    },
+    {
+      "rank": 15,
+      "position": 12208,
+      "sequence": "AATGTGGCTAAATCTGAATT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.62,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 47.0,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 16,
+      "position": 12244,
+      "sequence": "ATGCAACGTAAGTTGGAAAA",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 98.63,
+      "gc_pct": 35.0,
+      "mfe_kcal": -3.6,
+      "tm_celsius": 50.5,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 4,
+        "C": 1,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 17,
+      "position": 12829,
+      "sequence": "AAATGGGCTAGATTCCCTAA",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.68,
+      "gc_pct": 40.0,
+      "mfe_kcal": -2.3,
+      "tm_celsius": 49.6,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 3,
+        "G": 3,
+        "T": 2
+      }
+    },
+    {
+      "rank": 18,
+      "position": 12888,
+      "sequence": "ACCTTGTAGGTTTGTTACAG",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 98.93,
+      "gc_pct": 40.0,
+      "mfe_kcal": -2.1,
+      "tm_celsius": 49.2,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 2,
+        "T": 3
+      }
+    },
+    {
+      "rank": 19,
+      "position": 13142,
+      "sequence": "AGATGTTGTGTACACACACT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 98.88,
+      "gc_pct": 40.0,
+      "mfe_kcal": -2.4,
+      "tm_celsius": 51.0,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 20,
+      "position": 17007,
+      "sequence": "GAGTTTTCTAGCAATGTTGC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.72,
+      "gc_pct": 40.0,
+      "mfe_kcal": -0.6,
+      "tm_celsius": 49.7,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 1,
+        "T": 4
+      }
+    },
+    {
+      "rank": 21,
+      "position": 17561,
+      "sequence": "TGCTGAAATTGTTGACACTG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 99.11,
+      "gc_pct": 40.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 51.2,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 22,
+      "position": 19617,
+      "sequence": "GAAAATGTGGCTTTTAATGT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.85,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 46.9,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 4,
+        "C": 1,
+        "G": 2,
+        "T": 4
+      }
+    },
+    {
+      "rank": 23,
+      "position": 241,
+      "sequence": "GTCCGGGTGTGACCGAAAGG",
+      "gene": "5'UTR",
+      "pam": "Cas12a",
+      "conservation_pct": 90.53,
+      "gc_pct": 65.0,
+      "mfe_kcal": -4.3,
+      "tm_celsius": 59.5,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 2,
+        "G": 3,
+        "T": 1
+      }
+    },
+    {
+      "rank": 24,
+      "position": 4526,
+      "sequence": "GATTTTACTTTTACACCAGT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 95.46,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 45.3,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 1,
+        "T": 4
+      }
+    },
+    {
+      "rank": 25,
+      "position": 7870,
+      "sequence": "TTGCCTATTAATGTTATAGT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 97.81,
+      "gc_pct": 25.0,
+      "mfe_kcal": -0.4,
+      "tm_celsius": 43.0,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 26,
+      "position": 8909,
+      "sequence": "TGCATTTCTTACCTAGAGTT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 95.46,
+      "gc_pct": 35.0,
+      "mfe_kcal": -0.4,
+      "tm_celsius": 47.9,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 27,
+      "position": 9727,
+      "sequence": "TGGTTCTTTAGTAATTACCT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.0,
+      "gc_pct": 30.0,
+      "mfe_kcal": -1.2,
+      "tm_celsius": 44.9,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 2,
+        "T": 3
+      }
+    },
+    {
+      "rank": 28,
+      "position": 9949,
+      "sequence": "GCTGCTTGTTGTCATCTCGC",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.38,
+      "gc_pct": 55.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 56.7,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 29,
+      "position": 12958,
+      "sequence": "AACAACCTAAATAGAGGTAT",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 98.42,
+      "gc_pct": 30.0,
+      "mfe_kcal": -3.2,
+      "tm_celsius": 44.6,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 2,
+        "G": 2,
+        "T": 1
+      }
+    },
+    {
+      "rank": 30,
+      "position": 13355,
+      "sequence": "ACACAGTCTGTACCGTCTGC",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas9",
+      "conservation_pct": 96.68,
+      "gc_pct": 55.0,
+      "mfe_kcal": -1.9,
+      "tm_celsius": 56.1,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "C",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 1,
+        "T": 1
+      }
+    },
+    {
+      "rank": 31,
+      "position": 17245,
+      "sequence": "TAGAGTGTTTTGATAAATTC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.52,
+      "gc_pct": 25.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 42.7,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 1,
+        "T": 4
+      }
+    },
+    {
+      "rank": 32,
+      "position": 18089,
+      "sequence": "TACACAGGCACCTACACACC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 95.46,
+      "gc_pct": 55.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 55.7,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "C",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 2,
+        "T": 1
+      }
+    },
+    {
+      "rank": 33,
+      "position": 18190,
+      "sequence": "TCATCTCTATGATGGGTTTT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 95.94,
+      "gc_pct": 35.0,
+      "mfe_kcal": -3.8,
+      "tm_celsius": 47.5,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 3,
+        "T": 4
+      }
+    },
+    {
+      "rank": 34,
+      "position": 19821,
+      "sequence": "ATACTCAATAATTTGGGTGT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 97.95,
+      "gc_pct": 30.0,
+      "mfe_kcal": -6.3,
+      "tm_celsius": 45.9,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "G",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 3,
+        "T": 3
+      }
+    },
+    {
+      "rank": 35,
+      "position": 20590,
+      "sequence": "TTTCATTTATGCTTTGGTGT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 98.38,
+      "gc_pct": 30.0,
+      "mfe_kcal": -0.1,
+      "tm_celsius": 47.9,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 2,
+        "T": 3
+      }
+    },
+    {
+      "rank": 36,
+      "position": 21110,
+      "sequence": "TGGGTTTATACAACAAAAGC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 96.54,
+      "gc_pct": 35.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 48.4,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 4,
+        "C": 1,
+        "G": 3,
+        "T": 3
+      }
+    },
+    {
+      "rank": 37,
+      "position": 21147,
+      "sequence": "GTGGCTATAAAGATAACAGA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas9",
+      "conservation_pct": 95.68,
+      "gc_pct": 35.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 46.1,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 2,
+        "T": 1
+      }
+    },
+    {
+      "rank": 38,
+      "position": 26565,
+      "sequence": "TAGTAATAGGTTTCCTATTC",
+      "gene": "M (Membrane)",
+      "pam": "Cas9",
+      "conservation_pct": 97.34,
+      "gc_pct": 30.0,
+      "mfe_kcal": -3.3,
+      "tm_celsius": 42.5,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 2,
+        "T": 3
+      }
+    },
+    {
+      "rank": 39,
+      "position": 6419,
+      "sequence": "TGGAAAATCCTACCATACAG",
+      "gene": "ORF1a (nsp1-11)",
+      "pam": "Cas12a",
+      "conservation_pct": 93.25,
+      "gc_pct": 40.0,
+      "mfe_kcal": -1.0,
+      "tm_celsius": 48.3,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 4,
+        "C": 2,
+        "G": 2,
+        "T": 1
+      }
+    },
+    {
+      "rank": 40,
+      "position": 19287,
+      "sequence": "TATGTAAATAAACATGCATT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "pam": "Cas12a",
+      "conservation_pct": 89.52,
+      "gc_pct": 20.0,
+      "mfe_kcal": -1.5,
+      "tm_celsius": 42.5,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 41,
+      "position": 25784,
+      "sequence": "ATTACTTTATGATGCCAACT",
+      "gene": "ORF3a",
+      "pam": "Cas9",
+      "conservation_pct": 96.27,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 46.4,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 42,
+      "position": 26513,
+      "sequence": "AACGGTACTATTACCGTTGA",
+      "gene": "intergenic",
+      "pam": "Cas9",
+      "conservation_pct": 97.73,
+      "gc_pct": 40.0,
+      "mfe_kcal": -7.1,
+      "tm_celsius": 50.3,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 2,
+        "G": 2,
+        "T": 2
+      }
+    },
+    {
+      "rank": 43,
+      "position": 29633,
+      "sequence": "ATCTCACATAGCAATCTTTA",
+      "gene": "ORF10",
+      "pam": "Cas12a",
+      "conservation_pct": 93.19,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 45.6,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 44,
+      "position": 29661,
+      "sequence": "GTAACATTAGGGAGGACTTG",
+      "gene": "ORF10",
+      "pam": "Cas12a",
+      "conservation_pct": 90.79,
+      "gc_pct": 45.0,
+      "mfe_kcal": -0.2,
+      "tm_celsius": 49.2,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "G",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 3,
+        "T": 2
+      }
+    },
+    {
+      "rank": 45,
+      "position": 29717,
+      "sequence": "CTAGGGAGAGCTGCCTATAT",
+      "gene": "3'UTR",
+      "pam": "Cas9",
+      "conservation_pct": 85.07,
+      "gc_pct": 50.0,
+      "mfe_kcal": -3.7,
+      "tm_celsius": 51.3,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "G",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 3,
+        "T": 1
+      }
+    },
+    {
+      "rank": 46,
+      "position": 26995,
+      "sequence": "TAAAGAAATCACTGTTGCTA",
+      "gene": "M (Membrane)",
+      "pam": "Cas9",
+      "conservation_pct": 89.85,
+      "gc_pct": 30.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 46.4,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 47,
+      "position": 27023,
+      "sequence": "ACGCTTTCTTATTACAAATT",
+      "gene": "M (Membrane)",
+      "pam": "Cas9",
+      "conservation_pct": 90.03,
+      "gc_pct": 25.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 45.4,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 1,
+        "T": 3
+      }
+    },
+    {
+      "rank": 48,
+      "position": 167,
+      "sequence": "TAACTCGTCTATCTTCTGCA",
+      "gene": "5'UTR",
+      "pam": "Cas9",
+      "conservation_pct": 89.85,
+      "gc_pct": 40.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 49.7,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 49,
+      "position": 28251,
+      "sequence": "AATGTCTGATAATGGACCCC",
+      "gene": "ORF8",
+      "pam": "Cas12a",
+      "conservation_pct": 91.03,
+      "gc_pct": 45.0,
+      "mfe_kcal": -2.4,
+      "tm_celsius": 50.8,
+      "max_homopolymer_run": 4,
+      "max_homopolymer_base": "C",
+      "homopolymer_detail": {
+        "A": 2,
+        "C": 4,
+        "G": 2,
+        "T": 1
+      }
+    },
+    {
+      "rank": 50,
+      "position": 44,
+      "sequence": "GATCTCTTGTAGATCTGTTC",
+      "gene": "5'UTR",
+      "pam": "Cas12a",
+      "conservation_pct": 36.71,
+      "gc_pct": 40.0,
+      "mfe_kcal": -3.5,
+      "tm_celsius": 46.7,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "T",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 1,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 51,
+      "position": 203,
+      "sequence": "GTCCGTGTTGCAGCCGATCA",
+      "gene": "5'UTR",
+      "pam": "Cas12a",
+      "conservation_pct": 58.63,
+      "gc_pct": 60.0,
+      "mfe_kcal": -0.9,
+      "tm_celsius": 59.8,
+      "max_homopolymer_run": 2,
+      "max_homopolymer_base": "C",
+      "homopolymer_detail": {
+        "A": 1,
+        "C": 2,
+        "G": 1,
+        "T": 2
+      }
+    },
+    {
+      "rank": 52,
+      "position": 27863,
+      "sequence": "TAAACGAACATGAAATTTCT",
+      "gene": "ORF7b",
+      "pam": "Cas9",
+      "conservation_pct": 84.93,
+      "gc_pct": 25.0,
+      "mfe_kcal": 0.0,
+      "tm_celsius": 45.3,
+      "max_homopolymer_run": 3,
+      "max_homopolymer_base": "A",
+      "homopolymer_detail": {
+        "A": 3,
+        "C": 1,
+        "G": 1,
+        "T": 3
+      }
+    }
+  ]
+}

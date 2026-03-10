@@ -1,0 +1,576 @@
+{
+  "generated": "2026-03-06T23:06:21.480333+00:00",
+  "version": "4.0",
+  "methodology": "Four-strategy per claim: PubMed narrow[Title/Abstract], PubMed broad (ontology+manual synonym-expanded)[Title/Abstract], local abstract corpus co-occurrence scan + Europe PMC, NCBI ontology synonym cross-check. Gap = zero evidence across ALL strategies. See src/dna/pubmed_scan.rs (loom pubmed-scan CLI).",
+  "summary": {
+    "total_pathogens": 13,
+    "total_targets_in_db": 130000,
+    "ngg_targets": 8113,
+    "gene_gaps": 6,
+    "application_gaps": 0,
+    "total_opportunities": 6,
+    "scan_version": "v4",
+    "scan_date": "2026-03",
+    "note": "Gap counts updated to v4 ontology-integrated results (6 gene-level gaps, 5 unique biological targets). v4 Rust scanner with NCBI ontology-derived synonym expansion (8,283 genes, 51 auto-synonyms). RSV SH protein reclassified from CONFIRMED (v3) to UNCERTAIN. J2R/thymidine kinase (OPG101) and A56R/hemagglutinin (OPG185) deduplicated. SARS-CoV-2 gene classifications added (nsp13/nsp14 FALSE, nsp7/nsp10/ORF10 UNCERTAIN). 52 novel SARS-CoV-2 targets with off-target scan results. Hassan et al. 2023 cited for NSP14 mutational context. Updated March 2026.",
+    "gene_gaps_note": "6 gene-level gaps (5 unique biological targets). J2R and thymidine kinase are OPG101 (same gene); A56R and hemagglutinin are OPG185 (same gene). Paper reports 6 gaps across 5 unique targets."
+  },
+  "landscape": {
+    "cholera": {
+      "query": "(\"Vibrio cholerae\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 57
+    },
+    "dengue": {
+      "query": "(\"Dengue\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 150
+    },
+    "ebola": {
+      "query": "(\"Ebola\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 34
+    },
+    "hepatitis-b": {
+      "query": "(\"Hepatitis B\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 236
+    },
+    "hiv-1": {
+      "query": "(\"HIV\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 669
+    },
+    "influenza-a": {
+      "query": "(\"Influenza A\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 151
+    },
+    "mers": {
+      "query": "(\"MERS\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 56
+    },
+    "mpox": {
+      "query": "(\"Mpox\"[Title/Abstract] OR \"Monkeypox\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 69
+    },
+    "refseq-viral": {
+      "query": "(\"virus\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 4589
+    },
+    "rsv": {
+      "query": "(\"RSV\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 31
+    },
+    "sars-cov-2": {
+      "query": "(\"SARS-CoV-2\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 912
+    },
+    "tuberculosis": {
+      "query": "(\"Mycobacterium tuberculosis\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 253
+    },
+    "zika": {
+      "query": "(\"Zika\"[Title/Abstract]) AND (CRISPR[Title/Abstract] OR \"guide RNA\"[Title/Abstract] OR Cas9[Title/Abstract] OR Cas12[Title/Abstract] OR Cas13[Title/Abstract])",
+      "total_papers": 129
+    }
+  },
+  "opportunities": [
+    {
+      "type": "gene_gap",
+      "pathogen": "V. cholerae",
+      "pathogen_key": "cholera",
+      "gene": "hapA",
+      "description": "No CRISPR papers targeting hapA in V. cholerae (confirmed by 4-strategy v4 (ontology-expanded) scan)",
+      "confidence": "CONFIRMED",
+      "scan_method": "pubmed_scan_v4 (Rust): narrow + broad (ontology) + corpus + EuropePMC",
+      "scan_date": "2026-03"
+    },
+    {
+      "type": "gene_gap",
+      "pathogen": "Mpox",
+      "pathogen_key": "mpox",
+      "gene": "A33R (OPG130)",
+      "description": "No CRISPR papers targeting A33R (OPG130) in Mpox (confirmed by 4-strategy v4 ontology-expanded scan).",
+      "confidence": "CONFIRMED",
+      "scan_method": "pubmed_scan_v4 (Rust): narrow + broad (ontology) + corpus + EuropePMC",
+      "scan_date": "2026-03"
+    },
+    {
+      "type": "gene_gap",
+      "pathogen": "Mpox",
+      "pathogen_key": "mpox",
+      "gene": "B5R (OPG126)",
+      "description": "No CRISPR papers targeting B5R (OPG126) in Mpox (confirmed by 4-strategy v4 ontology-expanded scan).",
+      "confidence": "CONFIRMED",
+      "scan_method": "pubmed_scan_v4 (Rust): narrow + broad (ontology) + corpus + EuropePMC",
+      "scan_date": "2026-03"
+    },
+    {
+      "type": "gene_gap",
+      "pathogen": "Mpox",
+      "pathogen_key": "mpox",
+      "gene": "E8L (OPG024)",
+      "description": "No CRISPR papers targeting E8L (OPG024) in Mpox (confirmed by 4-strategy v4 ontology-expanded scan).",
+      "confidence": "CONFIRMED",
+      "scan_method": "pubmed_scan_v4 (Rust): narrow + broad (ontology) + corpus + EuropePMC",
+      "scan_date": "2026-03"
+    },
+    {
+      "type": "gene_gap",
+      "pathogen": "Mpox",
+      "pathogen_key": "mpox",
+      "gene": "J2R/thymidine kinase (OPG101)",
+      "description": "No CRISPR papers targeting J2R/thymidine kinase (OPG101) in Mpox (confirmed by 4-strategy v4 ontology-expanded scan). Verified under both VACV legacy name and protein function name.",
+      "confidence": "CONFIRMED",
+      "scan_method": "pubmed_scan_v4 (Rust): narrow + broad (ontology) + corpus + EuropePMC",
+      "scan_date": "2026-03"
+    },
+    {
+      "type": "gene_gap",
+      "pathogen": "Mpox",
+      "pathogen_key": "mpox",
+      "gene": "A56R/hemagglutinin (OPG185)",
+      "description": "No CRISPR papers targeting A56R/hemagglutinin (OPG185) in Mpox (confirmed by 4-strategy v4 ontology-expanded scan). Verified under both VACV legacy name and protein function name.",
+      "confidence": "CONFIRMED",
+      "scan_method": "pubmed_scan_v4 (Rust): narrow + broad (ontology) + corpus + EuropePMC",
+      "scan_date": "2026-03"
+    }
+  ],
+  "pathogens": {
+    "cholera": {
+      "name": "V. cholerae",
+      "total_papers": 57,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "detection",
+        "isothermal"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "tcpA",
+        "toxR",
+        "cholera toxin"
+      ],
+      "unstudied_genes": [
+        "hapA"
+      ]
+    },
+    "dengue": {
+      "name": "Dengue Virus",
+      "total_papers": 150,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "antiviral",
+        "gene drive",
+        "SHERLOCK",
+        "DETECTR",
+        "Cas13",
+        "isothermal"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "NS1",
+        "NS2B",
+        "NS3",
+        "NS4B",
+        "NS5",
+        "capsid",
+        "prM",
+        "envelope"
+      ],
+      "unstudied_genes": []
+    },
+    "ebola": {
+      "name": "Ebola Virus",
+      "total_papers": 34,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "SHERLOCK",
+        "DETECTR",
+        "point-of-care"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "VP35",
+        "GP"
+      ],
+      "unstudied_genes": []
+    },
+    "hepatitis-b": {
+      "name": "Hepatitis B",
+      "total_papers": 236,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "therapeutic",
+        "antiviral",
+        "gene editing",
+        "knockdown",
+        "diagnostic",
+        "detection",
+        "cure"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "HBsAg",
+        "HBcAg",
+        "HBx",
+        "polymerase",
+        "cccDNA",
+        "pgRNA",
+        "surface antigen",
+        "core protein"
+      ],
+      "unstudied_genes": []
+    },
+    "hiv-1": {
+      "name": "HIV-1",
+      "total_papers": 669,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "therapeutic",
+        "cure",
+        "latency",
+        "reservoir",
+        "excision",
+        "gene editing",
+        "diagnostic",
+        "detection",
+        "proviral",
+        "SHERLOCK",
+        "Cas13"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "gag",
+        "pol",
+        "env",
+        "tat",
+        "rev",
+        "nef",
+        "vif",
+        "vpr",
+        "vpu",
+        "LTR",
+        "integrase",
+        "reverse transcriptase",
+        "protease",
+        "gp120",
+        "gp41",
+        "capsid"
+      ],
+      "unstudied_genes": []
+    },
+    "influenza-a": {
+      "name": "Influenza A",
+      "total_papers": 151,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "antiviral",
+        "DETECTR",
+        "Cas13",
+        "point-of-care",
+        "subtyping",
+        "surveillance"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "HA",
+        "NA",
+        "hemagglutinin",
+        "neuraminidase",
+        "PB1",
+        "PB2",
+        "PA",
+        "NP",
+        "M1",
+        "M2",
+        "NS1"
+      ],
+      "unstudied_genes": []
+    },
+    "mers": {
+      "name": "MERS-CoV",
+      "total_papers": 56,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "SHERLOCK",
+        "DETECTR",
+        "Cas13",
+        "point-of-care"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "spike",
+        "RdRp",
+        "ORF1a",
+        "nucleocapsid",
+        "envelope",
+        "membrane"
+      ],
+      "unstudied_genes": []
+    },
+    "mpox": {
+      "name": "Mpox",
+      "total_papers": 69,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "Cas13",
+        "point-of-care",
+        "isothermal"
+      ],
+      "gap_applications": [],
+      "studied_genes": [],
+      "unstudied_genes": [
+        "OPG024",
+        "OPG101",
+        "OPG126",
+        "OPG130",
+        "OPG185"
+      ],
+      "unstudied_genes_display": {
+        "OPG024": "E8L (OPG024)",
+        "OPG101": "J2R/thymidine kinase (OPG101)",
+        "OPG126": "B5R (OPG126)",
+        "OPG130": "A33R (OPG130)",
+        "OPG185": "A56R/hemagglutinin (OPG185)"
+      }
+    },
+    "refseq-viral": {
+      "name": "RefSeq Viral (all)",
+      "total_papers": 4589,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "SHERLOCK",
+        "DETECTR",
+        "multiplexed",
+        "pan-viral"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "polymerase",
+        "capsid",
+        "envelope",
+        "protease",
+        "nucleocapsid",
+        "spike"
+      ],
+      "unstudied_genes": []
+    },
+    "rsv": {
+      "name": "RSV",
+      "total_papers": 31,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "antiviral",
+        "Cas13"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "F",
+        "G",
+        "L",
+        "N",
+        "M",
+        "P",
+        "M2",
+        "NS1",
+        "NS2",
+        "SH"
+      ],
+      "unstudied_genes": []
+    },
+    "sars-cov-2": {
+      "name": "SARS-CoV-2",
+      "total_papers": 912,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "antiviral",
+        "SHERLOCK",
+        "DETECTR",
+        "Cas13",
+        "Cas12",
+        "point-of-care",
+        "variant detection",
+        "isothermal"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "spike",
+        "S protein",
+        "RBD",
+        "RdRp",
+        "ORF1a",
+        "ORF1b",
+        "nucleocapsid",
+        "N protein",
+        "envelope",
+        "membrane",
+        "ORF7a",
+        "nsp12",
+        "nsp14",
+        "S",
+        "N",
+        "E",
+        "M",
+        "ORF1ab"
+      ],
+      "unstudied_genes": [
+        "ORF3a",
+        "ORF8"
+      ],
+      "v4_gene_classifications": {
+        "nsp13": {
+          "status": "FALSE",
+          "pubmed_papers": 6,
+          "note": "All therapeutic/mechanistic, 0 diagnostic"
+        },
+        "nsp14": {
+          "status": "FALSE",
+          "pubmed_papers": 9,
+          "note": "Mixed, 0 diagnostic-specific. Hassan et al. 2023 showed NSP14 mutations drive variant diversification, yet our target windows show 99.3-99.4% conservation."
+        },
+        "nsp5": {
+          "status": "FALSE",
+          "pubmed_papers": 6,
+          "note": "Therapeutic target"
+        },
+        "nsp7": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 0,
+          "europepmc": 232,
+          "note": "Least-explored: 0 PubMed narrow+broad"
+        },
+        "nsp10": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 0,
+          "note": "Least-explored: 0 PubMed"
+        },
+        "ORF10": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 0,
+          "europepmc": 240,
+          "note": "Coding status disputed"
+        },
+        "nsp3": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 1
+        },
+        "nsp8": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 1
+        },
+        "nsp9": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 1
+        },
+        "nsp15": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 1,
+          "europepmc": 325
+        },
+        "nsp16": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 1,
+          "europepmc": 325
+        },
+        "ORF3a": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 2
+        },
+        "ORF8": {
+          "status": "UNCERTAIN",
+          "pubmed_papers": 1
+        }
+      },
+      "novel_target_count": 52,
+      "novel_target_note": "52 CRISPR-targetable regions with no overlap with any published diagnostic guide. 8 top candidates spanning ORF1a, nsp13, nsp14 show 99.3-99.5% conservation across 9.4M genomes. 0 exact human genome matches, 5/8 clean at <=1 mismatch.",
+      "off_target_summary": {
+        "reference": "GRCh38 (3.2 Gbp)",
+        "exact_matches": 0,
+        "one_mm_positions": 58,
+        "guides_with_1mm": 22,
+        "guides_clean_at_1mm": 30,
+        "top8_clean_at_1mm": 5,
+        "total_guides": 52,
+        "csv": "data/crispr_guides/offtargets_novel52_grch38_3mm.csv"
+      }
+    },
+    "tuberculosis": {
+      "name": "M. tuberculosis",
+      "total_papers": 253,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "drug resistance",
+        "point-of-care",
+        "SHERLOCK",
+        "DETECTR",
+        "Cas12",
+        "isothermal",
+        "MDR-TB",
+        "XDR-TB"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "rpoB",
+        "katG",
+        "inhA",
+        "gyrA",
+        "gyrB",
+        "embB",
+        "ethA",
+        "rrs",
+        "eis",
+        "IS6110",
+        "Ag85B",
+        "ESAT-6"
+      ],
+      "unstudied_genes": []
+    },
+    "zika": {
+      "name": "Zika Virus",
+      "total_papers": 129,
+      "targets_in_db": 10000,
+      "covered_applications": [
+        "diagnostic",
+        "detection",
+        "therapeutic",
+        "SHERLOCK",
+        "DETECTR",
+        "Cas13",
+        "point-of-care",
+        "congenital",
+        "microcephaly"
+      ],
+      "gap_applications": [],
+      "studied_genes": [
+        "NS1",
+        "NS3",
+        "NS4B",
+        "NS5",
+        "capsid",
+        "prM",
+        "envelope"
+      ],
+      "unstudied_genes": []
+    }
+  }
+}

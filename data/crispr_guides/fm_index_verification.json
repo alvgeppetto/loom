@@ -1,0 +1,27 @@
+{
+  "validation_date": "2026-03-08T01:31:13Z",
+  "reference_tool": "BWA 0.7.19 (exact-filtered SAM)",
+  "reference_fasta": "/Volumes/T9/loom-openscience/raw/zika/zika.fna",
+  "normalized_genome_length": 19048983,
+  "query_length": 23,
+  "queries_total": 2000,
+  "queries_unique": 1894,
+  "loom_binary": "/Users/alvarogpt/Code/loom/target/release/loom",
+  "count_concordance": {
+    "loom_vs_naive_mismatches": 0,
+    "passed": true,
+    "sample_mismatches": []
+  },
+  "presence_concordance": {
+    "loom_vs_bwa_presence_mismatches": 0,
+    "passed": true,
+    "sample_mismatches": []
+  },
+  "overall_concordance": true,
+  "runtime_seconds": 35.119,
+  "notes": [
+    "Count correctness is validated against exhaustive overlapping substring counts.",
+    "BWA check validates exact hit-presence agreement on the same normalized reference.",
+    "This script validates exact-match FM-index behavior only (no mismatch tolerance)."
+  ]
+}

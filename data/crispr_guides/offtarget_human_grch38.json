@@ -1,0 +1,1355 @@
+{
+  "analysis": "off-target_uniqueness_check",
+  "reference_genome": "GRCh38 (hg38)",
+  "date": "2026-03-02 06:55:37",
+  "total_guides": 89,
+  "unique_guides": 88,
+  "guides_with_human_hits": 1,
+  "search_time_seconds": 44.51,
+  "total_time_seconds": 54.68,
+  "hardware": "Apple M3 Ultra, 28 cores, 96 GB",
+  "workers": 24,
+  "results": [
+    {
+      "sars_cov2_position": 15271,
+      "sequence": "TTATGGGTTGGGATTATCCT",
+      "reverse_complement": "AGGATAATCCCAACCCATAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.42,
+      "pam_types": [
+        "Cas9",
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15040,
+      "sequence": "CTACTATAACTCAAATGAAT",
+      "reverse_complement": "ATTCATTTGAGTTATAGTAG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.05,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15876,
+      "sequence": "CATACAATGCTAGTTAAACA",
+      "reverse_complement": "TGTTTAACTAGCATTGTATG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.58,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 16813,
+      "sequence": "GAGAGTACACCTTTGAAAAA",
+      "reverse_complement": "TTTTTCAAAGGTGTACTCTC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.3,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17078,
+      "sequence": "TGGTACTGGTAAGAGTCATT",
+      "reverse_complement": "AATGACTCTTACCAGTACCA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.37,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17431,
+      "sequence": "CTGCTCAATTACCTGCACCA",
+      "reverse_complement": "TGGTGCAGGTAATTGAGCAG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.43,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 19218,
+      "sequence": "ATTGTTTGTAGATTTGACAC",
+      "reverse_complement": "GTGTCAAATCTACAAACAAT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.51,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 3614,
+      "sequence": "TTGTCGGCCCAAATGTTAAC",
+      "reverse_complement": "GTTAACATTTGGGCCGACAA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.3,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 13454,
+      "sequence": "TAAACGGGTTTGCGGTGTAA",
+      "reverse_complement": "TTACACCGCAAACCCGTTTA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 97.79,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14742,
+      "sequence": "AAACACTTCTTCTTTGCTCA",
+      "reverse_complement": "TGAGCAAAGAAGAAGTGTTT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.35,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 16176,
+      "sequence": "TGGGAACCTGAGTTTTATGA",
+      "reverse_complement": "TCATAAAACTCAGGTTCCCA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.58,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17592,
+      "sequence": "GTTTATGATAATAAGCTTAA",
+      "reverse_complement": "TTAAGCTTATTATCATAAAC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.19,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17761,
+      "sequence": "TTTCACCTTATAATTCACAG",
+      "reverse_complement": "CTGTGAATTATAAGGTGAAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.57,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26220,
+      "sequence": "CTTATGTACTCATTCGTTTC",
+      "reverse_complement": "GAAACGAATGAGTACATAAG",
+      "gene": "intergenic",
+      "ncov_conservation_pct": 99.22,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26319,
+      "sequence": "ATCCTTACTGCGCTTCGATT",
+      "reverse_complement": "AATCGAAGCGCAGTAAGGAT",
+      "gene": "E (Envelope)",
+      "ncov_conservation_pct": 97.87,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 25353,
+      "sequence": "TTACACATAAACGAACTTAT",
+      "reverse_complement": "ATAAGTTCGTTTATGTGTAA",
+      "gene": "S (Spike)",
+      "ncov_conservation_pct": 99.19,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29516,
+      "sequence": "ACACAAGGCAGATGGGCTAT",
+      "reverse_complement": "ATAGCCCATCTGCCTTGTGT",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 96.7,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 5744,
+      "sequence": "ACACTGGTAATTACCAGTGT",
+      "reverse_complement": "ACACTGGTAATTACCAGTGT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 198.1,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 9897,
+      "sequence": "TAATAAGTACAAGTATTTTA",
+      "reverse_complement": "TAAAATACTTGTACTTATTA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.09,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 10456,
+      "sequence": "ACTATTAAGGGTTCATTCCT",
+      "reverse_complement": "AGGAATGAACCCTTAATAGT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.42,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 10531,
+      "sequence": "TGTTACATGCACCATATGGA",
+      "reverse_complement": "TCCATATGGTGCATGTAACA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.25,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 12208,
+      "sequence": "AATGTGGCTAAATCTGAATT",
+      "reverse_complement": "AATTCAGATTTAGCCACATT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.3,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 12244,
+      "sequence": "ATGCAACGTAAGTTGGAAAA",
+      "reverse_complement": "TTTTCCAACTTACGTTGCAT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.27,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 12829,
+      "sequence": "AAATGGGCTAGATTCCCTAA",
+      "reverse_complement": "TTAGGGAATCTAGCCCATTT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.11,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 12888,
+      "sequence": "ACCTTGTAGGTTTGTTACAG",
+      "reverse_complement": "CTGTAACAAACCTACAAGGT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.37,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 13142,
+      "sequence": "AGATGTTGTGTACACACACT",
+      "reverse_complement": "AGTGTGTGTACACAACATCT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 99.09,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 13782,
+      "sequence": "CGTCTTACTAAATACACAAT",
+      "reverse_complement": "ATTGTGTATTTAGTAAGACG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.49,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14641,
+      "sequence": "ATGTTGCTTTTCAAACTGTC",
+      "reverse_complement": "GACAGTTTGAAAAGCAACAT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.18,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14688,
+      "sequence": "TATGACTTTGCTGTGTCTAA",
+      "reverse_complement": "TTAGACACAGCAAAGTCATA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.23,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15614,
+      "sequence": "TGAGTGTCTCTATAGAAATA",
+      "reverse_complement": "TATTTCTATAGAGACACTCA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.59,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15791,
+      "sequence": "TTATCAAAACAATGTTTTTA",
+      "reverse_complement": "TAAAAACATTGTTTTGATAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.38,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 1,
+      "human_rev_hits": 0,
+      "human_total_hits": 1,
+      "human_hit_locations": [
+        {
+          "chromosome": "chr5",
+          "position": 5875131
+        }
+      ],
+      "is_unique": false
+    },
+    {
+      "sars_cov2_position": 15832,
+      "sequence": "CTGAGACTGACCTTACTAAA",
+      "reverse_complement": "TTTAGTAAGGTCAGTCTCAG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.25,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17245,
+      "sequence": "TAGAGTGTTTTGATAAATTC",
+      "reverse_complement": "GAATTTATCAAAACACTCTA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.03,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17561,
+      "sequence": "TGCTGAAATTGTTGACACTG",
+      "reverse_complement": "CAGTGTCAACAATTTCAGCA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.38,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 19617,
+      "sequence": "GAAAATGTGGCTTTTAATGT",
+      "reverse_complement": "ACATTAAAAGCCACATTTTC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 99.28,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 241,
+      "sequence": "GTCCGGGTGTGACCGAAAGG",
+      "reverse_complement": "CCTTTCGGTCACACCCGGAC",
+      "gene": "5'UTR",
+      "ncov_conservation_pct": 92.17,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 1127,
+      "sequence": "TTGAAAAGAAAAAGCTTGAT",
+      "reverse_complement": "ATCAAGCTTTTTCTTTTCAA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.94,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 4526,
+      "sequence": "GATTTTACTTTTACACCAGT",
+      "reverse_complement": "ACTGGTGTAAAAGTAAAATC",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 95.6,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 7870,
+      "sequence": "TTGCCTATTAATGTTATAGT",
+      "reverse_complement": "ACTATAACATTAATAGGCAA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.14,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 8909,
+      "sequence": "TGCATTTCTTACCTAGAGTT",
+      "reverse_complement": "AACTCTAGGTAAGAAATGCA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 96.09,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 9727,
+      "sequence": "TGGTTCTTTAGTAATTACCT",
+      "reverse_complement": "AGGTAATTACTAAAGAACCA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.44,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 9949,
+      "sequence": "GCTGCTTGTTGTCATCTCGC",
+      "reverse_complement": "GCGAGATGACAACAAGCAGC",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.69,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 12015,
+      "sequence": "CATGCAGGGTGCTGTAGACA",
+      "reverse_complement": "TGTCTACAGCACCCTGCATG",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.97,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 12958,
+      "sequence": "AACAACCTAAATAGAGGTAT",
+      "reverse_complement": "ATACCTCTATTTAGGTTGTT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 98.79,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 13355,
+      "sequence": "ACACAGTCTGTACCGTCTGC",
+      "reverse_complement": "GCAGACGGTACAGACTGTGT",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 97.0,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 13683,
+      "sequence": "ACAATTTATAATTTACTTAA",
+      "reverse_complement": "TTAAGTAAATTATAAATTGT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 97.69,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14280,
+      "sequence": "GACCGTTATTTTAAATATTG",
+      "reverse_complement": "CAATATTTAAAATAACGGTC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.96,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14487,
+      "sequence": "GTTGTACATAATCAGGATGT",
+      "reverse_complement": "ACATCCTGATTATGTACAAC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.72,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14715,
+      "sequence": "TTTAAGGAAGGAAGTTCTGT",
+      "reverse_complement": "ACAGAACTTCCTTCCTTAAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.12,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14813,
+      "sequence": "AACAATGTGTGATATCAGAC",
+      "reverse_complement": "GTCTGATATCACACATTGTT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.33,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 14872,
+      "sequence": "ATTGTTACGATGGTGGCTGT",
+      "reverse_complement": "ACAGCCACCATCGTAACAAT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 97.56,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 17007,
+      "sequence": "GAGTTTTCTAGCAATGTTGC",
+      "reverse_complement": "GCAACATTGCTAGAAAACTC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.89,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 18089,
+      "sequence": "TACACAGGCACCTACACACC",
+      "reverse_complement": "GGTGTGTAGGTGCCTGTGTA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 95.8,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 18190,
+      "sequence": "TCATCTCTATGATGGGTTTT",
+      "reverse_complement": "AAAACCCATCATAGAGATGA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 96.36,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 19821,
+      "sequence": "ATACTCAATAATTTGGGTGT",
+      "reverse_complement": "ACACCCAAATTATTGAGTAT",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.57,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 20590,
+      "sequence": "TTTCATTTATGCTTTGGTGT",
+      "reverse_complement": "ACACCAAAGCATAAATGAAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 98.57,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 21110,
+      "sequence": "TGGGTTTATACAACAAAAGC",
+      "reverse_complement": "GCTTTTGTTGTATAAACCCA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 96.91,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 21147,
+      "sequence": "GTGGCTATAAAGATAACAGA",
+      "reverse_complement": "TCTGTTATCTTTATAGCCAC",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 96.29,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26274,
+      "sequence": "CTTCTTTTTCTTGCTTTCGT",
+      "reverse_complement": "ACGAAAGCAAGAAAAAGAAG",
+      "gene": "E (Envelope)",
+      "ncov_conservation_pct": 98.84,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26429,
+      "sequence": "AGTTCCTGATCTTCTGGTCT",
+      "reverse_complement": "AGACCAGAAGATCAGGAACT",
+      "gene": "E (Envelope)",
+      "ncov_conservation_pct": 97.01,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26565,
+      "sequence": "TAGTAATAGGTTTCCTATTC",
+      "reverse_complement": "GAATAGGAAACCTATTACTA",
+      "gene": "M (Membrane)",
+      "ncov_conservation_pct": 97.18,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 23340,
+      "sequence": "AGGAACAAATACTTCTAACC",
+      "reverse_complement": "GGTTAGAAGTATTTGTTCCT",
+      "gene": "S (Spike)",
+      "ncov_conservation_pct": 99.4,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 28370,
+      "sequence": "AAGGTTTACCCAATAATACT",
+      "reverse_complement": "AGTATTATTGGGTAAACCTT",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 98.78,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 28482,
+      "sequence": "AGATGACCAAATTGGCTACT",
+      "reverse_complement": "AGTAGCCAATTTGGTCATCT",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 98.21,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 28726,
+      "sequence": "CCTCAAGGAACAACATTGCC",
+      "reverse_complement": "GGCAATGTTGTTCCTTGAGG",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 98.87,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 28949,
+      "sequence": "GTAAAGGCCAACAACAACAA",
+      "reverse_complement": "TTGTTGTTGTTGGCCTTTAC",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 98.35,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29117,
+      "sequence": "TCAGACAAGGAACTGATTAC",
+      "reverse_complement": "GTAATCAGTTCCTTGTCTGA",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 98.91,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29203,
+      "sequence": "GGCATGGAAGTCACACCTTC",
+      "reverse_complement": "GAAGGTGTGACTTCCATGCC",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 98.32,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29254,
+      "sequence": "AAATTGGATGACAAAGATCC",
+      "reverse_complement": "GGATCTTTGTCATCCAATTT",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 97.01,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29332,
+      "sequence": "CCACCAACAGAGCCTAAAAA",
+      "reverse_complement": "TTTTTAGGCTCTGTTGGTGG",
+      "gene": "N (Nucleocapsid)",
+      "ncov_conservation_pct": 97.68,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 6419,
+      "sequence": "TGGAAAATCCTACCATACAG",
+      "reverse_complement": "CTGTATGGTAGGATTTTCCA",
+      "gene": "ORF1a (nsp1-11)",
+      "ncov_conservation_pct": 92.82,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15387,
+      "sequence": "TATAGATTAGCTAATGAGTG",
+      "reverse_complement": "CACTCATTAGCTAATCTATA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 94.5,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15445,
+      "sequence": "CACTATATGTTAAACCAGGT",
+      "reverse_complement": "ACCTGGTTTAACATATAGTG",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 94.88,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 15920,
+      "sequence": "TTACCCAGATCCATCAAGAA",
+      "reverse_complement": "TTCTTGATGGATCTGGGTAA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 94.01,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 19287,
+      "sequence": "TATGTAAATAAACATGCATT",
+      "reverse_complement": "AATGCATGTTTATTTACATA",
+      "gene": "ORF1b (nsp12-16, RdRp)",
+      "ncov_conservation_pct": 90.75,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 25784,
+      "sequence": "ATTACTTTATGATGCCAACT",
+      "reverse_complement": "AGTTGGCATCATAAAGTAAT",
+      "gene": "ORF3a",
+      "ncov_conservation_pct": 96.67,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26513,
+      "sequence": "AACGGTACTATTACCGTTGA",
+      "reverse_complement": "TCAACGGTAATAGTACCGTT",
+      "gene": "intergenic",
+      "ncov_conservation_pct": 97.76,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29633,
+      "sequence": "ATCTCACATAGCAATCTTTA",
+      "reverse_complement": "TAAAGATTGCTATGTGAGAT",
+      "gene": "ORF10",
+      "ncov_conservation_pct": 94.3,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29661,
+      "sequence": "GTAACATTAGGGAGGACTTG",
+      "reverse_complement": "CAAGTCCTCCCTAATGTTAC",
+      "gene": "ORF10",
+      "ncov_conservation_pct": 91.54,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 29717,
+      "sequence": "CTAGGGAGAGCTGCCTATAT",
+      "reverse_complement": "ATATAGGCAGCTCTCCCTAG",
+      "gene": "3'UTR",
+      "ncov_conservation_pct": 86.4,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 23931,
+      "sequence": "TGGTGGTTTTAATTTTTCAC",
+      "reverse_complement": "GTGAAAAATTAAAACCACCA",
+      "gene": "S (Spike)",
+      "ncov_conservation_pct": 98.06,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 24797,
+      "sequence": "AAGCACACTTTCCTCGTGAA",
+      "reverse_complement": "TTCACGAGGAAAGTGTGCTT",
+      "gene": "S (Spike)",
+      "ncov_conservation_pct": 98.86,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 167,
+      "sequence": "TAACTCGTCTATCTTCTGCA",
+      "reverse_complement": "TGCAGAAGATAGACGAGTTA",
+      "gene": "5'UTR",
+      "ncov_conservation_pct": 90.97,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 28251,
+      "sequence": "AATGTCTGATAATGGACCCC",
+      "reverse_complement": "GGGGTCCATTATCAGACATT",
+      "gene": "ORF8",
+      "ncov_conservation_pct": 91.07,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 26995,
+      "sequence": "TAAAGAAATCACTGTTGCTA",
+      "reverse_complement": "TAGCAACAGTGATTTCTTTA",
+      "gene": "M (Membrane)",
+      "ncov_conservation_pct": 89.19,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 27023,
+      "sequence": "ACGCTTTCTTATTACAAATT",
+      "reverse_complement": "AATTTGTAATAAGAAAGCGT",
+      "gene": "M (Membrane)",
+      "ncov_conservation_pct": 89.44,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 44,
+      "sequence": "GATCTCTTGTAGATCTGTTC",
+      "reverse_complement": "GAACAGATCTACAAGAGATC",
+      "gene": "5'UTR",
+      "ncov_conservation_pct": 38.82,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 203,
+      "sequence": "GTCCGTGTTGCAGCCGATCA",
+      "reverse_complement": "TGATCGGCTGCAACACGGAC",
+      "gene": "5'UTR",
+      "ncov_conservation_pct": 59.77,
+      "pam_types": [
+        "Cas12a"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    },
+    {
+      "sars_cov2_position": 27863,
+      "sequence": "TAAACGAACATGAAATTTCT",
+      "reverse_complement": "AGAAATTTCATGTTCGTTTA",
+      "gene": "ORF7b",
+      "ncov_conservation_pct": 88.54,
+      "pam_types": [
+        "Cas9"
+      ],
+      "human_fwd_hits": 0,
+      "human_rev_hits": 0,
+      "human_total_hits": 0,
+      "human_hit_locations": [],
+      "is_unique": true
+    }
+  ]
+}

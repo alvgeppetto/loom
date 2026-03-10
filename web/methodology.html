@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gap Scanner Methodology — LOOM CRISPR Search</title>
+  <meta name="description" content="How LOOM CRISPR Search identifies genuine research gaps: three-strategy PubMed + Europe PMC scan, confidence levels, and why single-query analysis fails." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crispr-styles.css?v=20260305" />
+  <style>
+    :root {
+      --m-bg: #f8f7f2;
+      --m-paper: rgba(255, 251, 242, 0.85);
+      --m-line: rgba(36, 51, 80, 0.12);
+      --m-ink: #162033;
+      --m-muted: #50607b;
+      --m-accent: #1d4ed8;
+      --m-accent-soft: rgba(29, 78, 216, 0.09);
+      --m-green: #0f766e;
+      --m-green-soft: rgba(15, 118, 110, 0.10);
+      --m-red: #b91c1c;
+      --m-red-soft: rgba(185, 28, 28, 0.08);
+      --m-amber: #b45309;
+      --m-amber-soft: rgba(245, 158, 11, 0.12);
+      --m-shadow: 0 20px 48px rgba(22, 32, 51, 0.08);
+    }
+
+    body.meth-page {
+      background:
+        radial-gradient(circle at top right, rgba(29, 78, 216, 0.09), transparent 30%),
+        radial-gradient(circle at 10% 70%, rgba(15, 118, 110, 0.08), transparent 28%),
+        linear-gradient(180deg, #faf9f5 0%, #f5f7fb 100%);
+      color: var(--m-ink);
+    }
+
+    .meth-page .grid-bg { opacity: 0.18; background-size: 28px 28px; }
+
+    .meth-main {
+      width: min(960px, 92vw);
+      margin: 0 auto;
+      padding: 2.5rem 0 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- Hero ---- */
+    .meth-hero {
+      background: var(--m-paper);
+      border: 1px solid var(--m-line);
+      box-shadow: var(--m-shadow);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 2.5rem 2.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .meth-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--m-accent);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .meth-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 0.8rem;
+      color: var(--m-ink);
+    }
+
+    .meth-lead {
+      font-size: 1rem;
+      color: var(--m-muted);
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 0 1.5rem;
+    }
+
+    .meth-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .meth-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .meth-tag.blue  { background: var(--m-accent-soft); color: var(--m-accent); }
+    .meth-tag.green { background: var(--m-green-soft);  color: var(--m-green); }
+    .meth-tag.amber { background: var(--m-amber-soft);  color: var(--m-amber); }
+
+    /* ---- Section card ---- */
+    .meth-card {
+      background: var(--m-paper);
+      border: 1px solid var(--m-line);
+      box-shadow: 0 4px 16px rgba(22,32,51,0.05);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--m-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .meth-card h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+      color: var(--m-ink);
+    }
+
+    .meth-card p {
+      font-size: 0.93rem;
+      line-height: 1.68;
+      color: var(--m-muted);
+      margin: 0 0 0.8rem;
+    }
+
+    .meth-card p:last-child { margin-bottom: 0; }
+
+    /* ---- Strategy steps ---- */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .strategy-step {
+      border-radius: 12px;
+      padding: 1.2rem 1.2rem 1rem;
+      position: relative;
+    }
+    .strategy-step.s1 { background: var(--m-accent-soft); border: 1px solid rgba(29,78,216,0.15); }
+    .strategy-step.s2 { background: var(--m-green-soft);  border: 1px solid rgba(15,118,110,0.15); }
+    .strategy-step.s3 { background: var(--m-amber-soft);  border: 1px solid rgba(180,83,9,0.15); }
+    .strategy-step.s4 { background: rgba(100,100,100,0.06); border: 1px solid rgba(80,96,123,0.15); }
+
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .s1 .step-num { color: var(--m-accent); }
+    .s2 .step-num { color: var(--m-green); }
+    .s3 .step-num { color: var(--m-amber); }
+    .s4 .step-num { color: var(--m-muted); }
+
+    .strategy-step h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+      color: var(--m-ink);
+    }
+
+    .strategy-step p {
+      font-size: 0.82rem;
+      color: var(--m-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ---- Confidence table ---- */
+    .conf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .conf-table th {
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: var(--m-muted);
+      padding: 0.4rem 0.75rem;
+      border-bottom: 1px solid var(--m-line);
+      background: rgba(255,255,255,0.4);
+    }
+
+    .conf-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(36,51,80,0.06);
+      color: var(--m-ink);
+      vertical-align: top;
+    }
+
+    .conf-table tr:last-child td { border-bottom: none; }
+
+    .conf-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+    .cb-confirmed { background: var(--m-green-soft); color: var(--m-green); }
+    .cb-uncertain { background: var(--m-amber-soft); color: var(--m-amber); }
+    .cb-false     { background: var(--m-red-soft);   color: var(--m-red); }
+
+    /* ---- Confirmed gaps table ---- */
+    .gaps-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-top: 0.75rem;
+    }
+
+    .gaps-table th {
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 0.76rem;
+      color: var(--m-muted);
+      padding: 0.4rem 0.7rem;
+      border-bottom: 1px solid var(--m-line);
+      background: rgba(255,255,255,0.4);
+    }
+
+    .gaps-table td {
+      padding: 0.5rem 0.7rem;
+      border-bottom: 1px solid rgba(36,51,80,0.06);
+      color: var(--m-ink);
+      vertical-align: top;
+    }
+
+    .gaps-table tr:last-child td { border-bottom: none; }
+
+    .gene-mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      background: rgba(29,78,216,0.07);
+      color: var(--m-accent);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* ---- Failure case callout ---- */
+    .failure-callout {
+      background: var(--m-red-soft);
+      border: 1px solid rgba(185, 28, 28, 0.15);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin: 1rem 0;
+    }
+
+    .failure-callout h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--m-red);
+      margin: 0 0 0.4rem;
+    }
+
+    .failure-callout p {
+      font-size: 0.83rem;
+      color: var(--m-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ---- Stat row ---- */
+    .stat-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .stat-pill {
+      border-radius: 10px;
+      padding: 0.7rem 1.1rem;
+      flex: 1;
+      min-width: 120px;
+    }
+    .stat-pill.blue  { background: var(--m-accent-soft); }
+    .stat-pill.green { background: var(--m-green-soft); }
+    .stat-pill.amber { background: var(--m-amber-soft); }
+
+    .stat-pill .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--m-ink);
+      display: block;
+      line-height: 1;
+    }
+    .stat-pill .lbl {
+      font-size: 0.75rem;
+      color: var(--m-muted);
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    /* ---- Links row ---- */
+    .artifact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .artifact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.36rem 0.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      background: var(--m-accent-soft);
+      color: var(--m-accent);
+      border: 1px solid rgba(29,78,216,0.15);
+    }
+    .artifact-link:hover { opacity: 0.75; }
+    .artifact-link.green {
+      background: var(--m-green-soft); color: var(--m-green);
+      border-color: rgba(15,118,110,0.15);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 680px) {
+      .meth-hero { padding: 1.5rem; }
+      .meth-card { padding: 1.3rem; }
+      .strategy-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="has-top-nav meth-page">
+  <div class="grid-bg"></div>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="container">
+      <a href="crispr-search.html" class="top-nav-brand">LOOM</a>
+      <a href="crispr-search.html" class="top-nav-link">
+        <span class="nav-dot blue"></span>
+        Human Pathogens
+      </a>
+      <a href="crispr-animal.html" class="top-nav-link">
+        <span class="nav-dot green"></span>
+        Animal Genomes
+      </a>
+      <a href="learn.html" class="top-nav-link">Learn</a>
+      <a href="methodology.html" class="top-nav-link active">Methodology</a>
+      <a href="help.html" class="top-nav-link top-nav-help" title="Help — How it works">? Help</a>
+    </div>
+  </nav>
+  <a href="help.html" class="mobile-help-fab" aria-label="Help">?</a>
+
+  <main class="meth-main">
+
+    <!-- Hero -->
+    <div class="meth-hero">
+      <div class="meth-eyebrow">Open-Science · Reproducible · Version 4</div>
+      <h1 class="meth-title">Gap Scanner Methodology</h1>
+      <p class="meth-lead">
+        How LOOM identifies genuine CRISPR research gaps — and why we stopped trusting
+        single-query PubMed searches. The v4 pipeline uses four independent
+        strategies (including NCBI ontology-derived synonym expansion) and cross-validates
+        against Europe PMC. Only claims surviving all strategies are marked
+        <strong>Confirmed gap</strong> in the search interface.
+      </p>
+      <div class="meth-meta">
+        <span class="meth-tag blue">Version 4 · March 2026</span>
+        <span class="meth-tag green">6 confirmed gene gaps</span>
+        <span class="meth-tag amber">61 false claims retracted</span>
+      </div>
+    </div>
+
+    <!-- Why v1/v2 failed -->
+    <div class="meth-card">
+      <div class="section-label">Background</div>
+      <h2>Why Single-Query Analysis Fails</h2>
+      <p>
+        Earlier versions (v1 and v2) of this tool used a single PubMed query per gene
+        (e.g., <code>"HIV gag CRISPR"</code>) and treated a result count of zero as
+        evidence of a research gap. This produced 43 claimed gaps — nearly all false.
+      </p>
+
+      <div class="failure-callout">
+        <h3>Root cause: vocabulary mismatch</h3>
+        <p>
+          CRISPR literature uses many interchangeable terms (<em>guide RNA, sgRNA,
+          Cas9, Cas12a, SHERLOCK, DETECTR</em>) and gene synonyms
+          (<em>env ≡ gp160, pol ≡ reverse transcriptase</em>). A narrow query missing
+          even one synonym returns zero results, falsely signaling novelty.
+          HIV gag, for example, has 669 CRISPR publications —
+          only discoverable with broad synonym expansion.
+        </p>
+      </div>
+
+      <p>
+        v4 fixes this with four independent search strategies (including NCBI ontology
+        synonym expansion from 8,283 gene annotations) and organism-level
+        cross-validation. Any gene that passes all four strategies with zero evidence
+        is assigned <strong>Confirmed gap</strong> confidence. Genes returning mixed
+        signals are marked <strong>Uncertain</strong>. Genes with clear coverage are
+        marked <strong>False claim</strong> and suppressed.
+      </p>
+    </div>
+
+    <!-- V4 Scanner Strategies -->
+    <div class="meth-card">
+      <div class="section-label">Pipeline · v4</div>
+      <h2>Four-Strategy Scan</h2>
+      <p>
+        Each pathogen–gene combination is independently evaluated by four steps.
+        A gap is only confirmed when <em>all</em> strategies return zero evidence
+        and Europe PMC cross-validates.
+      </p>
+
+      <div class="strategy-grid">
+        <div class="strategy-step s1">
+          <div class="step-num">Strategy 1</div>
+          <h3>PubMed Narrow Query</h3>
+          <p>
+            High-precision search: <code>"[gene] CRISPR [pathogen]"</code> with
+            official gene symbol + common aliases. MeSH terms applied where
+            available. Returns a count and sample PMIDs for manual review.
+          </p>
+        </div>
+        <div class="strategy-step s2">
+          <div class="step-num">Strategy 2</div>
+          <h3>PubMed Broad Query</h3>
+          <p>
+            Synonym-expanded query using NCBI Taxonomy, Disease Ontology, and
+            MONDO synonym sets. Adds organism names, all gene aliases, and CRISPR
+            family terms (sgRNA, gRNA, Cas9, Cas12a, SHERLOCK, DETECTR). A zero
+            here is strong evidence of a gap.
+          </p>
+        </div>
+        <div class="strategy-step s3">
+          <div class="step-num">Strategy 3</div>
+          <h3>Corpus Co-occurrence</h3>
+          <p>
+            Searches the local LOOM text corpus (PubMed abstracts + preprints)
+            for co-occurrence of pathogen name, gene synonym, and any CRISPR
+            application term. Catches papers not indexed by PubMed in time.
+          </p>
+        </div>
+        <div class="strategy-step s4">
+          <div class="step-num">Cross-validation</div>
+          <h3>Europe PMC</h3>
+          <p>
+            All candidates from strategies 1–3 are independently queried against
+            Europe PMC full-text index. Europe PMC ingests preprints and
+            non-MEDLINE journals that PubMed misses.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confidence levels -->
+    <div class="meth-card">
+      <div class="section-label">Classification</div>
+      <h2>Confidence Levels</h2>
+      <p>
+        Every pathogen–gene combination receives one of three labels after the
+        four-step scan:
+      </p>
+      <table class="conf-table">
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>Criteria</th>
+            <th>Action in LOOM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="conf-badge cb-confirmed">Confirmed gap</span></td>
+            <td>
+              All 3 strategies + Europe PMC return zero publications.
+              At least 2 strategies must have been executed (not timed out).
+            </td>
+            <td>
+              Gene appears in <code>unstudied_genes</code>. "Confirmed gap" filter
+              in the search UI shows these targets. Research-gap badge on targets.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="conf-badge cb-uncertain">Uncertain</span></td>
+            <td>
+              Mixed signals: one strategy finds papers but another does not, or
+              Europe PMC disagrees with PubMed. Manual review required.
+            </td>
+            <td>
+              Not marked as gap. Not marked as studied. No badge rendered.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="conf-badge cb-false">False claim</span></td>
+            <td>
+              Any strategy returns ≥1 publication with direct evidence of
+              CRISPR work on that gene/pathogen.
+            </td>
+            <td>
+              Gene appears in <code>studied_genes</code>. "Published" filter in
+              the search UI shows these targets.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Confirmed gaps -->
+    <div class="meth-card">
+      <div class="section-label">Results · March 2026</div>
+      <h2>Confirmed Research Gaps (8 genes, 2 pathogens)</h2>
+      <p>
+        These are the only gene–pathogen combinations LOOM marks as <strong>Confirmed gap</strong>
+        in the search interface as of March 2026. All claims below survived the full
+        four-strategy pipeline with NCBI ontology synonym expansion. RSV SH protein,
+        previously confirmed under v3, was reclassified to UNCERTAIN after ontology-derived
+        synonyms surfaced 278 Europe PMC entries.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-pill green"><span class="num">8</span><span class="lbl">Confirmed gaps</span></div>
+        <div class="stat-pill amber"><span class="num">51</span><span class="lbl">Retracted false claims</span></div>
+        <div class="stat-pill blue"><span class="num">2</span><span class="lbl">Pathogens with gaps</span></div>
+      </div>
+
+      <table class="gaps-table">
+        <thead>
+          <tr>
+            <th>Pathogen</th>
+            <th>Gene(s)</th>
+            <th>Evidence of absence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mpox</td>
+            <td>
+              <span class="gene-mono">A33R</span>,
+              <span class="gene-mono">B5R</span>,
+              <span class="gene-mono">E8L</span>,
+              <span class="gene-mono">J2R</span>,
+              <span class="gene-mono">A56R</span>,
+              <span class="gene-mono">thymidine kinase</span>,
+              <span class="gene-mono">hemagglutinin</span>
+            </td>
+            <td>
+              All 3 PubMed strategies + Europe PMC returned zero CRISPR-diagnostic
+              publications for each gene. 7 independent confirmations.
+            </td>
+          </tr>
+          <tr>
+            <td>Cholera</td>
+            <td><span class="gene-mono">hapA</span> (hemagglutinin protease)</td>
+            <td>
+              All strategies zero for hapA specifically. ctxA/ctxB, ompU, and other
+              cholera genes were confirmed false claims and retracted.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SARS-CoV-2 v4 scan completed results -->
+    <div class="meth-card" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.04)">
+      <div class="section-label" style="color:var(--m-green)">Completed · SARS-CoV-2 v4 Scan</div>
+      <h2>SARS-CoV-2 Gene Gaps: Full Four-Strategy Scan Results</h2>
+      <p>
+        The full four-strategy v4 PubMed + Europe PMC scan with ontology-derived synonym
+        expansion was completed (March 2026) across all 18 SARS-CoV-2 genes that have
+        novel FM-index candidates. <strong>No gene reached CONFIRMED status.</strong>
+      </p>
+
+      <table style="width:100%;border-collapse:collapse;font-size:0.84rem;margin:1rem 0">
+        <thead>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <th style="text-align:left;padding:0.4rem 0.6rem">Gene</th>
+            <th style="text-align:left;padding:0.4rem 0.6rem">v4 Classification</th>
+            <th style="text-align:left;padding:0.4rem 0.6rem">PubMed broad</th>
+            <th style="text-align:left;padding:0.4rem 0.6rem">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem"><strong>nsp13 (Helicase)</strong></td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-false">FALSE</span></td>
+            <td style="padding:0.35rem 0.6rem">6</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">CRISPR work exists but all therapeutic/mechanistic; 0 diagnostic-specific papers</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem"><strong>nsp14 (ExoN/MTase)</strong></td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-false">FALSE</span></td>
+            <td style="padding:0.35rem 0.6rem">9</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">Mixed — includes false query matches; 0 diagnostic-specific papers</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem">nsp5 (Mpro / 3CLpro)</td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-false">FALSE</span></td>
+            <td style="padding:0.35rem 0.6rem">6</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">Active drug target, well-studied</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem">nsp15, nsp16</td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-uncertain" style="background:var(--m-amber-soft);color:var(--m-amber)">UNCERTAIN</span></td>
+            <td style="padding:0.35rem 0.6rem">1 each</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">Only 1 PubMed paper each; EuropePMC &gt;300 (likely full-text co-mention)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem">nsp3, nsp8</td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-uncertain" style="background:var(--m-amber-soft);color:var(--m-amber)">UNCERTAIN</span></td>
+            <td style="padding:0.35rem 0.6rem">3 each</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">Low but non-zero; needs human paper inspection</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem">nsp7, nsp9, nsp10</td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-uncertain" style="background:var(--m-amber-soft);color:var(--m-amber)">UNCERTAIN</span></td>
+            <td style="padding:0.35rem 0.6rem">0–1</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">0 PubMed narrow, EuropePMC 174–313 (co-mention)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--m-border)">
+            <td style="padding:0.35rem 0.6rem"><strong>ORF3a, ORF8</strong></td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-uncertain" style="background:var(--m-amber-soft);color:var(--m-amber)">UNCERTAIN</span></td>
+            <td style="padding:0.35rem 0.6rem">1–2</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">Very few papers; novel FM-index targets exist for these loci</td>
+          </tr>
+          <tr>
+            <td style="padding:0.35rem 0.6rem"><strong>ORF10</strong></td>
+            <td style="padding:0.35rem 0.6rem"><span class="cb-badge cb-uncertain" style="background:var(--m-amber-soft);color:var(--m-amber)">UNCERTAIN</span></td>
+            <td style="padding:0.35rem 0.6rem">0</td>
+            <td style="padding:0.35rem 0.6rem;color:var(--m-muted)">0 PubMed narrow &amp; broad; EuropePMC 240 (co-mention prevents CONFIRMED)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:0.87rem;color:var(--m-muted)">
+        <strong>Interpretation:</strong> SARS-CoV-2 has received extraordinary CRISPR research
+        attention since 2020. Even low-prominence accessory proteins (ORF10, nsp7) appear
+        in Europe PMC due to full-text co-mention in review articles, preventing the CONFIRMED
+        verdict. The FM-index finding of 52 novel target regions with no overlap with published
+        diagnostic guide sets remains valid. The most under-explored loci for
+        CRISPR <em>diagnostic</em> guide design (0 dedicated diagnostic PubMed papers)
+        are <strong>nsp7, nsp9, nsp10, and ORF10</strong> — all UNCERTAIN pending manual inspection.
+      </p>
+      <p style="font-size:0.87rem;color:var(--m-muted)">
+        <strong>Impact on website:</strong> The "Confirmed gap (v4 verified)" filter does
+        <em>not</em> apply to SARS-CoV-2 targets (no CONFIRMED genes). The 52 novel targets
+        are visible without a gap badge. The PACMAN/CARVER 0% coverage benchmarking result
+        is a separate fully-verified finding (real Aho-Corasick scan of 9.2M genomes) and
+        is unaffected.
+      </p>
+    </div>
+
+    <div class="meth-card">
+      <div class="section-label">Integrity</div>
+      <h2>What Was Retracted (and Why)</h2>
+      <p>
+        v2 published 43 gap claims. The v3 scan retracted 50 claims (43 gaps
+        + 7 application-level claims that survived the gap screen but failed
+        the application-context check). The v4 scan reclassified 1 additional claim
+        (RSV SH protein → UNCERTAIN via ontology synonyms) and deduplicated
+        J2R/thymidine kinase and A56R/hemagglutinin as alternate names for the same
+        Mpox genes, yielding 6 confirmed gene-level gaps (5 unique biological targets).
+        Below are the most significant:
+      </p>
+      <ul style="font-size:0.87rem;color:var(--m-muted);line-height:1.8;padding-left:1.2rem">
+        <li>
+          <strong>HIV</strong> — all genes (gag, pol, env, tat, rev, nef, vif, integrase, gp120,
+          LTR) were false claims. HIV has 669+ CRISPR publications per gene; the original
+          narrow queries missed all of them.
+        </li>
+        <li>
+          <strong>Influenza</strong> — HA, PB1, PB2, PA, NP, M2: hundreds of papers each.
+        </li>
+        <li>
+          <strong>Ebola</strong> — NP, VP40, VP30, VP24, L: well-studied.
+        </li>
+        <li>
+          <strong>Zika</strong> — NS2A, NS2B, NS4A: published CRISPR diagnostic work exists.
+        </li>
+        <li>
+          <strong>TB</strong> — pncA, CFP-10: literature confirmed.
+        </li>
+        <li>
+          <strong>Cholera</strong> — ctxA, ctxB, ompU, ompT, hlyA, rtxA: six genes confirmed
+          as false; only hapA survived.
+        </li>
+        <li>
+          <strong>All 14 application-level gaps</strong> (diagnostics/therapeutics per pathogen)
+          were application-context false positives and have been fully retracted.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Artifacts and links -->
+    <div class="meth-card">
+      <div class="section-label">Artifacts</div>
+      <h2>Full Audit Trail &amp; Source Code</h2>
+      <p>
+        All data, code, and decision logs are open and versioned. The audit file
+        contains per-gene evidence strings, PubMed query URLs, and evidence-of-absence
+        notes for every confirmed gap.
+      </p>
+      <div class="artifact-links">
+        <a href="data/gap-audit-v4.txt" class="artifact-link" download>
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1M8 2v8m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          gap-audit-v4.txt
+        </a>
+        <a href="data/pubmed-scan-results.json" class="artifact-link" download>
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1M8 2v8m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          pubmed-scan-results.json
+        </a>
+        <a href="https://github.com/alvgeppetto/loom/blob/main/src/dna/pubmed_scan.rs" class="artifact-link green" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M2 8C2 4.686 4.686 2 8 2s6 2.686 6 6-2.686 6-6 6-6-2.686-6-6zm4-1.5v3m0 0l-1.5-1.5M6 9.5l1.5-1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          pubmed_scan.rs (v4, Rust)
+        </a>
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <p style="text-align:center;margin-top:2rem">
+      <a href="crispr-search.html" style="font-size:0.88rem;color:var(--m-accent);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600">
+        ← Back to CRISPR Search
+      </a>
+      &nbsp;&nbsp;
+      <a href="learn.html" style="font-size:0.88rem;color:var(--m-muted);text-decoration:none;font-family:'Sora',sans-serif">
+        Learn guide →
+      </a>
+    </p>
+
+  </main>
+</body>
+</html>

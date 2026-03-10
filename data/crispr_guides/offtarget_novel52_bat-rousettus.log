@@ -1,0 +1,52 @@
+[offtarget] Loaded 37 unique guides, max_mismatches=3
+[offtarget] Guide index: 0 entries (37 fwd + RC), 0 seed buckets
+[offtarget] Scanning reference genome: /Volumes/T9/loom-openscience/raw/bat-rousettus/bat-rousettus.fna
+[offtarget] 29 chromosomes/contigs found
+[offtarget]   NW_023416284.1 — 177.2 Mb, 0 hits in 0.01s
+[offtarget]   NW_023416285.1 — 95.0 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416286.1 — 91.5 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416287.1 — 89.9 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416288.1 — 77.1 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416289.1 — 59.0 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416290.1 — 57.9 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416291.1 — 52.4 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416292.1 — 43.9 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416293.1 — 21.3 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416294.1 — 5.7 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416295.1 — 169.4 Mb, 0 hits in 0.01s
+[offtarget]   NW_023416296.1 — 1.7 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416297.1 — 0.3 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416298.1 — 0.3 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416299.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416300.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416301.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416302.1 — 0.1 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416303.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416304.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416305.1 — 0.0 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416306.1 — 165.7 Mb, 0 hits in 0.01s
+[offtarget]   NW_023416307.1 — 153.2 Mb, 0 hits in 0.01s
+[offtarget]   NW_023416308.1 — 116.2 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416309.1 — 110.2 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416310.1 — 108.5 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416311.1 — 107.5 Mb, 0 hits in 0.00s
+[offtarget]   NW_023416312.1 — 101.6 Mb, 0 hits in 0.00s
+[offtarget] Done. 0 total hits across 29 chroms in 2.9s → data/crispr_guides/offtargets_novel52_bat-rousettus_3mm.csv
+        2.91 real         2.44 user         0.70 sys
+          1986265088  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              121424  page reclaims
+                  19  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   8  voluntary context switches
+                9876  involuntary context switches
+         44383814772  instructions retired
+         11062460229  cycles elapsed
+          1982138168  peak memory footprint

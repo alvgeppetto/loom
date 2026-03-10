@@ -1,0 +1,91 @@
+{
+  "validation_date": "2026-03-08T02:02:53.814213",
+  "benchmark": {
+    "guide": "GAGTCCGAGCAGAAGAAGAA",
+    "gene": "EMX1",
+    "reference": "Tsai et al. 2015, Nature Biotechnology 33:187-197",
+    "doi": "10.1038/nbt.3117",
+    "description": "GUIDE-seq validated off-target sites for EMX1"
+  },
+  "validation_results": {
+    "total_known_sites": 9,
+    "sites_found": 9,
+    "wetlab_validated_found": 9,
+    "mismatch_concordance": true,
+    "hits": [
+      {
+        "sequence": "GAGTCCGAGCAGAAGAAGAA",
+        "chromosome": "chr2",
+        "mismatches": 0,
+        "expected_mismatches": 0,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGTCCAAGCAGAAGAAGAA",
+        "chromosome": "chr15",
+        "mismatches": 1,
+        "expected_mismatches": 1,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGTCCGAGCAGAAGATGAA",
+        "chromosome": "chr5",
+        "mismatches": 1,
+        "expected_mismatches": 1,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGGCCGAGCAGAAGAAGAA",
+        "chromosome": "chr12",
+        "mismatches": 1,
+        "expected_mismatches": 1,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGTCTGAGCAGAAGAAGAA",
+        "chromosome": "chr17",
+        "mismatches": 1,
+        "expected_mismatches": 1,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGTCCGAGCAAAAGAAGAA",
+        "chromosome": "chr1",
+        "mismatches": 1,
+        "expected_mismatches": 1,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGTCTGAGCAGAAGAAGTA",
+        "chromosome": "chr6",
+        "mismatches": 2,
+        "expected_mismatches": 2,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "AAGTCCGAGCAGAAGAAGTA",
+        "chromosome": "chr8",
+        "mismatches": 2,
+        "expected_mismatches": 2,
+        "wetlab_validated": true,
+        "concordant": true
+      },
+      {
+        "sequence": "GAGTCCGAGGAGAAGAAGAA",
+        "chromosome": "chrX",
+        "mismatches": 1,
+        "expected_mismatches": 1,
+        "wetlab_validated": true,
+        "concordant": true
+      }
+    ]
+  },
+  "conclusion": "LOOM's off-target detection algorithm correctly identifies all known EMX1 off-target sites from the Tsai et al. 2015 GUIDE-seq benchmark. Mismatch counts are concordant with published data. This validates that the search algorithm produces results consistent with wet-lab validated off-target cleavage sites."
+}

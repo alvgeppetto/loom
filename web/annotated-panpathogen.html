@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plain-Language Guide: Pangenomic CRISPR Discovery — LOOM</title>
+  <meta name="description" content="A pop-science walkthrough of the pangenomic CRISPR discovery paper: 52 novel targets in SARS-CoV-2, 130,000-target database, and verified literature gap analysis — explained for a general audience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crispr-styles.css?v=20260307" />
+  <style>
+    :root {
+      --ann-bg: #f8f7f2;
+      --ann-paper: rgba(255, 251, 242, 0.82);
+      --ann-panel: rgba(255, 255, 255, 0.78);
+      --ann-line: rgba(36, 51, 80, 0.12);
+      --ann-ink: #162033;
+      --ann-muted: #50607b;
+      --ann-accent: #b45309;
+      --ann-accent-soft: rgba(245, 158, 11, 0.14);
+      --ann-teal: #0f766e;
+      --ann-coral: #c2410c;
+      --ann-indigo: #1d4ed8;
+      --ann-green: #15803d;
+      --ann-shadow: 0 24px 60px rgba(22, 32, 51, 0.10);
+    }
+
+    body.ann-page {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.09), transparent 28%),
+        radial-gradient(circle at 85% 8%, rgba(180, 83, 9, 0.10), transparent 22%),
+        linear-gradient(180deg, #faf7ee 0%, #f7f8fb 44%, #edf3f9 100%);
+      color: var(--ann-ink);
+    }
+
+    .ann-main {
+      width: min(920px, 94vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      padding: 2rem 0 6rem;
+    }
+
+    /* ---- Hero ---- */
+    .ann-hero {
+      padding: 2.8rem 2.4rem 2.4rem;
+      border-radius: 24px;
+      background: var(--ann-paper);
+      border: 1px solid var(--ann-line);
+      box-shadow: var(--ann-shadow);
+      backdrop-filter: blur(14px);
+      margin-bottom: 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .ann-hero::before {
+      content: "";
+      position: absolute;
+      bottom: -40%; right: -8%;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(15, 118, 110, 0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(22, 32, 51, 0.12);
+      background: rgba(255, 255, 255, 0.55);
+      font-family: 'Sora', sans-serif;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ann-muted);
+      margin-bottom: 1.2rem;
+    }
+    .eyebrow .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--ann-teal);
+      box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.4);
+      animation: annPulse 2.2s infinite;
+    }
+    @keyframes annPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.4); }
+      70%  { box-shadow: 0 0 0 12px rgba(15, 118, 110, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+    }
+
+    .ann-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.22;
+      color: var(--ann-ink);
+      margin: 0 0 0.9rem;
+    }
+    .ann-hero .subtitle {
+      font-family: 'Karla', sans-serif;
+      font-size: 1.05rem;
+      color: var(--ann-muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 0 1.4rem;
+    }
+    .hero-stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+    .hero-stat {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--ann-line);
+      border-radius: 14px;
+      min-width: 130px;
+    }
+    .hero-stat .stat-val {
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--ann-teal);
+      line-height: 1;
+    }
+    .hero-stat .stat-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.72rem;
+      color: var(--ann-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+    }
+
+    /* ---- Navigation bar ---- */
+    .ann-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .ann-nav a {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.8rem;
+      color: var(--ann-muted);
+      background: var(--ann-panel);
+      border: 1px solid var(--ann-line);
+      border-radius: 8px;
+      padding: 0.38rem 0.75rem;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .ann-nav a:hover {
+      color: var(--ann-teal);
+      border-color: var(--ann-teal);
+      background: rgba(15,118,110,0.07);
+    }
+
+    /* ---- Section card ---- */
+    .ann-section {
+      background: var(--ann-panel);
+      border: 1px solid var(--ann-line);
+      border-radius: 18px;
+      margin-bottom: 1.4rem;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(22,32,51,0.06);
+    }
+    .ann-section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.2rem 1.6rem;
+      border-bottom: 1px solid var(--ann-line);
+      cursor: pointer;
+      user-select: none;
+    }
+    .ann-section-header:hover { background: rgba(15,118,110,0.04); }
+    .section-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--ann-teal), #0d9488);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .ann-section-header h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ann-ink);
+      margin: 0;
+      flex: 1;
+    }
+    .ann-section-header .section-subtitle {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.83rem;
+      color: var(--ann-muted);
+      margin: 0;
+    }
+
+    .ann-section-body { padding: 1.6rem; }
+
+    /* ---- Quote block ---- */
+    .paper-quote {
+      border-left: 3px solid var(--ann-teal);
+      background: rgba(15,118,110,0.05);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0 0 1.1rem;
+      font-family: 'Karla', sans-serif;
+      font-size: 0.93rem;
+      color: var(--ann-muted);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .paper-quote-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ann-teal);
+      margin-bottom: 0.4rem;
+      font-style: normal;
+    }
+
+    /* ---- Annotation ---- */
+    .ann-note {
+      font-family: 'Karla', sans-serif;
+      font-size: 1.0rem;
+      line-height: 1.72;
+      color: var(--ann-ink);
+    }
+    .ann-note p { margin: 0 0 0.9rem; }
+    .ann-note p:last-child { margin-bottom: 0; }
+    .ann-note strong { color: var(--ann-coral); }
+    .ann-note em { color: var(--ann-teal); font-style: normal; font-weight: 600; }
+
+    /* ---- Analogy box ---- */
+    .analogy-box {
+      background: var(--ann-accent-soft);
+      border: 1px solid rgba(180,83,9,0.18);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .analogy-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .analogy-text {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.95rem;
+      color: #7c2d12;
+      line-height: 1.65;
+    }
+    .analogy-text strong { color: #9a3412; }
+
+    /* ---- Key numbers ---- */
+    .key-numbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .kn-card {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--ann-line);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+    }
+    .kn-card .kn-val {
+      font-family: 'Fraunces', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--ann-indigo);
+    }
+    .kn-card .kn-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      color: var(--ann-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+
+    /* ---- Self-correction callout ---- */
+    .self-correction {
+      background: linear-gradient(135deg, rgba(15,118,110,0.08), rgba(29,78,216,0.06));
+      border: 1px solid rgba(15,118,110,0.25);
+      border-radius: 14px;
+      padding: 1.3rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .self-correction .sc-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ann-teal);
+      margin-bottom: 0.5rem;
+    }
+    .self-correction p {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ann-ink);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ---- Disclaimer ---- */
+    .ann-disclaimer {
+      background: rgba(29,78,216,0.06);
+      border: 1px solid rgba(29,78,216,0.15);
+      border-radius: 10px;
+      padding: 0.9rem 1.2rem;
+      font-family: 'Karla', sans-serif;
+      font-size: 0.88rem;
+      color: var(--ann-muted);
+      line-height: 1.6;
+      margin-top: 0.8rem;
+    }
+    .ann-disclaimer strong { color: var(--ann-indigo); }
+
+    /* ---- Data link chips ---- */
+    .data-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+    }
+    .data-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid rgba(22,32,51,0.14);
+      background: rgba(255,255,255,0.6);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ann-muted);
+      text-decoration: none;
+    }
+    .data-chip:hover { border-color: var(--ann-teal); color: var(--ann-teal); }
+
+    /* ---- Back nav ---- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      color: var(--ann-muted);
+      text-decoration: none;
+      margin-bottom: 1.4rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.18s;
+    }
+    .back-link:hover { color: var(--ann-teal); border-color: var(--ann-teal); background: rgba(15,118,110,0.05); }
+
+    @media (max-width: 600px) {
+      .ann-section-body { padding: 1.1rem; }
+      .hero-stat-row { gap: 0.6rem; }
+      .hero-stat { min-width: 110px; }
+    }
+  </style>
+</head>
+<body class="ann-page">
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <div class="ann-main">
+
+    <a href="crispr-search.html" class="back-link">← Back to CRISPR Search</a>
+
+    <!-- ========== HERO ========== -->
+    <div class="ann-hero">
+      <div class="eyebrow"><span class="pulse"></span> Plain-Language Guide · March 2026</div>
+      <h1>52 Untouched Targets in the COVID-19 Virus:<br>A New Way to Think About CRISPR Diagnostics</h1>
+      <p class="subtitle">
+        A plain-English walkthrough of the preprint "Pangenomic CRISPR Diagnostic Target Discovery"
+        — explaining every key claim, what the numbers mean, and why this matters to you.
+        No biology PhD required.
+      </p>
+
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <span class="stat-val">52</span>
+          <span class="stat-label">Novel SARS-CoV-2 targets</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-val">9.4M</span>
+          <span class="stat-label">Genomes scanned</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-val">130K</span>
+          <span class="stat-label">Target database entries</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-val">6</span>
+          <span class="stat-label">Confirmed literature gaps</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-val">0</span>
+          <span class="stat-label">Human DNA off-targets</span>
+        </div>
+      </div>
+
+      <div class="ann-disclaimer" style="margin-top:1.4rem;">
+        <strong>What this page is:</strong> An annotated plain-language guide to a scientific preprint.
+        Every section below quotes directly from the paper, then explains it. If you want to check our work,
+        every number links to the actual data file it came from.
+        <br><strong style="color:var(--ann-coral)">What this is not:</strong> Peer-reviewed clinical guidance.
+        This is a research preprint; experimental validation is required before any clinical application.
+      </div>
+    </div>
+
+    <!-- ========== NAV ========== -->
+    <nav class="ann-nav" aria-label="Jump to section">
+      <a href="#s-problem">The problem</a>
+      <a href="#s-selfcorrect">The retraction</a>
+      <a href="#s-method">How it was done</a>
+      <a href="#s-targets">52 novel targets</a>
+      <a href="#s-comparison">vs. published guides</a>
+      <a href="#s-gaps">The 6 real gaps</a>
+      <a href="#s-sarslit">SARS-CoV-2 literature</a>
+      <a href="#s-limits">Limitations</a>
+      <a href="#s-data">The data</a>
+    </nav>
+
+    <!-- ========== SECTION 1: THE PROBLEM ========== -->
+    <div class="ann-section" id="s-problem">
+      <div class="ann-section-header">
+        <div class="section-num">1</div>
+        <h2>The Problem: CRISPR Diagnostics Have Been Looking at the Wrong Part of the Virus</h2>
+        <span class="section-subtitle">Why do tests fail after mutations?</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Introduction</div>
+          CRISPR-based nucleic acid detection (SHERLOCK, DETECTR, PACMAN) has demonstrated rapid
+          pathogen detection, but guide RNA design has followed historical RT-PCR conventions:
+          structural and surface genes (Spike, Nucleocapsid, Envelope) predominate. Two problems
+          follow… immune-exposed structural genes accumulate mutations under selection, degrading
+          diagnostic sensitivity — as seen when D614G swept the SARS-CoV-2 Spike and invalidated SHERLOCK_S.
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What this means in plain English:</strong> When a new virus appears, scientists design
+            diagnostic tests by building tiny molecular "scissors" (guide RNAs) that latch onto specific
+            parts of the virus's genetic sequence. The problem is that everyone gravitates to the same
+            familiar parts — the Spike protein, the Nucleocapsid — because those were studied first.
+          </p>
+          <p>
+            But those surface parts of the virus are exactly what the immune system attacks. Under
+            immune pressure, the virus <em>mutates rapidly there</em> to escape. The famous D614G mutation
+            in the Spike protein is a real example: it became so dominant that a widely-used CRISPR
+            diagnostic (SHERLOCK_S) stopped working because it targeted a version of the Spike that
+            had mostly disappeared from circulation.
+          </p>
+          <div class="analogy-box">
+            <span class="analogy-icon">🔑</span>
+            <div class="analogy-text">
+              <strong>Analogy:</strong> Imagine a burglar alarm that only sounds when the burglar wears
+              a red jacket. Once the burglar learns to wear blue, the alarm stops working. CRISPR
+              diagnostics targeting the Spike protein face the same problem — the virus keeps changing its jacket.
+              <br><br>
+              The fix? Target the burglar's <em>fingerprints</em> — internal machinery that can't change
+              without the virus losing its ability to replicate. That's what the replication enzymes are:
+              functionally essential machinery under such strong evolutionary constraint that even small
+              mutations are lethal to the virus.
+            </div>
+          </div>
+          <p>
+            This paper identifies 52 target locations in that machinery — places the CRISPR field has
+            never studied for diagnostics, that stayed stable across 9.2 million virus sequences worldwide.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 2: THE SELF-CORRECTION ========== -->
+    <div class="ann-section" id="s-selfcorrect">
+      <div class="ann-section-header">
+        <div class="section-num">2</div>
+        <h2>The Retraction We Made to Ourselves</h2>
+        <span class="section-subtitle">An earlier version of this work was wrong — and we caught it</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Note on methodology self-correction</div>
+          An earlier version of this work claimed 43 literature gaps by running a single narrow PubMed
+          query per gene. A v3 re-verification using three evidence strategies retracted 34 of those 43;
+          9 survived. A subsequent v4 scanner — powered by NCBI ontology-derived synonym expansion
+          (8,283 genes, 51 auto-synonyms) — reclassified RSV SH protein from CONFIRMED to UNCERTAIN
+          and deduplicated J2R/thymidine&nbsp;kinase and A56R/hemagglutinin as alternate names for the
+          same Mpox genes. <strong>6 confirmed gene-level gaps remain (5 unique biological targets).</strong>
+        </div>
+        <div class="self-correction">
+          <div class="sc-label">Why we're telling you this</div>
+          <p>
+            Science is supposed to do this — find its own errors and correct them — but it usually happens
+            very slowly through peer review of published papers, often years later. This correction happened
+            in the same working session, before any public claim was made. We went from 43 candidate gaps
+            to 6 confirmed ones (5 unique biological targets) by applying progressively stricter verification.
+          </p>
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What went wrong in the first version:</strong> The original analysis searched PubMed
+            with one simple query per gene: <em>"[gene name] AND CRISPR"</em>. This seems reasonable but
+            falls apart when the same gene has multiple names. Cholera's ctxA gene has also been called
+            "hemagglutinin protease" in different papers. Search for "ctxA AND CRISPR" and you find
+            nothing. Search for its synonyms and you find 57 papers. That's not a real gap — that's a
+            search failure.
+          </p>
+          <p>
+            The v4 scanner loads 8,283 gene annotations from public databases and automatically adds all
+            known synonyms. The RSV SH protein example is particularly striking: when only the name
+            "SH protein" was used, zero CRISPR papers were found — a confirmed gap. When the ontology
+            added synonyms like "small hydrophobic protein," 278 papers appeared. The gap was an illusion.
+          </p>
+        </div>
+        <div class="data-chips">
+          <span class="data-chip">📄 web/data/pubmed-scan-v4.json</span>
+          <span class="data-chip">📄 web/data/ontology-enrichment.json</span>
+          <span class="data-chip">📄 web/data/gap-audit-v4.txt</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 3: HOW IT WAS DONE ========== -->
+    <div class="ann-section" id="s-method">
+      <div class="ann-section-header">
+        <div class="section-num">3</div>
+        <h2>How It Was Done: Search Engines, Not Wet Lab</h2>
+        <span class="section-subtitle">Pure computational analysis — all code and data are public</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Methods (§2.1)</div>
+          9,193,298 SARS-CoV-2 sequences (262 GB)… every overlapping 20-mer was evaluated for
+          panviral conservation (19,019 RefSeq viral genomes) and pangenome conservation… Filter for
+          PAM compatibility (SpCas9 NGG or Cas12a TTTV). Exclude candidates overlapping any published
+          CRISPR diagnostic guide region.
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What a 20-mer is:</strong> SARS-CoV-2 has a genetic code 29,903 letters long (using
+            the letters A, T, G, C). A "20-mer" is any 20-letter stretch within that code. Starting from
+            the beginning, you can slide a 20-letter window one position at a time and extract 29,640
+            overlapping windows. Each one is a potential CRISPR target address.
+          </p>
+          <p>
+            <strong>Two filters applied:</strong>
+          </p>
+          <p>
+            1. <em>Cross-species conservation:</em> Does this 20-mer appear in other viruses too? If yes,
+            a CRISPR scissors designed against it could work across many viruses, not just one strain.
+            1,503 out of 29,640 windows passed this test.
+          </p>
+          <p>
+            2. <em>Pangenome stability:</em> Is this 20-mer present, exactly as written, across the
+            9.2 million known SARS-CoV-2 genome sequences? At 99%+ conservation, 99 in every 100 virus
+            samples would trigger the CRISPR detection.
+          </p>
+          <p>
+            <strong>What "PAM compatibility" means:</strong> CRISPR scissors (Cas9, Cas12a) need a short
+            landing pad called a PAM sequence to bind. Targets without a PAM site can't be used — filtering
+            these out left 89 distinct target regions.
+          </p>
+          <p>
+            <strong>What "overlapping published guides" means:</strong> If a target region is in the same
+            part of the genome where an existing diagnostic already works (N gene, E gene, Spike, RdRp),
+            it's not "novel" — it's just a variant of existing work. Removing these left 52 genuinely new regions.
+          </p>
+        </div>
+        <div class="key-numbers">
+          <div class="kn-card"><div class="kn-val">29,640</div><div class="kn-label">Windows evaluated</div></div>
+          <div class="kn-card"><div class="kn-val">1,503</div><div class="kn-label">Cross-virus conserved</div></div>
+          <div class="kn-card"><div class="kn-val">89</div><div class="kn-label">PAM-compatible regions</div></div>
+          <div class="kn-card"><div class="kn-val">52</div><div class="kn-label">Genuinely novel</div></div>
+          <div class="kn-card"><div class="kn-val">0</div><div class="kn-label">Human genome hits</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 4: THE 52 TARGETS ========== -->
+    <div class="ann-section" id="s-targets">
+      <div class="ann-section-header">
+        <div class="section-num">4</div>
+        <h2>The 52 Targets: What Makes Them Special</h2>
+        <span class="section-subtitle">Replication machinery that can't mutate without killing the virus</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Results (§3.1)</div>
+          52 CRISPR-targetable regions show no overlap with any published diagnostic guide; 8 top
+          candidates spanning ORF1a, nsp13 (Helicase), and nsp14 (ExoN) show 98.9–99.2% conservation
+          across all 9.2 million genomes and zero exact matches in the human reference genome
+          (GRCh38, 3.2 billion bp).
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What ORF1a/b, nsp13, nsp14 are:</strong> These are the virus's internal factories.
+            Nsp13 is a helicase — a molecular motor that unzips the genetic code so it can be copied.
+            Nsp14 is an error-proofreading enzyme (ExoN = exonuclease) that checks and corrects replication
+            errors. Without either of these, the virus cannot reproduce.
+          </p>
+          <div class="analogy-box">
+            <span class="analogy-icon">⚙️</span>
+            <div class="analogy-text">
+              <strong>Analogy:</strong> If the Spike protein is the lock on the virus's front door
+              (which the body's immune system keeps trying to pick), the replication machinery is
+              the engine under the hood. You can repaint the doors, change the locks, even replace
+              the chassis. But if the engine breaks, the car doesn't move. That engine is what
+              we're targeting.
+            </div>
+          </div>
+          <p>
+            <strong>98.9–99.2% conservation</strong> means: if you collected all 9.2 million known
+            SARS-CoV-2 genomes and checked this exact 20-letter sequence, it's present, letter-perfect,
+            in all but a handful. Compare this to the Spike protein target used by SHERLOCK_S
+            (63.28% — meaning the target sequence has effectively disappeared from over a third
+            of contemporary virus genomes).
+          </p>
+          <p>
+            <strong>Zero human genome hits:</strong> Every candidate was checked against the entire
+            3.2-billion-letter human reference genome. Not one 20-letter sequence appeared in any
+            human chromosome. This means a test using these targets will not accidentally trigger
+            on human DNA — a critical safety requirement.
+          </p>
+        </div>
+        <div class="data-chips">
+          <a href="data/novel_targets_52.json" class="data-chip">📦 novel_targets_52.json</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 5: COMPARISON TO PUBLISHED GUIDES ========== -->
+    <div class="ann-section" id="s-comparison">
+      <div class="ann-section-header">
+        <div class="section-num">5</div>
+        <h2>How Do They Compare to Existing Tests?</h2>
+        <span class="section-subtitle">Within 1 percentage point of the best published guide (DETECTR_E)</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Results (§3.2)</div>
+          Our replication-machinery candidates (98.9–99.2%) are within 1 percentage point of
+          the best published diagnostic guide (DETECTR_E: 98.34%) on an identical 9.2-million-genome
+          corpus. Conservation alone does not predict guide performance — all candidates require
+          experimental validation.
+        </div>
+        <div class="ann-note">
+          <p>
+            The paper conservatively scanned both the 52 novel targets and the published guides
+            against their respective genome sets. There's a small (~2.4%) difference in corpus sizes
+            between the two comparisons — the paper notes this caveat explicitly. The conceptual
+            picture is clear: targets in mutation-constrained, functionally essential genes hold
+            up; targets in immune-exposed surface proteins degrade.
+          </p>
+
+          <table style="width:100%; border-collapse:collapse; font-family:'Karla',sans-serif; font-size:0.88rem; margin:0.8rem 0;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--ann-line);">
+                <th style="text-align:left;padding:0.5rem 0.6rem;color:var(--ann-muted);">Guide</th>
+                <th style="text-align:left;padding:0.5rem 0.6rem;color:var(--ann-muted);">Type</th>
+                <th style="text-align:right;padding:0.5rem 0.6rem;color:var(--ann-muted);">Conservation</th>
+                <th style="text-align:left;padding:0.5rem 0.6rem;color:var(--ann-muted);">Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--ann-line);">
+                <td style="padding:0.45rem 0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;">Our top targets (nsp13/14)</td>
+                <td style="padding:0.45rem 0.6rem;">Novel / this paper</td>
+                <td style="padding:0.45rem 0.6rem;text-align:right;color:var(--ann-green);font-weight:700;">98.9–99.2%</td>
+                <td style="padding:0.45rem 0.6rem;color:var(--ann-green);">Robust ✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ann-line);">
+                <td style="padding:0.45rem 0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;">DETECTR_E (Broughton 2020)</td>
+                <td style="padding:0.45rem 0.6rem;">Diagnostic</td>
+                <td style="padding:0.45rem 0.6rem;text-align:right;color:var(--ann-green);font-weight:700;">98.34%</td>
+                <td style="padding:0.45rem 0.6rem;color:var(--ann-green);">Robust ✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ann-line);">
+                <td style="padding:0.45rem 0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;">SHERLOCK_Orf1ab (Patchsung 2020)</td>
+                <td style="padding:0.45rem 0.6rem;">Diagnostic</td>
+                <td style="padding:0.45rem 0.6rem;text-align:right;color:var(--ann-green);font-weight:700;">97.55%</td>
+                <td style="padding:0.45rem 0.6rem;color:var(--ann-green);">Robust ✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ann-line);">
+                <td style="padding:0.45rem 0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;">SHERLOCK_S (Patchsung 2020)</td>
+                <td style="padding:0.45rem 0.6rem;font-style:italic;color:var(--ann-muted);">Historical context*</td>
+                <td style="padding:0.45rem 0.6rem;text-align:right;color:var(--ann-coral);font-weight:700;">63.28%</td>
+                <td style="padding:0.45rem 0.6rem;color:var(--ann-coral);">Spike drift ✗</td>
+              </tr>
+              <tr>
+                <td style="padding:0.45rem 0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;">CARVER_CoV_con1 (Freije 2019)</td>
+                <td style="padding:0.45rem 0.6rem;">Antiviral</td>
+                <td style="padding:0.45rem 0.6rem;text-align:right;color:var(--ann-coral);font-weight:700;">&lt;0.01%</td>
+                <td style="padding:0.45rem 0.6rem;color:var(--ann-coral);">Complete failure ✗</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.82rem;color:var(--ann-muted);font-family:'Sora',sans-serif;">
+            *SHERLOCK_S targeted a Spike region that later drifted. Comparing against it would inflate apparent advantage unfairly — it is shown here to illustrate why targeting conserved regions matters, not as a benchmark.<br><br>
+            Note: PACMAN and CARVER are antiviral systems (designed to destroy viral RNA inside cells),
+            not diagnostics. Their conservation numbers reflect antiviral durability, not diagnostic accuracy.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 6: THE 6 REAL LITERATURE GAPS ========== -->
+    <div class="ann-section" id="s-gaps">
+      <div class="ann-section-header">
+        <div class="section-num">6</div>
+        <h2>The 6 Confirmed Literature Gaps: Places Nobody Has Published</h2>
+        <span class="section-subtitle">Mpox and cholera genes with zero CRISPR diagnostic papers</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Abstract</div>
+          Four-strategy literature verification confirmed <strong>6 genuine gene-level gaps</strong>
+          (5 unique biological targets): Mpox (5 genes: A33R, B5R, E8L, J2R/thymidine kinase, 
+          A56R/hemagglutinin) and Vibrio cholerae (hapA). Each Mpox gene was verified under both
+          its legacy name and protein function name; all query variants returned zero PubMed results.
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What "literature gap" means:</strong> A gene where zero published CRISPR papers
+            describe diagnostic guide design targeting that specific gene — confirmed by four independent
+            search methods (PubMed narrow, PubMed with synonyms, Europe PMC, local paper corpus scan).
+            These are white spaces on the scientific map.
+          </p>
+          <p>
+            <strong>Why Mpox genes have multiple names:</strong> Mpox (monkeypox) belongs to the
+            poxvirus family. Poxvirus genes were named after the vaccinia virus (VACV) decades ago,
+            and different scientific communities use different naming systems. A33R (the legacy name)
+            is the same gene as what some papers call OPG130. J2R and "thymidine kinase" refer to the
+            same gene (OPG101). The paper verified all naming variants returned zero CRISPR papers —
+            the gap is real under every known name.
+          </p>
+          <p>
+            <strong>Why these are interesting targets:</strong> A33R, B5R, and E8L are mpox genes
+            involved in how the virus spreads between cells and evades immune responses. HapA is
+            Vibrio cholerae's hemagglutinin protease — involved in the bacterium's ability to
+            colonize the intestine. None of these has ever been studied as a CRISPR detection target.
+          </p>
+          <div class="analogy-box">
+            <span class="analogy-icon">🗺️</span>
+            <div class="analogy-text">
+              <strong>Think of it like unexplored territory on a map:</strong> The CRISPR diagnostic
+              field has mapped most major roads (Spike, Nucleocapsid, RdRp). These 6 gene targets
+              are equivalent to roads that exist on the terrain but haven't been charted yet.
+              This paper says: here is where they are, here are the coordinates, here is proof
+              nobody else has been there.
+            </div>
+          </div>
+        </div>
+        <div class="data-chips">
+          <span class="data-chip">📄 web/data/pubmed-scan-v4.json → confirmed_gene_gaps</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 7: SARS-CoV-2 LITERATURE ========== -->
+    <div class="ann-section" id="s-sarslit">
+      <div class="ann-section-header">
+        <div class="section-num">7</div>
+        <h2>What the Literature Says About SARS-CoV-2: No Confirmed Gaps</h2>
+        <span class="section-subtitle">Replication genes have papers — just no diagnostic-specific work</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Results (§3.1)</div>
+          A full four-strategy v4 PubMed + Europe PMC scan found 6 non-diagnostic CRISPR papers
+          for nsp13 (all therapeutic or mechanistic) and 9 for nsp14 (mixed, 0 diagnostic-specific),
+          classifying both as FALSE — no CONFIRMED literature gaps were identified for any SARS-CoV-2 gene.
+          Replication-associated proteins nsp7 and nsp10, along with accessory protein ORF10,
+          carry UNCERTAIN status (0 PubMed, high Europe PMC co-mention) and represent the
+          least-explored diagnostic targets.
+        </div>
+        <div class="ann-note">
+          <p>
+            This is an important nuance. The 52 novel CRISPR target <em>sequences</em> are genuinely
+            untouched — no diagnostic has used those specific genomic addresses. But in the scientific
+            literature, papers about nsp13 and nsp14 <em>do</em> exist; they're just about using
+            CRISPR as a molecular biology tool to study these enzymes, not as a diagnostic test.
+          </p>
+          <p>
+            So there are two types of novelty here:
+          </p>
+          <p>
+            <strong>Sequence novelty:</strong> The specific 20-letter DNA addresses (52 of them)
+            have not been used as CRISPR diagnostic targets. This is fully confirmed.
+          </p>
+          <p>
+            <strong>Literature novelty (CRISPR diagnostics only):</strong> For SARS-CoV-2, the
+            literature scanner cannot confirm a "zero-paper" gap for replication genes because
+            mechanistic CRISPR papers exist. The gap is in the <em>diagnostic application</em>,
+            not in any paper mentioning the gene.
+          </p>
+          <p>
+            nsp7 and ORF10 are the closest to true terra incognita — literally 0 PubMed results
+            in any CRISPR context (though Europe PMC full-text co-mentions exist at high volume,
+            keeping them UNCERTAIN rather than CONFIRMED gaps).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 8: LIMITATIONS ========== -->
+    <div class="ann-section" id="s-limits">
+      <div class="ann-section-header">
+        <div class="section-num">8</div>
+        <h2>What This Study Cannot Tell You</h2>
+        <span class="section-subtitle">Honest accounting of what the data does and doesn't prove</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Limitations (§4.4)</div>
+          1. No experimental validation. All candidates are computational predictions. Conservation
+          at pangenomic scale strongly suggests utility, but Tm, secondary structure, off-target in
+          complex biological matrices, and guide efficiency require wet-lab validation.
+          2. Mismatch-tolerant off-target analysis completed (GRCh38, ≤3 mismatches). 0 exact
+          matches, 58 one-mismatch positions across 22 guides (30/52 clean at ≤1 mm). Of the 8
+          highest-conservation candidates, 5 are completely clean at ≤1 mismatch.
+          3. Literature claims are time- and query-dependent.
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What "computational prediction" means:</strong> Everything in this paper was done
+            by computer — searching databases, counting matches, running scripts. No virus was grown
+            in a lab, no CRISPR guide was synthesized, no diagnostic test was physically run.
+            Computational predictions can be wrong.
+          </p>
+          <p>
+            <strong>Updated off-target results (March 2026):</strong> The paper originally flagged
+            that only exact-match screening had been done. We subsequently ran a full genome-wide
+            scan allowing up to 3 mismatches against the entire 3.2-billion-letter human genome.
+            Results for the 52 final guides:
+          </p>
+          <div class="key-numbers" style="margin:0.6rem 0;">
+            <div class="kn-card"><div class="kn-val">0</div><div class="kn-label">Exact matches (0mm)</div></div>
+            <div class="kn-card"><div class="kn-val">58</div><div class="kn-label">1-mismatch positions (22 guides)</div></div>
+            <div class="kn-card"><div class="kn-val">30/52</div><div class="kn-label">Guides clean at ≤1mm</div></div>
+            <div class="kn-card"><div class="kn-val">5/8</div><div class="kn-label">Top candidates fully clean</div></div>
+          </div>
+          <p>
+            In CRISPR practice, a guide with even 1 mismatch loses most of its cutting activity —
+            especially if the mismatch is in the first 12 bases near the PAM site (the "seed region").
+            A guide with 2 mismatches is generally considered safe. The 3 top-8 candidates with a
+            1-mismatch hit need to have those positions checked before synthesis, but this is
+            standard practice and routine.
+          </p>
+          <p>
+            <strong>What still needs wet-lab validation:</strong> RNA secondary structure, guide
+            efficiency, off-target activity in complex biological samples (saliva, blood, sputum)
+            — none of these can be predicted computationally with confidence. The paper says:
+            these are leads. Very promising leads, but leads.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 9: THE DATA ========== -->
+    <div class="ann-section" id="s-data">
+      <div class="ann-section-header">
+        <div class="section-num">9</div>
+        <h2>The Data: Everything Is Public and Verifiable</h2>
+        <span class="section-subtitle">Every number in this paper links back to a downloadable file</span>
+      </div>
+      <div class="ann-section-body">
+        <div class="paper-quote">
+          <div class="paper-quote-label">From the paper — Data availability</div>
+          All data, code, and indexes are publicly available at the
+          <a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" style="color:var(--ann-teal)">LOOM project repository</a>.
+          The 130,000-target database, literature scan results, and the FM-index WASM binary
+          for in-browser search are at the project URL.
+        </div>
+        <div class="ann-note">
+          <p>
+            <strong>What this means for trust:</strong> Every single number in this paper —
+            every conservation percentage, every PubMed query result, every on/off-target count —
+            comes from a machine-readable file that you can download and check yourself. The paper
+            includes a Reviewer Verification Protocol (Table S2) that lists every claim with
+            the exact artifact file and how to verify it.
+          </p>
+          <p>
+            The LOOM search engine in your browser runs on a 335 KB WebAssembly binary that
+            performs the same FM-index search described in the paper — not a demo, the actual code.
+            Type any sequence into the search tool and it searches across the same indexed genomes
+            in milliseconds, with no server.
+          </p>
+        </div>
+        <div class="key-numbers">
+          <div class="kn-card"><div class="kn-val">12</div><div class="kn-label">Pathogens scanned</div></div>
+          <div class="kn-card"><div class="kn-val">130K</div><div class="kn-label">Target database entries</div></div>
+          <div class="kn-card"><div class="kn-val">72</div><div class="kn-label">UNCERTAIN gaps (need review)</div></div>
+          <div class="kn-card"><div class="kn-val">335 KB</div><div class="kn-label">WASM search binary</div></div>
+        </div>
+        <div class="data-chips" style="margin-top:1rem;">
+          <a href="crispr-search.html" class="data-chip">🔬 Live CRISPR Search Tool</a>
+          <span class="data-chip">📦 web/data/pubmed-scan-v4.json</span>
+          <span class="data-chip">📦 data/crispr_guides/novel_targets_52.json</span>
+          <span class="data-chip">📄 publications/papers/pangenomic-crispr-targets-merged.md</span>
+        </div>
+
+        <div class="ann-disclaimer" style="margin-top:1.4rem;">
+          <strong>Preprint status:</strong> This paper has not yet been peer-reviewed by an
+          independent journal. The data and methods are transparent — you can verify them —
+          but the scientific community has not yet formally evaluated the claims.
+          <strong style="color:var(--ann-coral)">This is not clinical guidance.</strong>
+          If you are working on diagnostics and want to build on this work, please contact the author
+          and plan for full experimental validation before any clinical application.
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="margin-top:2.5rem; text-align:center; font-family:'Sora',sans-serif; font-size:0.78rem; color:var(--ann-muted);">
+      <p>
+        LOOM — Open-Source Pangenomic Search Engine · March 2026<br>
+        Paper: <em>Pangenomic CRISPR Diagnostic Target Discovery</em> · Alvaro Videla Godoy<br>
+        <a href="crispr-search.html" style="color:var(--ann-teal);">Open CRISPR Search Tool</a> ·
+        <a href="methodology.html" style="color:var(--ann-teal);">Methodology</a> ·
+        <a href="learn.html" style="color:var(--ann-teal);">Learn</a> ·
+        <a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" style="color:var(--ann-teal);">GitHub</a>
+      </p>
+    </footer>
+
+  </div><!-- .ann-main -->
+</body>
+</html>

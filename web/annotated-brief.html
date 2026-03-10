@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annotated Brief: 52 Novel CRISPR Targets — LOOM</title>
+  <meta name="description" content="A plain-language annotated walkthrough of the CRISPR target discovery brief: 52 novel sites in SARS-CoV-2 replication machinery, explained for a general audience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crispr-styles.css?v=20260309" />
+  <style>
+    :root {
+      --br-bg: #f4f6f8;
+      --br-paper: rgba(255, 253, 248, 0.85);
+      --br-panel: rgba(255, 255, 255, 0.82);
+      --br-line: rgba(30, 42, 60, 0.10);
+      --br-ink: #1a2438;
+      --br-muted: #4d5c76;
+      --br-teal: #0d7377;
+      --br-teal-soft: rgba(13, 115, 119, 0.08);
+      --br-amber: #a16207;
+      --br-amber-soft: rgba(245, 158, 11, 0.12);
+      --br-coral: #b91c1c;
+      --br-indigo: #3730a3;
+      --br-green: #15803d;
+      --br-shadow: 0 20px 50px rgba(26, 36, 56, 0.08);
+    }
+
+    body.brief-page {
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(13, 115, 119, 0.07), transparent 40%),
+        radial-gradient(ellipse at 90% 5%, rgba(161, 98, 7, 0.06), transparent 30%),
+        linear-gradient(175deg, #f7f5f0 0%, #f0f3f7 50%, #eaeff5 100%);
+      color: var(--br-ink);
+      min-height: 100vh;
+    }
+
+    .brief-main {
+      width: min(860px, 92vw);
+      margin: 0 auto;
+      padding: 2rem 0 5rem;
+    }
+
+    /* ---- Hero ---- */
+    .brief-hero {
+      padding: 2.6rem 2.2rem 2.2rem;
+      border-radius: 20px;
+      background: var(--br-paper);
+      border: 1px solid var(--br-line);
+      box-shadow: var(--br-shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .brief-hero::after {
+      content: "";
+      position: absolute;
+      top: -30%; right: -10%;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13, 115, 119, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.38rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid var(--br-line);
+      background: rgba(255, 255, 255, 0.6);
+      font-family: 'Sora', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--br-muted);
+      margin-bottom: 1.1rem;
+    }
+    .pill .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--br-teal);
+      box-shadow: 0 0 0 0 rgba(13, 115, 119, 0.4);
+      animation: dotPulse 2.4s infinite;
+    }
+    @keyframes dotPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(13, 115, 119, 0.4); }
+      70%  { box-shadow: 0 0 0 10px rgba(13, 115, 119, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(13, 115, 119, 0); }
+    }
+
+    .brief-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.24;
+      color: var(--br-ink);
+      margin: 0 0 0.8rem;
+    }
+    .brief-hero .lead {
+      font-family: 'Karla', sans-serif;
+      font-size: 1.02rem;
+      color: var(--br-muted);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 0 1.3rem;
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+    .stat-card {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0.8rem 1.05rem;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid var(--br-line);
+      border-radius: 12px;
+      min-width: 120px;
+    }
+    .stat-card .val {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--br-teal);
+      line-height: 1;
+    }
+    .stat-card .lbl {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.68rem;
+      color: var(--br-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+
+    .caveat-box {
+      background: rgba(55, 48, 163, 0.05);
+      border: 1px solid rgba(55, 48, 163, 0.14);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      font-family: 'Karla', sans-serif;
+      font-size: 0.86rem;
+      color: var(--br-muted);
+      line-height: 1.6;
+      margin-top: 1.3rem;
+    }
+    .caveat-box strong { color: var(--br-indigo); }
+    .caveat-box .warn { color: var(--br-coral); }
+
+    /* ---- Nav ---- */
+    .brief-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.6rem;
+    }
+    .brief-nav a {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      color: var(--br-muted);
+      background: var(--br-panel);
+      border: 1px solid var(--br-line);
+      border-radius: 7px;
+      padding: 0.35rem 0.7rem;
+      text-decoration: none;
+      transition: all 0.16s ease;
+    }
+    .brief-nav a:hover {
+      color: var(--br-teal);
+      border-color: var(--br-teal);
+      background: var(--br-teal-soft);
+    }
+
+    /* ---- Section cards ---- */
+    .sec {
+      background: var(--br-panel);
+      border: 1px solid var(--br-line);
+      border-radius: 16px;
+      margin-bottom: 1.3rem;
+      overflow: hidden;
+      box-shadow: 0 3px 18px rgba(26, 36, 56, 0.05);
+    }
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid var(--br-line);
+    }
+    .sec-num {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--br-teal), #0e958a);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .sec-head h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--br-ink);
+      margin: 0;
+      flex: 1;
+    }
+    .sec-body { padding: 1.4rem 1.5rem; }
+
+    /* ---- Quote ---- */
+    .quote {
+      border-left: 3px solid var(--br-teal);
+      background: var(--br-teal-soft);
+      padding: 0.85rem 1.05rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0 0 1rem;
+      font-family: 'Karla', sans-serif;
+      font-size: 0.91rem;
+      color: var(--br-muted);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .quote-tag {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--br-teal);
+      margin-bottom: 0.35rem;
+      font-style: normal;
+    }
+
+    /* ---- Note ---- */
+    .note {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.72;
+      color: var(--br-ink);
+    }
+    .note p { margin: 0 0 0.85rem; }
+    .note p:last-child { margin-bottom: 0; }
+    .note strong { color: var(--br-coral); }
+    .note em { color: var(--br-teal); font-style: normal; font-weight: 600; }
+
+    /* ---- Analogy ---- */
+    .analogy {
+      background: var(--br-amber-soft);
+      border: 1px solid rgba(161, 98, 7, 0.16);
+      border-radius: 10px;
+      padding: 0.95rem 1.1rem;
+      margin: 0.9rem 0;
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+    .analogy-ico { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.08rem; }
+    .analogy-txt {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.93rem;
+      color: #7c2d12;
+      line-height: 1.65;
+    }
+    .analogy-txt strong { color: #9a3412; }
+
+    /* ---- Key numbers grid ---- */
+    .nums {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+      gap: 0.65rem;
+      margin: 0.9rem 0;
+    }
+    .num-card {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--br-line);
+      border-radius: 9px;
+      padding: 0.75rem 0.9rem;
+    }
+    .num-card .n-val {
+      font-family: 'Fraunces', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--br-indigo);
+    }
+    .num-card .n-lbl {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.68rem;
+      color: var(--br-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.2rem;
+    }
+
+    /* ---- Table ---- */
+    .brief-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Karla', sans-serif;
+      font-size: 0.86rem;
+      margin: 0.8rem 0;
+    }
+    .brief-table thead tr { border-bottom: 2px solid var(--br-line); }
+    .brief-table th {
+      text-align: left;
+      padding: 0.5rem 0.55rem;
+      color: var(--br-muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .brief-table td {
+      padding: 0.42rem 0.55rem;
+      border-bottom: 1px solid var(--br-line);
+    }
+    .brief-table .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .brief-table .good { color: var(--br-green); font-weight: 700; }
+    .brief-table .bad  { color: var(--br-coral); font-weight: 700; }
+
+    /* ---- Data chips ---- */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid rgba(26, 36, 56, 0.12);
+      background: rgba(255,255,255,0.6);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--br-muted);
+      text-decoration: none;
+    }
+    .chip:hover { border-color: var(--br-teal); color: var(--br-teal); }
+
+    /* ---- Back link ---- */
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.8rem;
+      color: var(--br-muted);
+      text-decoration: none;
+      margin-bottom: 1.3rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      transition: all 0.16s;
+    }
+    .back:hover { color: var(--br-teal); border-color: var(--br-teal); background: var(--br-teal-soft); }
+
+    /* ---- "See also" link card ---- */
+    .see-also {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+      padding: 1rem 1.3rem;
+      border-radius: 12px;
+      background: var(--br-teal-soft);
+      border: 1px solid rgba(13, 115, 119, 0.18);
+      text-decoration: none;
+      transition: all 0.16s;
+    }
+    .see-also:hover { border-color: var(--br-teal); box-shadow: 0 4px 16px rgba(13,115,119,0.10); }
+    .see-also .sa-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .see-also .sa-text {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.92rem;
+      color: var(--br-ink);
+      line-height: 1.5;
+    }
+    .see-also .sa-text strong { color: var(--br-teal); }
+
+    @media (max-width: 600px) {
+      .sec-body { padding: 1rem; }
+      .stats-row { gap: 0.5rem; }
+      .stat-card { min-width: 100px; }
+    }
+  </style>
+</head>
+<body class="brief-page">
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <div class="brief-main">
+
+    <a href="crispr-search.html" class="back">← Back to CRISPR Search</a>
+
+    <!-- ========== HERO ========== -->
+    <div class="brief-hero">
+      <div class="pill"><span class="dot"></span> Annotated Brief · March 2026</div>
+      <h1>52 Untouched CRISPR Targets in COVID-19's&nbsp;Engine Room</h1>
+      <p class="lead">
+        A plain-English guide to the condensed preprint brief — what was found,
+        why it matters, and what still needs to happen. No jargon required.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="val">52</span>
+          <span class="lbl">Novel targets</span>
+        </div>
+        <div class="stat-card">
+          <span class="val">9.2M</span>
+          <span class="lbl">Genomes scanned</span>
+        </div>
+        <div class="stat-card">
+          <span class="val">130K</span>
+          <span class="lbl">Database entries</span>
+        </div>
+        <div class="stat-card">
+          <span class="val">6</span>
+          <span class="lbl">Literature gaps</span>
+        </div>
+      </div>
+
+      <div class="caveat-box">
+        <strong>What this page is:</strong> An annotated walkthrough of a condensed research brief.
+        Every section quotes the paper, then explains it in plain language.
+        <br><strong class="warn">What this is not:</strong> Peer-reviewed clinical guidance.
+        These are computational predictions — experimental validation is required.
+      </div>
+    </div>
+
+    <!-- ========== NAV ========== -->
+    <nav class="brief-nav" aria-label="Jump to section">
+      <a href="#s-problem">The problem</a>
+      <a href="#s-targets">52 novel targets</a>
+      <a href="#s-compare">vs. published guides</a>
+      <a href="#s-database">Multi-pathogen DB</a>
+      <a href="#s-gaps">6 literature gaps</a>
+      <a href="#s-limits">Limitations</a>
+      <a href="#s-data">The data</a>
+    </nav>
+
+    <!-- ========== SECTION 1: THE PROBLEM ========== -->
+    <div class="sec" id="s-problem">
+      <div class="sec-head">
+        <div class="sec-num">1</div>
+        <h2>The Problem: Diagnostic Tests Targeting the Wrong Part of the Virus</h2>
+      </div>
+      <div class="sec-body">
+        <div class="quote">
+          <div class="quote-tag">From the brief — Introduction</div>
+          CRISPR-based detection platforms have proven rapid pathogen detection, but guide RNA design
+          follows historical RT-PCR conventions: structural and surface genes predominate. Immune-exposed
+          genes accumulate mutations under selection pressure, degrading diagnostic sensitivity — as
+          demonstrated when SHERLOCK_S targeting the SARS-CoV-2 Spike degraded to 63% conservation
+          across 9.2 million genomes.
+        </div>
+        <div class="note">
+          <p>
+            <strong>In plain English:</strong> CRISPR diagnostic tests work by designing tiny molecular
+            probes (guide RNAs) that latch onto a specific stretch of the virus's genetic code. When
+            there's a match, the test lights up positive.
+          </p>
+          <p>
+            The problem is that most tests target the virus's outer shell — the Spike protein, the
+            Nucleocapsid — because that's where traditional PCR tests aimed. But the immune system
+            attacks those same parts, so the virus <em>mutates there fastest</em>. When Spike mutated
+            (D614G and beyond), the SHERLOCK_S test designed against it lost a third of its targets.
+          </p>
+          <div class="analogy">
+            <span class="analogy-ico">🔑</span>
+            <div class="analogy-txt">
+              <strong>Analogy:</strong> A burglar alarm that only triggers when the burglar wears a red
+              jacket. Once the burglar switches to blue, silence. This paper targets the burglar's
+              <strong>fingerprints</strong> — internal machinery so essential that any change would kill
+              the virus itself.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 2: THE 52 TARGETS ========== -->
+    <div class="sec" id="s-targets">
+      <div class="sec-head">
+        <div class="sec-num">2</div>
+        <h2>The 52 Targets: Replication Machinery That Can't Mutate</h2>
+      </div>
+      <div class="sec-body">
+        <div class="quote">
+          <div class="quote-tag">From the brief — Results</div>
+          From 29,640 candidate windows, 183 carry compatible PAM sites across 89 genomic regions.
+          After excluding regions overlapping published diagnostic targets (N, E, S, nsp12/RdRp),
+          52 truly novel regions remain — all ≥8 mismatches from any of 83 published guide sequences.
+        </div>
+        <div class="note">
+          <p>
+            <strong>What nsp13, nsp14, ORF1a are:</strong> These are the virus's internal copying
+            machinery. Nsp13 (helicase) unzips the genetic code for copying. Nsp14 (ExoN) proofreads
+            copies for errors. ORF1a encodes most of the core replication proteins. Without any of
+            these, the virus cannot reproduce — so they're under intense evolutionary pressure to
+            stay exactly as they are.
+          </p>
+          <p>
+            <strong>What "99.2% conservation" means:</strong> Out of 9.2 million known SARS-CoV-2
+            genomes collected worldwide, this exact 20-letter DNA sequence appears, letter-perfect,
+            in 99.2% of them. The best existing diagnostic guide (DETECTR_E for the E gene) scores
+            98.34%. These new targets match or beat that benchmark.
+          </p>
+          <p>
+            <strong>Zero human genome matches:</strong> Every candidate was checked against the
+            complete 3.2-billion-letter human reference genome. None appear anywhere in human DNA,
+            so a test using them won't false-positive on the patient's own cells.
+          </p>
+        </div>
+        <div class="nums">
+          <div class="num-card"><div class="n-val">29,640</div><div class="n-lbl">Windows evaluated</div></div>
+          <div class="num-card"><div class="n-val">89</div><div class="n-lbl">PAM-compatible regions</div></div>
+          <div class="num-card"><div class="n-val">52</div><div class="n-lbl">Genuinely novel</div></div>
+          <div class="num-card"><div class="n-val">0</div><div class="n-lbl">Human genome hits</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 3: COMPARISON ========== -->
+    <div class="sec" id="s-compare">
+      <div class="sec-head">
+        <div class="sec-num">3</div>
+        <h2>How Do They Compare to Existing Tests?</h2>
+      </div>
+      <div class="sec-body">
+        <div class="quote">
+          <div class="quote-tag">From the brief — Results</div>
+          The top 8 are within 1 percentage point of the best published diagnostic guide. SHERLOCK_S
+          (Spike) retains only 63% conservation — demonstrating the failure mode our
+          replication-machinery targets avoid.
+        </div>
+        <table class="brief-table">
+          <thead>
+            <tr>
+              <th>Guide</th>
+              <th>Type</th>
+              <th style="text-align:right">Conservation</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">Our top 8 (nsp13/14/ORF1a)</td>
+              <td>Novel — this paper</td>
+              <td style="text-align:right" class="good">98.9–99.2%</td>
+              <td class="good">Robust ✓</td>
+            </tr>
+            <tr>
+              <td class="mono">DETECTR_E (Broughton 2020)</td>
+              <td>Diagnostic</td>
+              <td style="text-align:right" class="good">98.34%</td>
+              <td class="good">Robust ✓</td>
+            </tr>
+            <tr>
+              <td class="mono">SHERLOCK_Orf1ab (Patchsung 2020)</td>
+              <td>Diagnostic</td>
+              <td style="text-align:right" class="good">97.55%</td>
+              <td class="good">Robust ✓</td>
+            </tr>
+            <tr>
+              <td class="mono">DETECTR_N (Broughton 2020)</td>
+              <td>Diagnostic</td>
+              <td style="text-align:right" class="good">94.21%</td>
+              <td style="color:var(--br-amber)">N-gene drift ⚠</td>
+            </tr>
+            <tr>
+              <td class="mono">SHERLOCK_S (Patchsung 2020)</td>
+              <td style="font-style:italic;color:var(--br-muted);">Historical context*</td>
+              <td style="text-align:right" class="bad">63.28%</td>
+              <td class="bad">Spike drift ✗</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <p style="font-size:0.84rem; color:var(--br-muted);">
+            *SHERLOCK_S targeted a Spike region that later drifted massively. It's shown to illustrate
+            the failure mode, not as a fair comparison. The honest benchmark is DETECTR_E — and our
+            candidates match it.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 4: MULTI-PATHOGEN DB ========== -->
+    <div class="sec" id="s-database">
+      <div class="sec-head">
+        <div class="sec-num">4</div>
+        <h2>A 130,000-Target Database Across 12 Pathogens</h2>
+      </div>
+      <div class="sec-body">
+        <div class="quote">
+          <div class="quote-tag">From the brief — Results</div>
+          Across 12 pathogens plus a panviral reference, the database contains ~130,000
+          conservation-ranked CRISPR candidate sequences (top 10,000 per pathogen), of which
+          8,113 carry SpCas9 NGG PAMs.
+        </div>
+        <div class="note">
+          <p>
+            <strong>What this database is:</strong> For each of 12 human pathogens — from HIV to
+            Mpox to cholera — the pipeline identified the 10,000 most-conserved genetic addresses
+            suitable for CRISPR targeting. Think of it as a phonebook of the best places to aim
+            a diagnostic test for each pathogen.
+          </p>
+          <p>
+            <strong>Important caveat:</strong> Corpus sizes vary enormously — 9.2 million genomes
+            for SARS-CoV-2 but only 382 for cholera. A target that's "95% conserved across 382
+            genomes" carries much less statistical weight than one conserved across 9.2 million.
+            Conservation numbers are <em>not directly comparable</em> across pathogens.
+          </p>
+          <p>
+            The entire database is searchable in your browser — no software to install, no server
+            required. Type a sequence and get results in milliseconds.
+          </p>
+        </div>
+        <div class="nums">
+          <div class="num-card"><div class="n-val">12</div><div class="n-lbl">Pathogens</div></div>
+          <div class="num-card"><div class="n-val">130K</div><div class="n-lbl">Total targets</div></div>
+          <div class="num-card"><div class="n-val">8,113</div><div class="n-lbl">NGG PAM-compatible</div></div>
+          <div class="num-card"><div class="n-val">99.8%</div><div class="n-lbl">Host-specificity</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 5: LITERATURE GAPS ========== -->
+    <div class="sec" id="s-gaps">
+      <div class="sec-head">
+        <div class="sec-num">5</div>
+        <h2>6 Genes Nobody Has Targeted with CRISPR Diagnostics</h2>
+      </div>
+      <div class="sec-body">
+        <div class="quote">
+          <div class="quote-tag">From the brief — Results</div>
+          These 6 genes have zero CRISPR publications across all four evidence strategies as of
+          March 2026. For SARS-CoV-2, no confirmed gene-level gaps exist — but nsp13 and nsp14
+          have exclusively non-diagnostic CRISPR research, representing an unexploited diagnostic opportunity.
+        </div>
+        <table class="brief-table">
+          <thead>
+            <tr>
+              <th>Pathogen</th>
+              <th>Gene</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mpox</td>
+              <td class="mono">A33R</td>
+              <td>Immune evasion</td>
+            </tr>
+            <tr>
+              <td>Mpox</td>
+              <td class="mono">B5R</td>
+              <td>Membrane protein</td>
+            </tr>
+            <tr>
+              <td>Mpox</td>
+              <td class="mono">E8L</td>
+              <td>Unknown function</td>
+            </tr>
+            <tr>
+              <td>Mpox</td>
+              <td class="mono">J2R (OPG101)</td>
+              <td>Thymidine kinase</td>
+            </tr>
+            <tr>
+              <td>Mpox</td>
+              <td class="mono">A56R (OPG185)</td>
+              <td>Hemagglutinin</td>
+            </tr>
+            <tr>
+              <td><em>V. cholerae</em></td>
+              <td class="mono">hapA</td>
+              <td>Hemagglutinin protease</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <p>
+            <strong>What "literature gap" means:</strong> No published paper describes designing a
+            CRISPR diagnostic guide for that specific gene. This was verified four independent ways:
+            PubMed title/abstract search, synonym-expanded PubMed search, Europe PMC full-text scan,
+            and automated ontology cross-check. All four returned zero for each of these 6 genes.
+          </p>
+          <div class="analogy">
+            <span class="analogy-ico">🗺️</span>
+            <div class="analogy-txt">
+              <strong>Blank spaces on the map.</strong> The CRISPR diagnostic field has charted most
+              major roads. These 6 genes are roads that exist on the terrain but haven't been drawn
+              on any map yet. This paper provides the coordinates.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 6: LIMITATIONS ========== -->
+    <div class="sec" id="s-limits">
+      <div class="sec-head">
+        <div class="sec-num">6</div>
+        <h2>What This Study Cannot Tell You</h2>
+      </div>
+      <div class="sec-body">
+        <div class="quote">
+          <div class="quote-tag">From the brief — Limitations</div>
+          Conservation ≠ efficacy. All 52 candidates require wet-lab validation; k-mer conservation
+          cannot predict cleavage efficiency, binding kinetics, or limit of detection. In silico only.
+          No experimental validation was performed.
+        </div>
+        <div class="note">
+          <p>
+            <strong>The bottom line:</strong> Everything in this paper was done by computer. No virus
+            was grown in a lab, no CRISPR guide was physically synthesized, no diagnostic test was
+            actually run. Computational predictions can be wrong.
+          </p>
+          <p>
+            Finding a highly conserved sequence is a <em>necessary first step</em> but not proof that
+            a diagnostic built around it will work in a real clinical sample. RNA folding, enzyme binding
+            kinetics, reaction chemistry, and real-world sample conditions all matter — and none can be
+            predicted from sequence data alone.
+          </p>
+          <p>
+            Other caveats: the SARS-CoV-2 corpus is 65% Omicron-era sequences (it reflects what was
+            circulating, not uniform variant sampling); the multi-pathogen datasets range from 382
+            cholera genomes to 9.2M SARS-CoV-2; and the literature scan is dated March 2026 — new
+            papers may have appeared since.
+          </p>
+          <p>
+            <strong>These are leads — very promising leads — but leads.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 7: DATA ========== -->
+    <div class="sec" id="s-data">
+      <div class="sec-head">
+        <div class="sec-num">7</div>
+        <h2>Everything Is Public and Verifiable</h2>
+      </div>
+      <div class="sec-body">
+        <div class="note">
+          <p>
+            Every number in the brief — every conservation percentage, every gap claim, every
+            off-target count — comes from a machine-readable file you can download and check yourself.
+            The LOOM search engine runs entirely in your browser as a 335 KB WebAssembly binary: no
+            server, no account, no software installation.
+          </p>
+        </div>
+        <div class="chips">
+          <a href="crispr-search.html" class="chip">🔬 Live CRISPR Search Tool</a>
+          <a href="annotated-panpathogen.html" class="chip">📖 Full Paper Annotated Guide</a>
+          <a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" class="chip">🐙 GitHub Repository</a>
+        </div>
+
+        <a href="annotated-panpathogen.html" class="see-also">
+          <span class="sa-icon">📖</span>
+          <div class="sa-text">
+            <strong>Want more detail?</strong> The full annotated guide covers methodology,
+            the self-correction story, off-target analysis, and deeper explanations of each result.
+          </div>
+        </a>
+
+        <div class="caveat-box" style="margin-top:1.3rem;">
+          <strong>Preprint status:</strong> This paper has not been peer-reviewed.
+          The data is transparent and verifiable, but the scientific community has not
+          formally evaluated the claims.
+          <strong class="warn">This is not clinical guidance.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="margin-top:2.2rem; text-align:center; font-family:'Sora',sans-serif; font-size:0.76rem; color:var(--br-muted);">
+      <p>
+        LOOM — Open-Source Pangenomic Search Engine · March 2026<br>
+        Brief: <em>Pangenomic CRISPR Target Discovery</em> · Alvaro Videla Godoy<br>
+        <a href="crispr-search.html" style="color:var(--br-teal);">CRISPR Search</a> ·
+        <a href="annotated-panpathogen.html" style="color:var(--br-teal);">Full Paper Guide</a> ·
+        <a href="methodology.html" style="color:var(--br-teal);">Methodology</a> ·
+        <a href="learn.html" style="color:var(--br-teal);">Learn</a> ·
+        <a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" style="color:var(--br-teal);">GitHub</a>
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+{
+  "scan_date": "2026-03-08T12:00:00+00:00",
+  "method": "google_patents_ontology_expanded",
+  "ontology_source": "web/data/ontology-enrichment.json",
+  "ontology_note": "Queries expanded with Disease Ontology, MONDO, and NCBI Taxonomy synonyms per ontology-first SKILL. Ambiguous abbreviations (bare RSV, TB) excluded.",
+  "landscape": {
+    "HIV": {
+      "query": "CRISPR AND (\"HIV\" OR \"human immunodeficiency virus\" OR \"Human immunodeficiency virus 1\")",
+      "total": 67415,
+      "source": "google_patents",
+      "previous_total": 64139,
+      "ontology_delta_pct": 5.1
+    },
+    "Hepatitis B": {
+      "query": "CRISPR AND (\"Hepatitis B\" OR \"HBV\" OR \"Hepatitis B virus\" OR \"serum hepatitis\")",
+      "total": 25840,
+      "source": "google_patents",
+      "previous_total": 20218,
+      "ontology_delta_pct": 27.8
+    },
+    "Tuberculosis": {
+      "query": "CRISPR AND (\"tuberculosis\" OR \"Mycobacterium tuberculosis\" OR \"Kochs disease\")",
+      "total": 15656,
+      "source": "google_patents",
+      "previous_total": 9029,
+      "ontology_delta_pct": 73.4,
+      "note": "Bare \"TB\" excluded (ambiguous). Old query used only abbreviated \"M. tuberculosis\"."
+    },
+    "SARS-CoV-2": {
+      "query": "CRISPR AND (\"SARS-CoV-2\" OR \"COVID-19\" OR \"2019-nCoV\" OR \"COVID19\" OR \"SARS-coronavirus 2\" OR \"severe acute respiratory syndrome coronavirus 2\")",
+      "total": 13040,
+      "source": "google_patents",
+      "previous_total": 9808,
+      "ontology_delta_pct": 33.0
+    },
+    "Cholera": {
+      "query": "CRISPR AND (\"Vibrio cholerae\" OR \"cholera\" OR \"Vibrio cholerae infection\")",
+      "total": 9696,
+      "source": "google_patents",
+      "previous_total": 2767,
+      "ontology_delta_pct": 250.4,
+      "note": "Old query used only species name \"Vibrio cholerae\", missing common disease name \"cholera\"."
+    },
+    "MERS": {
+      "query": "CRISPR AND (\"MERS\" OR \"MERS-CoV\" OR \"Middle East respiratory syndrome\" OR \"camel flu\")",
+      "total": 9425,
+      "source": "google_patents",
+      "previous_total": 9279,
+      "ontology_delta_pct": 1.6
+    },
+    "RSV": {
+      "query": "CRISPR AND (\"respiratory syncytial virus\" OR \"Human respiratory syncytial virus\" OR \"HRSV\")",
+      "total": 8751,
+      "source": "google_patents",
+      "previous_total": 8687,
+      "ontology_delta_pct": 0.7,
+      "note": "Bare \"RSV\" excluded (ambiguous: also matches Rous sarcoma virus)."
+    },
+    "Dengue": {
+      "query": "CRISPR AND (\"Dengue\" OR \"Dengue virus\" OR \"DENV\" OR \"dengue disease\")",
+      "total": 8501,
+      "source": "google_patents",
+      "previous_total": 8187,
+      "ontology_delta_pct": 3.8
+    },
+    "Ebola": {
+      "query": "CRISPR AND (\"Ebola\" OR \"Zaire ebolavirus\" OR \"EHF\" OR \"Ebola hemorrhagic fever\")",
+      "total": 8332,
+      "source": "google_patents",
+      "previous_total": 7871,
+      "ontology_delta_pct": 5.9
+    },
+    "Influenza A": {
+      "query": "CRISPR AND (\"Influenza A\" OR \"Influenza A virus\")",
+      "total": 6056,
+      "source": "google_patents",
+      "previous_total": 6050,
+      "ontology_delta_pct": 0.1
+    },
+    "Zika": {
+      "query": "CRISPR AND (\"Zika\" OR \"Zika virus\" OR \"ZikV\" OR \"Zika fever\")",
+      "total": 5676,
+      "source": "google_patents",
+      "previous_total": 5357,
+      "ontology_delta_pct": 6.0
+    },
+    "Mpox": {
+      "query": "CRISPR AND (\"Mpox\" OR \"Monkeypox\" OR \"Monkeypox virus\")",
+      "total": 332,
+      "source": "google_patents",
+      "previous_total": 12025,
+      "ontology_delta_pct": -97.2,
+      "note": "Previous count (12,025) was inflated due to operator precedence bug in original query. Corrected with explicit grouping."
+    }
+  },
+  "sars_cov2_genes": {
+    "Nucleocapsid (N)": {
+      "total": 1092,
+      "note": "Most-patented; primary diagnostic target"
+    },
+    "Membrane protein (M)": {
+      "total": 610
+    },
+    "RdRp (nsp12)": {
+      "total": 188
+    },
+    "ORF1a (nsp1-11)": {
+      "total": 90,
+      "note": "Our targets concentrate here"
+    },
+    "ORF3a": {
+      "total": 88,
+      "note": "Our targets concentrate here"
+    },
+    "ORF8": {
+      "total": 88,
+      "note": "Our targets concentrate here"
+    },
+    "ORF10": {
+      "total": 51,
+      "note": "Our targets concentrate here"
+    }
+  },
+  "guide_sequences": {
+    "GAGAGTACACCTTTGAAAAA": {
+      "gene": "ORF1b (RdRp)",
+      "total": 0,
+      "status": "clear"
+    },
+    "TTGTCGGCCCAAATGTTAAC": {
+      "gene": "ORF1a",
+      "total": 0,
+      "status": "clear"
+    },
+    "CTTATGTACTCATTCGTTTC": {
+      "gene": "ORF3a",
+      "total": 0,
+      "status": "clear"
+    },
+    "GTCCGGGTGTGACCGAAAGG": {
+      "gene": "5-UTR",
+      "total": 0,
+      "status": "clear"
+    },
+    "TAGTAATAGGTTTCCTATTC": {
+      "gene": "M (Membrane)",
+      "total": 0,
+      "status": "clear"
+    },
+    "AACGGTACTATTACCGTTGA": {
+      "gene": "intergenic",
+      "total": 1,
+      "status": "review_needed",
+      "note": "US20240156948A1 (Excepgen Inc.) - genome listing, not guide claim"
+    },
+    "ATCTCACATAGCAATCTTTA": {
+      "gene": "ORF10",
+      "total": 0,
+      "status": "clear"
+    },
+    "CTAGGGAGAGCTGCCTATAT": {
+      "gene": "3-UTR",
+      "total": 0,
+      "status": "clear"
+    },
+    "AATGTCTGATAATGGACCCC": {
+      "gene": "ORF8",
+      "total": 0,
+      "status": "clear"
+    },
+    "TAAACGAACATGAAATTTCT": {
+      "gene": "ORF7b",
+      "total": 0,
+      "status": "clear"
+    }
+  }
+}

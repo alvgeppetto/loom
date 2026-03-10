@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn CRISPR Search - LOOM</title>
+  <meta name="description" content="An interactive, beginner-friendly guide to CRISPR diagnostics, pathogen genomics, conservation, off-target risk, and exact genome search with LOOM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crispr-styles.css?v=20260305" />
+  <style>
+    :root {
+      --learn-bg: #f8f7f2;
+      --learn-paper: rgba(255, 251, 242, 0.78);
+      --learn-panel: rgba(255, 255, 255, 0.78);
+      --learn-line: rgba(36, 51, 80, 0.12);
+      --learn-ink: #162033;
+      --learn-muted: #50607b;
+      --learn-accent: #b45309;
+      --learn-accent-soft: rgba(245, 158, 11, 0.14);
+      --learn-teal: #0f766e;
+      --learn-coral: #c2410c;
+      --learn-indigo: #1d4ed8;
+      --learn-shadow: 0 24px 60px rgba(22, 32, 51, 0.10);
+    }
+
+    body.learn-page {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(180, 83, 9, 0.12), transparent 20%),
+        linear-gradient(180deg, #faf7ee 0%, #f7f8fb 42%, #edf3f8 100%);
+      color: var(--learn-ink);
+    }
+
+    .learn-page .grid-bg {
+      opacity: 0.22;
+      background-size: 28px 28px;
+    }
+
+    .learn-main {
+      width: min(1260px, 94vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      padding: 2rem 0 5rem;
+    }
+
+    .learn-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.9fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+
+    .learn-card {
+      background: var(--learn-paper);
+      border: 1px solid var(--learn-line);
+      box-shadow: var(--learn-shadow);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+    }
+
+    .hero-copy {
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29, 78, 216, 0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(22, 32, 51, 0.12);
+      background: rgba(255, 255, 255, 0.52);
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--learn-muted);
+    }
+
+    .eyebrow .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--learn-accent);
+      box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.35);
+      animation: learnPulse 2s infinite;
+    }
+
+    @keyframes learnPulse {
+      0% { box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.35); }
+      70% { box-shadow: 0 0 0 12px rgba(180, 83, 9, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(180, 83, 9, 0); }
+    }
+
+    .hero-copy h1 {
+      margin: 1rem 0 0.8rem;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-copy p {
+      max-width: 44rem;
+      margin: 0 0 1rem;
+      color: var(--learn-muted);
+      font-size: 1.06rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+    }
+
+    .hero-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(22, 32, 51, 0.12);
+    }
+
+    .hero-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--learn-indigo), #2563eb 55%, var(--learn-teal));
+    }
+
+    .hero-secondary {
+      color: var(--learn-ink);
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(22, 32, 51, 0.12);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-metric {
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(22, 32, 51, 0.10);
+    }
+
+    .hero-metric strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .hero-metric span {
+      color: var(--learn-muted);
+      font-size: 0.88rem;
+    }
+
+    .hero-map {
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow: hidden;
+    }
+
+    .hero-map .caption {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .hero-map .caption h2 {
+      margin: 0;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+    }
+
+    .hero-map .caption p {
+      margin: 0;
+      color: var(--learn-muted);
+      font-size: 0.9rem;
+    }
+
+    .concept-map {
+      width: 100%;
+      min-height: 420px;
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3)),
+        radial-gradient(circle at 50% 20%, rgba(29, 78, 216, 0.08), transparent 40%);
+      border: 1px solid rgba(22, 32, 51, 0.08);
+    }
+
+    .concept-step-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.45rem 1rem;
+      margin-top: 0.6rem;
+    }
+
+    .concept-step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.83rem;
+      color: var(--learn-muted);
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-1 { background: #dbeafe; color: #1e3a8a; border: 1px solid #1d4ed8; }
+    .step-2 { background: #ccfbf1; color: #115e59; border: 1px solid #0f766e; }
+    .step-3 { background: #fef3c7; color: #854d0e; border: 1px solid #ca8a04; }
+    .step-4 { background: #ede9fe; color: #5b21b6; border: 1px solid #7c3aed; }
+
+    .learn-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+      align-items: start;
+    }
+
+    .learn-rail {
+      position: sticky;
+      top: 8.3rem;
+      padding: 1.15rem;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(22, 32, 51, 0.10);
+      box-shadow: 0 12px 30px rgba(22, 32, 51, 0.08);
+    }
+
+    .learn-rail h3 {
+      margin: 0 0 0.9rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .learn-rail a {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.65rem 0.2rem;
+      color: var(--learn-muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(22, 32, 51, 0.06);
+      font-size: 0.92rem;
+    }
+
+    .learn-rail a:last-child { border-bottom: 0; }
+
+    .learn-rail a strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(29, 78, 216, 0.10);
+      color: var(--learn-indigo);
+      font-size: 0.8rem;
+    }
+
+    .learn-rail a.active {
+      color: var(--learn-ink);
+      font-weight: 700;
+    }
+
+    .learn-content {
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    .learn-section {
+      padding: 1.4rem;
+      border-radius: 24px;
+      background: var(--learn-panel);
+      border: 1px solid rgba(22, 32, 51, 0.10);
+      box-shadow: 0 18px 40px rgba(22, 32, 51, 0.07);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .section-head p {
+      max-width: 32rem;
+      margin: 0;
+      color: var(--learn-muted);
+      line-height: 1.7;
+    }
+
+    .concept-grid,
+    .workflow-grid,
+    .research-grid,
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .concept-panel,
+    .workflow-card,
+    .research-card,
+    .glossary-card,
+    .simulation-card,
+    .path-card {
+      border-radius: 20px;
+      border: 1px solid rgba(22, 32, 51, 0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(246,248,252,0.88));
+      padding: 1.05rem;
+      min-width: 0;
+    }
+
+    .concept-panel h3,
+    .workflow-card h3,
+    .research-card h3,
+    .glossary-card h3,
+    .simulation-card h3,
+    .path-card h3 {
+      margin: 0 0 0.5rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+    }
+
+    .concept-panel p,
+    .workflow-card p,
+    .research-card p,
+    .glossary-card p,
+    .simulation-card p,
+    .path-card p,
+    .learn-section li {
+      margin: 0;
+      color: var(--learn-muted);
+      line-height: 1.7;
+      font-size: 0.97rem;
+    }
+
+    .concept-panel .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: var(--learn-accent-soft);
+      color: var(--learn-accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .simulation-stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .simulation-card header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .simulation-note {
+      font-size: 0.82rem;
+      color: var(--learn-muted);
+      background: rgba(29, 78, 216, 0.08);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+      margin-top: 0.9rem;
+    }
+
+    .sim-controls button,
+    .sim-controls label,
+    .path-actions a {
+      font: inherit;
+    }
+
+    .sim-controls button,
+    .path-actions a {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.65rem 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .sim-controls button:hover,
+    .path-actions a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(22, 32, 51, 0.12);
+    }
+
+    .sim-primary,
+    .path-actions .start-link {
+      color: #fff;
+      background: linear-gradient(135deg, var(--learn-teal), #14b8a6);
+    }
+
+    .sim-secondary,
+    .path-actions .research-link {
+      color: var(--learn-ink);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(22, 32, 51, 0.10);
+    }
+
+    .sim-status {
+      margin-top: 0.8rem;
+      padding: 0.8rem 0.95rem;
+      border-radius: 16px;
+      background: rgba(15, 118, 110, 0.08);
+      color: #0f4b45;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .sim-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(244, 247, 251, 0.95), rgba(232, 240, 247, 0.95));
+      border: 1px solid rgba(22, 32, 51, 0.08);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.85rem;
+      color: var(--learn-muted);
+      font-size: 0.84rem;
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .legend-chip span {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .path-card ol,
+    .research-card ol,
+    .workflow-card ol {
+      margin: 0.7rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--learn-muted);
+    }
+
+    .path-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .glossary-card code,
+    .research-card code,
+    .workflow-card code,
+    .concept-panel code,
+    .simulation-card code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.86rem;
+      background: rgba(29, 78, 216, 0.08);
+      padding: 0.15rem 0.35rem;
+      border-radius: 6px;
+      color: var(--learn-indigo);
+    }
+
+    .footer-banner {
+      margin-top: 1.4rem;
+      padding: 1.3rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.10), rgba(15, 118, 110, 0.10), rgba(180, 83, 9, 0.10));
+      border: 1px solid rgba(22, 32, 51, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer-banner h3 {
+      margin: 0 0 0.3rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.55rem;
+      letter-spacing: -0.03em;
+    }
+
+    .footer-banner p {
+      margin: 0;
+      color: var(--learn-muted);
+      max-width: 42rem;
+    }
+
+    .footer-banner a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      color: #fff;
+      padding: 0.9rem 1.15rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--learn-coral), #ea580c);
+      font-weight: 700;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .learn-hero,
+      .learn-layout,
+      .path-grid,
+      .workflow-grid,
+      .research-grid,
+      .glossary-grid,
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .learn-rail {
+        position: static;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-copy,
+      .hero-map,
+      .learn-section {
+        padding: 1.1rem;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+      }
+
+      .simulation-card header,
+      .footer-banner {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .simulation-card {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .sim-svg {
+        min-width: 580px;
+      }
+    }
+  </style>
+</head>
+<body class="has-top-nav learn-page">
+  <div class="grid-bg"></div>
+
+  <nav class="top-nav">
+    <div class="container">
+      <a href="crispr-search.html" class="top-nav-brand">LOOM</a>
+      <a href="crispr-search.html" class="top-nav-link">
+        <span class="nav-dot blue"></span>
+        Human Pathogens
+      </a>
+      <a href="crispr-animal.html" class="top-nav-link">
+        <span class="nav-dot green"></span>
+        Animal Genomes
+      </a>
+      <a href="learn.html" class="top-nav-link active">Learn</a>
+      <a href="methodology.html" class="top-nav-link">Methodology</a>
+      <a href="help.html" class="top-nav-link top-nav-help" title="Help - How it works">? Help</a>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-left">
+        <div class="logo">
+          <span class="logo-mark">&#x2699;</span>
+          <h1 class="logo-text">LOOM<span class="logo-accent">LEARN</span></h1>
+        </div>
+        <p class="tagline">A guided, visual introduction to CRISPR diagnostics, pathogen genomics, and exact search</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat-chip"><span class="stat-val">Zero</span><span class="stat-lbl">Prior Needed</span></div>
+        <div class="stat-chip"><span class="stat-val">3</span><span class="stat-lbl">SVG Labs</span></div>
+        <div class="stat-chip"><span class="stat-val">1</span><span class="stat-lbl">Research Path</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="learn-main">
+    <section class="learn-hero">
+      <div class="learn-card hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> Learn the field, not just the interface</div>
+        <h1>From first base pair to real research questions.</h1>
+        <p>This page is for curious people who want to understand what LOOM is really doing. You will learn what a CRISPR guide is, why conserved regions matter, how off-target risk changes decisions, and why exact genome search can surface ideas worth testing in the lab.</p>
+        <p>You do not need a biology degree to begin. You do need curiosity, patience, and the willingness to think like both an engineer and a scientist.</p>
+        <div class="hero-actions">
+          <a class="hero-primary" href="#simulators">Start the simulations</a>
+          <a class="hero-secondary" href="crispr-search.html">Open the search tool</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="hero-metric"><strong>Genome</strong><span>A long molecular text you can search</span></div>
+          <div class="hero-metric"><strong>Guide RNA</strong><span>A programmable locator for a target site</span></div>
+          <div class="hero-metric"><strong>Research gap</strong><span>A conserved site nobody has studied yet</span></div>
+        </div>
+      </div>
+
+      <div class="learn-card hero-map">
+        <div class="caption">
+          <h2>Your map from zero to hero</h2>
+          <p>Watch the signal travel: biology -> search -> screening -> novelty</p>
+        </div>
+        <svg class="concept-map" viewBox="0 0 520 420" aria-labelledby="conceptMapTitle conceptMapDesc" role="img">
+          <title id="conceptMapTitle">Concept map for learning CRISPR search</title>
+          <desc id="conceptMapDesc">A directional learning map showing how genome biology, guide and PAM logic, conservation and off-target screening, and literature review flow into exact-search driven CRISPR discovery.</desc>
+          <defs>
+            <filter id="softGlow">
+              <feGaussianBlur stdDeviation="10" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7da0" />
+            </marker>
+          </defs>
+
+          <rect x="22" y="22" width="476" height="376" rx="26" fill="rgba(255,255,255,0.20)" stroke="rgba(22,32,51,0.06)" />
+
+          <g opacity="0.65">
+            <path d="M258 92 C202 92 170 108 154 144" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#flowArrow)" />
+            <path d="M258 92 C314 92 347 108 366 144" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#flowArrow)" />
+            <path d="M154 180 C154 226 150 246 136 272" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#flowArrow)" />
+            <path d="M366 180 C376 222 380 244 388 268" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#flowArrow)" />
+            <path d="M170 312 C198 336 225 346 260 348" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#flowArrow)" />
+            <path d="M350 312 C324 336 298 346 260 348" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#flowArrow)" />
+          </g>
+
+
+
+
+          <g filter="url(#softGlow)">
+            <circle cx="260" cy="210" r="68" fill="#162033" />
+            <text x="260" y="198" text-anchor="middle" fill="#fff" font-family="Sora, sans-serif" font-size="15" font-weight="700">LOOM</text>
+            <text x="260" y="220" text-anchor="middle" fill="#dbeafe" font-family="Karla, sans-serif" font-size="13">exact genome search</text>
+            <text x="260" y="238" text-anchor="middle" fill="#dbeafe" font-family="Karla, sans-serif" font-size="13">for CRISPR discovery</text>
+          </g>
+
+          <g class="map-node">
+            <circle cx="258" cy="66" r="40" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+            <text x="258" y="59" text-anchor="middle" fill="#1e3a8a" font-family="Sora, sans-serif" font-size="13" font-weight="700">Genome</text>
+            <text x="258" y="77" text-anchor="middle" fill="#50607b" font-family="Karla, sans-serif" font-size="12">A,C,G,T text</text>
+          </g>
+
+          <g class="map-node">
+            <circle cx="154" cy="112" r="42" fill="#f0fdfa" stroke="#0f766e" stroke-width="2" />
+            <text x="154" y="105" text-anchor="middle" fill="#115e59" font-family="Sora, sans-serif" font-size="13" font-weight="700">Guide RNA</text>
+            <text x="154" y="123" text-anchor="middle" fill="#50607b" font-family="Karla, sans-serif" font-size="12">programmable lockpick</text>
+          </g>
+
+          <g class="map-node">
+            <circle cx="366" cy="112" r="42" fill="#fff7ed" stroke="#c2410c" stroke-width="2" />
+            <text x="366" y="105" text-anchor="middle" fill="#9a3412" font-family="Sora, sans-serif" font-size="13" font-weight="700">PAM</text>
+            <text x="366" y="123" text-anchor="middle" fill="#50607b" font-family="Karla, sans-serif" font-size="12">the docking rule</text>
+          </g>
+
+          <g class="map-node">
+            <circle cx="132" cy="294" r="44" fill="#fefce8" stroke="#ca8a04" stroke-width="2" />
+            <text x="132" y="287" text-anchor="middle" fill="#854d0e" font-family="Sora, sans-serif" font-size="13" font-weight="700">Conservation</text>
+            <text x="132" y="305" text-anchor="middle" fill="#50607b" font-family="Karla, sans-serif" font-size="12">works across variants</text>
+          </g>
+
+          <g class="map-node">
+            <circle cx="386" cy="288" r="44" fill="#fff1f2" stroke="#e11d48" stroke-width="2" />
+            <text x="386" y="281" text-anchor="middle" fill="#9f1239" font-family="Sora, sans-serif" font-size="13" font-weight="700">Off-targets</text>
+            <text x="386" y="299" text-anchor="middle" fill="#50607b" font-family="Karla, sans-serif" font-size="12">bad cross-matches</text>
+          </g>
+
+          <g class="map-node">
+            <circle cx="260" cy="348" r="42" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" />
+            <text x="260" y="341" text-anchor="middle" fill="#5b21b6" font-family="Sora, sans-serif" font-size="13" font-weight="700">Literature</text>
+            <text x="260" y="359" text-anchor="middle" fill="#50607b" font-family="Karla, sans-serif" font-size="12">what is already known</text>
+          </g>
+
+        </svg>
+        <div class="concept-step-list">
+          <div class="concept-step"><span class="step-num step-1">1</span><span>Biology first &mdash; Genome + Guide RNA + PAM</span></div>
+          <div class="concept-step"><span class="step-num step-2">2</span><span>Search exact sites &mdash; LOOM retrieves candidates</span></div>
+          <div class="concept-step"><span class="step-num step-3">3</span><span>Pressure-test &mdash; conservation &amp; off-target filter</span></div>
+          <div class="concept-step"><span class="step-num step-4">4</span><span>Ask what is new &mdash; literature gap &rarr; experiment</span></div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="learn-layout">
+      <aside class="learn-rail" aria-label="Learning sections">
+        <h3>Learning path</h3>
+        <a href="#foundations"><strong>1</strong><span>Foundations</span></a>
+        <a href="#simulators"><strong>2</strong><span>SVG labs</span></a>
+        <a href="#workflow"><strong>3</strong><span>Research workflow</span></a>
+        <a href="#ontology"><strong>4</strong><span>Why ontology matters</span></a>
+        <a href="#roadmap"><strong>5</strong><span>Zero to hero roadmap</span></a>
+        <a href="#glossary"><strong>6</strong><span>Glossary</span></a>
+      </aside>
+
+      <div class="learn-content">
+        <section class="learn-section" id="foundations">
+          <div class="section-head">
+            <div>
+              <h2>Foundations</h2>
+            </div>
+            <p>The fastest way to stop CRISPR from feeling mysterious is to reduce it to a few solid ideas you can carry everywhere.</p>
+          </div>
+          <div class="concept-grid">
+            <article class="concept-panel">
+              <div class="tag">Genome</div>
+              <h3>A genome is searchable text</h3>
+              <p>A pathogen genome is a very long string written in four letters: <code>A</code>, <code>C</code>, <code>G</code>, and <code>T</code>. LOOM treats it like text you can query exactly, the same way a search engine finds a phrase in a document.</p>
+            </article>
+            <article class="concept-panel">
+              <div class="tag">Guide</div>
+              <h3>A CRISPR guide is a programmable address</h3>
+              <p>A guide RNA tells a CRISPR system where to go. If the guide matches a sequence in the pathogen and the local rules are satisfied, the system can bind or cut there.</p>
+            </article>
+            <article class="concept-panel">
+              <div class="tag">PAM</div>
+              <h3>Matching is not enough</h3>
+              <p>Many CRISPR systems require a nearby short motif called a PAM. For SpCas9, the most famous pattern is <code>NGG</code>. If the sequence matches but the PAM is wrong, the target is often unusable.</p>
+            </article>
+            <article class="concept-panel">
+              <div class="tag">Conservation</div>
+              <h3>Diagnostics live or die on stability</h3>
+              <p>If a target sequence mutates often, your assay breaks on new variants. Conserved regions survive because evolution has less freedom to change them without damaging the pathogen.</p>
+            </article>
+            <article class="concept-panel">
+              <div class="tag">Specificity</div>
+              <h3>Great targets avoid lookalikes</h3>
+              <p>A useful target should appear in the pathogen you care about and stay absent from hosts or nearby lookalike organisms. Otherwise, your assay risks false signals.</p>
+            </article>
+            <article class="concept-panel">
+              <div class="tag">Novelty</div>
+              <h3>Research begins where published attention stops</h3>
+              <p>Novel does not mean random. It means a region is conserved, plausible, and underexplored in the literature. The sweet spot is where biology and neglect overlap.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="learn-section" id="simulators">
+          <div class="section-head">
+            <div>
+              <h2>SVG labs</h2>
+            </div>
+            <p>These are conceptual simulations. They are not full molecular dynamics or full FM-index internals. They are designed to teach the right mental model quickly and honestly.</p>
+          </div>
+          <div class="simulation-stack">
+            <article class="simulation-card">
+              <header>
+                <div>
+                  <h3>Lab 1: How a guide finds a target</h3>
+                  <p>A guide needs both sequence agreement and a valid PAM. Step through the decision like a machine would.</p>
+                </div>
+                <div class="simulation-note">Conceptual exact-match scan</div>
+              </header>
+              <svg class="sim-svg" id="guideSimSvg" viewBox="0 0 880 290" aria-labelledby="guideSimTitle guideSimDesc" role="img">
+                <title id="guideSimTitle">Guide matching simulation</title>
+                <desc id="guideSimDesc">A genome strip and a guide strip with highlights showing match, mismatch, and PAM location.</desc>
+                <rect x="24" y="28" width="832" height="88" rx="20" fill="#ffffff" stroke="#d8e1ec" />
+                <text x="46" y="58" fill="#50607b" font-family="Sora, sans-serif" font-size="14" font-weight="600">Genome window</text>
+                <g id="guideGenomeTrack"></g>
+                <rect x="24" y="154" width="832" height="104" rx="20" fill="#fffaf1" stroke="#ead8b2" />
+                <g id="guideQueryTrack"></g>
+                <g id="guidePamBadge"></g>
+              </svg>
+              <div class="sim-controls">
+                <button type="button" class="sim-primary" id="guideNextBtn">Next step</button>
+                <button type="button" class="sim-secondary" id="guideMismatchBtn">Introduce mismatch</button>
+                <button type="button" class="sim-secondary" id="guideResetBtn">Reset</button>
+              </div>
+              <div class="sim-status" id="guideStatus">Start with a clean target. You should see a guide lining up with a genome segment and a nearby NGG PAM.</div>
+              <div class="legend-row">
+                <div class="legend-chip"><span style="background:#1d4ed8"></span> matching bases</div>
+                <div class="legend-chip"><span style="background:#dc2626"></span> mismatch</div>
+                <div class="legend-chip"><span style="background:#b45309"></span> PAM zone</div>
+              </div>
+            </article>
+
+            <article class="simulation-card">
+              <header>
+                <div>
+                  <h3>Lab 2: Why conserved regions beat flashy ones</h3>
+                  <p>Compare a mutation-prone surface protein with a quieter replication region as time passes.</p>
+                </div>
+                <div class="simulation-note">Variant pressure model</div>
+              </header>
+              <svg class="sim-svg" id="conservationSimSvg" viewBox="0 0 880 360" aria-labelledby="conservationTitle conservationDesc" role="img">
+                <title id="conservationTitle">Conservation simulation</title>
+                <desc id="conservationDesc">Two panels comparing Spike and polymerase style regions under mutation pressure over time.</desc>
+                <rect x="36" y="36" width="356" height="304" rx="22" fill="#fff1f2" stroke="#fecdd3" />
+                <rect x="488" y="36" width="356" height="304" rx="22" fill="#ecfeff" stroke="#a5f3fc" />
+                <text x="64" y="70" fill="#9f1239" font-family="Sora, sans-serif" font-size="15" font-weight="700">Immune-exposed region</text>
+                <text x="64" y="92" fill="#7a4a59" font-family="Karla, sans-serif" font-size="13">Mutates when the pathogen is under immune pressure.</text>
+                <text x="516" y="70" fill="#115e59" font-family="Sora, sans-serif" font-size="15" font-weight="700">Replication machinery</text>
+                <text x="516" y="88" fill="#47686a" font-family="Karla, sans-serif" font-size="12"><tspan x="516" dy="0">Often constrained by function;</tspan><tspan x="516" dy="15">mutations are more costly.</tspan></text>
+                <g id="conservationSpikeGrid"></g>
+                <g id="conservationPolyGrid"></g>
+                <g id="conservationBars"></g>
+              </svg>
+              <div class="sim-controls">
+                <label for="yearSlider">Variant pressure:</label>
+                <input id="yearSlider" type="range" min="0" max="6" step="1" value="0" />
+                <span id="yearLabel">2020</span>
+              </div>
+              <div class="sim-status" id="conservationStatus">At the start of an outbreak, many targets look good. Over time, exposed regions often decay faster than constrained regions.</div>
+            </article>
+
+            <article class="simulation-card">
+              <header>
+                <div>
+                  <h3>Lab 3: How exact search narrows the haystack</h3>
+                  <p>LOOM does not compare your query against every genome letter one by one. It uses indexed structure so each additional base collapses the candidate space.</p>
+                </div>
+                <div class="simulation-note">Backwards-search intuition</div>
+              </header>
+              <svg class="sim-svg" id="indexSimSvg" viewBox="0 0 880 300" aria-labelledby="indexSimTitle indexSimDesc" role="img">
+                <title id="indexSimTitle">Indexed search simulation</title>
+                <desc id="indexSimDesc">Bars showing candidate ranges shrinking as query characters are added.</desc>
+                <rect x="26" y="28" width="828" height="244" rx="24" fill="#f8fbff" stroke="#d5e3f1" />
+                <text x="48" y="60" fill="#1e3a8a" font-family="Sora, sans-serif" font-size="15" font-weight="700">Candidate interval shrinkage</text>
+                <text x="48" y="84" fill="#50607b" font-family="Karla, sans-serif" font-size="13">Each step uses one more base and cuts away impossible matches.</text>
+                <g id="indexSimBars"></g>
+              </svg>
+              <div class="sim-controls">
+                <label for="indexQueryInput" class="sr-only">Pattern to simulate</label>
+                <input id="indexQueryInput" type="text" value="ATTGTT" maxlength="8" style="border-radius:999px;border:1px solid rgba(22,32,51,.14);padding:0.65rem 0.95rem;font-family:'JetBrains Mono',monospace;min-width:140px;background:#fff;" />
+                <button type="button" class="sim-primary" id="indexPlayBtn">Run search</button>
+                <button type="button" class="sim-secondary" id="indexResetBtn">Reset</button>
+              </div>
+              <div class="sim-status" id="indexStatus">Use a short DNA pattern. The bars show a teaching example of how indexed exact search collapses possible matches into a tiny interval.</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="learn-section" id="workflow">
+          <div class="section-head">
+            <div>
+              <h2>How real research moves</h2>
+            </div>
+            <p>Research is not one giant leap. It is a disciplined pipeline of filters. Most bad ideas die early, which is exactly what you want.</p>
+          </div>
+          <div class="workflow-grid">
+            <article class="workflow-card">
+              <h3>1. Start with a biological question</h3>
+              <p>Do not begin with a random sequence. Begin with a concrete problem: detect a pathogen faster, distinguish a variant, avoid host cross-reactivity, or probe an underexplored gene.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>2. Search for conserved candidate sites</h3>
+              <p>Use indexed search and precomputed target databases to find sites that recur across many genomes. Conservation is your first rough filter for assay robustness.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>3. Check PAM compatibility</h3>
+              <p>A perfect target with no compatible PAM may be useless for your chosen CRISPR enzyme. Pick the enzyme and PAM logic early.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>4. Screen for off-targets</h3>
+              <p>Search the same sequence against hosts and likely confounders. False positives can erase an otherwise beautiful design.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>5. Scan the literature</h3>
+              <p>Now ask whether the target, gene, or region has already been studied. Novelty matters most when combined with biological plausibility, not when novelty stands alone.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>6. Design experiments with humility</h3>
+              <p>Computational targets are a strong starting point, not a publication by themselves. You still need wet-lab validation, negative controls, sensitivity curves, and failure analysis.</p>
+            </article>
+          </div>
+          <div class="research-grid" style="margin-top:1rem;">
+            <article class="research-card">
+              <h3>What LOOM is especially good at</h3>
+              <ol>
+                <li>Surfacing exact matches quickly across very large genome collections.</li>
+                <li>Comparing conservation across many related sequences.</li>
+                <li>Letting a scientist explore candidate targets without cloud infrastructure.</li>
+              </ol>
+            </article>
+            <article class="research-card">
+              <h3>What LOOM does not replace</h3>
+              <ol>
+                <li>Experimental validation.</li>
+                <li>Clinical trial evidence.</li>
+                <li>Deep mechanistic biology beyond exact sequence retrieval.</li>
+              </ol>
+            </article>
+          </div>
+        </section>
+
+        <section class="learn-section" id="ontology">
+          <div class="section-head">
+            <div>
+              <h2>Why ontology matters</h2>
+            </div>
+            <p>A gene can have many names. If you search for only one of them, you miss real research. Ontology integration is how we avoid that trap.</p>
+          </div>
+
+          <div class="concept-grid">
+            <article class="concept-panel">
+              <div class="tag">The problem</div>
+              <h3>One gene, many names</h3>
+              <p>The RSV SH protein is also called "small hydrophobic protein" in NCBI Gene. A scanner that searches only for "SH protein" misses hundreds of papers indexed under the official name. This is not a hypothetical — our v3 scanner had this exact bug, misclassifying a well-studied target as a confirmed research gap.</p>
+            </article>
+            <article class="concept-panel">
+              <div class="tag">The fix</div>
+              <h3>Ontology-backed synonym expansion</h3>
+              <p>Our v4 scanner loads <strong>8,283 gene annotations</strong> from NCBI Gene across all 12 pathogens. Every gene symbol, full name, and alias is merged with manually curated synonyms. The search uses the <em>union</em> of all name sources, so no known alias is missed.</p>
+            </article>
+          </div>
+
+          <div class="workflow-grid" style="margin-top:1rem;">
+            <article class="workflow-card">
+              <h3>NCBI Taxonomy</h3>
+              <p>Canonical species identifiers (taxonomy IDs) for every pathogen. Ensures we are querying the right organism, not a namesake.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>NCBI Gene</h3>
+              <p>Official gene symbols, full names, and aliases. This is the primary source for synonym expansion — the layer that caught the RSV SH protein error.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>Disease Ontology &amp; MONDO</h3>
+              <p>Standardised disease identifiers (DOID, MONDO) that link pathogens to the diseases they cause, enabling cross-database disease queries.</p>
+            </article>
+            <article class="workflow-card">
+              <h3>WHO GHO &amp; ICD-11</h3>
+              <p>Global health context: WHO priority classification, transmission routes, and ICD-11 codes. Lets us rank pathogens by public-health urgency.</p>
+            </article>
+          </div>
+
+          <div class="research-grid" style="margin-top:1rem;">
+            <article class="research-card">
+              <h3>How it works in practice</h3>
+              <ol>
+                <li>The scanner loads <code>ontology-enrichment.json</code> at startup.</li>
+                <li>For each pathogen gene, it collects every known alias from NCBI Gene.</li>
+                <li>Aliases are merged with manual synonyms into a single expanded query.</li>
+                <li>Every result is tagged with a <code>synonym_source</code> — so you can trace exactly which name matched.</li>
+              </ol>
+            </article>
+            <article class="research-card">
+              <h3>What this means for you</h3>
+              <ol>
+                <li>Gap claims are more trustworthy — fewer false negatives from name mismatches.</li>
+                <li>Every result carries provenance, so you can verify it yourself.</li>
+                <li>New pathogens inherit ontology coverage automatically from NCBI.</li>
+              </ol>
+            </article>
+          </div>
+        </section>
+
+        <section class="learn-section" id="roadmap">
+          <div class="section-head">
+            <div>
+              <h2>Your zero to hero roadmap</h2>
+            </div>
+            <p>If you want this page to become a launchpad rather than a curiosity, follow a progression. Each stage compounds the one before it.</p>
+          </div>
+          <div class="path-grid">
+            <article class="path-card">
+              <h3>Stage 1: Learn the language</h3>
+              <p>Become fluent with genome, gene, guide, PAM, conservation, specificity, assay, and variant. Until these feel natural, everything else stays foggy.</p>
+              <div class="path-actions">
+                <a class="start-link" href="#foundations">Review concepts</a>
+              </div>
+            </article>
+            <article class="path-card">
+              <h3>Stage 2: Learn to inspect targets</h3>
+              <p>Open the search tool, pick one pathogen, and learn how to read the target table. Compare high-coverage sites to low-coverage sites. Check PAMs. Inspect genes.</p>
+              <div class="path-actions">
+                <a class="start-link" href="crispr-search.html">Use the database</a>
+              </div>
+            </article>
+            <article class="path-card">
+              <h3>Stage 3: Ask a small research question</h3>
+              <p>Pick one underexplored gene and formulate a narrow hypothesis. Example: "Does this conserved replication-region site remain absent from published CRISPR diagnostic work?"</p>
+              <div class="path-actions">
+                <a class="research-link" href="help.html">Read the help guide</a>
+              </div>
+            </article>
+          </div>
+          <div class="research-grid" style="margin-top:1rem;">
+            <article class="research-card">
+              <h3>First project ideas</h3>
+              <ol>
+                <li>Compare one structural gene and one replication gene for conservation stability.</li>
+                <li>Build a shortlist of ten host-specific guides for one pathogen.</li>
+                <li>Audit one pathogen's literature gap and propose two unexplored target genes.</li>
+              </ol>
+            </article>
+            <article class="research-card">
+              <h3>If you want to go deeper</h3>
+              <ol>
+                <li>Study molecular biology and introductory genetics.</li>
+                <li>Learn sequence alignment, assembly, indexing, and phylogenetics.</li>
+                <li>Pair computational work with lab mentorship whenever possible.</li>
+              </ol>
+            </article>
+          </div>
+        </section>
+
+        <section class="learn-section" id="glossary">
+          <div class="section-head">
+            <div>
+              <h2>Glossary you can actually use</h2>
+            </div>
+            <p>Short definitions tuned for practical reading, not for memorizing jargon in isolation.</p>
+          </div>
+          <div class="glossary-grid">
+            <article class="glossary-card">
+              <h3>Guide RNA</h3>
+              <p>A short programmable sequence that tells a CRISPR system where to bind or cut.</p>
+            </article>
+            <article class="glossary-card">
+              <h3>PAM</h3>
+              <p>A short nearby motif required by many CRISPR enzymes. For SpCas9, the classic example is <code>NGG</code>.</p>
+            </article>
+            <article class="glossary-card">
+              <h3>Conservation</h3>
+              <p>The fraction of genomes that keep the same target sequence. Higher conservation usually means a more durable assay.</p>
+            </article>
+            <article class="glossary-card">
+              <h3>Off-target</h3>
+              <p>An unintended match elsewhere, especially in host genomes or related organisms, that can produce false positives or unwanted binding.</p>
+            </article>
+            <article class="glossary-card">
+              <h3>Exact search</h3>
+              <p>Search that asks whether a sequence occurs exactly, letter for letter, without substitution or alignment scoring.</p>
+            </article>
+            <article class="glossary-card">
+              <h3>Research gap</h3>
+              <p>A biologically meaningful space with little or no published CRISPR work, often where new discoveries become possible.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="footer-banner">
+      <div>
+        <h3>The real goal is confidence, not intimidation.</h3>
+        <p>If this page helps someone move from "I do not know where to begin" to "I know what question I want to ask next," it has done its job.</p>
+      </div>
+      <a href="crispr-search.html">Start exploring LOOM</a>
+      <p style="margin-top: 0.8rem; font-size: 0.82rem;"><a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:underline">View source on GitHub</a></p>
+      <p style="margin-top: 1.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.5);">Alvaro Videla Godoy &mdash; 2026</p>
+    </section>
+  </main>
+
+  <script src="learn.js"></script>
+</body>
+</html>

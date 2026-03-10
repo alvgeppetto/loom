@@ -1,0 +1,46 @@
+[guide-conservation] Loaded 10 guides from data/crispr_guides/published_guides.tsv
+[guide-conservation] Built Aho-Corasick automaton for 20 patterns (10 guides × 2)
+[guide-conservation] Scanning /Volumes/T9/loom-openscience/raw/sars-cov-2/ncbi_dataset/data/genomic.fna...
+[guide-conservation]    1000000 genomes scanned  (10926 genomes/s, 1.5 min elapsed)
+[guide-conservation]    2000000 genomes scanned  (10899 genomes/s, 3.1 min elapsed)
+[guide-conservation]    3000000 genomes scanned  (10848 genomes/s, 4.6 min elapsed)
+[guide-conservation]    4000000 genomes scanned  (10859 genomes/s, 6.1 min elapsed)
+[guide-conservation]    5000000 genomes scanned  (10875 genomes/s, 7.7 min elapsed)
+[guide-conservation]    6000000 genomes scanned  (10863 genomes/s, 9.2 min elapsed)
+[guide-conservation]    7000000 genomes scanned  (10887 genomes/s, 10.7 min elapsed)
+[guide-conservation]    8000000 genomes scanned  (10891 genomes/s, 12.2 min elapsed)
+[guide-conservation]    9000000 genomes scanned  (10879 genomes/s, 13.8 min elapsed)
+[guide-conservation] Done: 9193298 genomes in 845.6s (10872 genomes/s)
+
+Guide                             Hits        Total       Rate
+--------------------------------------------------------------
+DETECTR_N                      8660883      9193298     94.21%
+DETECTR_E                      9040944      9193298     98.34%
+PACMAN_N1                      8975370      9193298     97.63%
+PACMAN_N2                      9039127      9193298     98.32%
+PACMAN_RdRp1                         0      9193298      0.00%
+PACMAN_RdRp2                   8847364      9193298     96.24%
+SHERLOCK_S                     5817562      9193298     63.28%
+SHERLOCK_Orf1ab                8967912      9193298     97.55%
+CARVER_CoV_con1                     78      9193298      0.00%
+CARVER_CoV_con2                      0      9193298      0.00%
+
+[guide-conservation] Results written to data/crispr_guides/published_guides_same_corpus.json
+      845.94 real       641.80 user        59.55 sys
+            12025856  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                 987  page reclaims
+                   9  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  23  voluntary context switches
+              653867  involuntary context switches
+      13172390285682  instructions retired
+       2733176370197  cycles elapsed
+             7176552  peak memory footprint

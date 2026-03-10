@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOOM CRISPR Search — Animal Reference Genomes</title>
+  <meta name="description" content="CRISPR off-target analysis against key zoonotic reservoir and livestock host genomes. 195 KB WASM engine, sub-millisecond search." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crispr-styles.css?v=20260305" />
+</head>
+<body class="has-top-nav theme-animal" data-page-type="animal">
+  <div class="grid-bg"></div>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="container">
+      <a href="crispr-search.html" class="top-nav-brand">LOOM</a>
+      <a href="crispr-search.html" class="top-nav-link">
+        <span class="nav-dot blue"></span>
+        Human Pathogens
+      </a>
+      <a href="crispr-animal.html" class="top-nav-link active">
+        <span class="nav-dot green"></span>
+        Animal Genomes
+      </a>
+      <a href="learn.html" class="top-nav-link">Learn</a>
+      <a href="methodology.html" class="top-nav-link">Methodology</a>
+      <a href="help.html" class="top-nav-link top-nav-help" title="Help — How it works">? Help</a>
+    </div>
+  </nav>
+  <a href="help.html" class="mobile-help-fab" aria-label="Help">?</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-left">
+        <div class="logo">
+          <span class="logo-mark">&#x1F9EC;</span>
+          <h1 class="logo-text">LOOM<span class="logo-accent">ANIMAL</span></h1>
+        </div>
+        <p class="tagline">Off-target screening against zoonotic reservoir &amp; livestock host genomes</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat-chip"><span class="stat-val">195 KB</span><span class="stat-lbl">WASM</span></div>
+        <div class="stat-chip"><span class="stat-val">&lt;1 ms</span><span class="stat-lbl">Search</span></div>
+        <div class="stat-chip"><span class="stat-val" id="totalTargets">—</span><span class="stat-lbl">Targets</span></div>
+        <div class="stat-chip"><span class="stat-val" id="totalGenomes">—</span><span class="stat-lbl">Hosts</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Animal Genome Selector -->
+    <section class="section" id="pathogenSection">
+      <div class="section-header">
+        <h2>Reference Genomes</h2>
+        <p class="section-sub">Select an animal host to browse CRISPR off-target matches. These reference genomes help ensure diagnostic guides don't cross-react with host DNA.</p>
+      </div>
+      <div class="pathogen-grid" id="pathogenGrid">
+        <!-- JS populates -->
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <nav class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-tab="database">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3h12M2 8h12M2 13h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Off-Target Database
+      </button>
+      <button class="tab-btn" data-tab="search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Live Search
+      </button>
+      <button class="tab-btn" data-tab="sources">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2h8a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M6 5h4M6 8h4M6 11h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Data Sources
+      </button>
+    </nav>
+
+    <!-- ========== DATABASE TAB ========== -->
+    <section class="tab-panel active" id="databasePanel">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="search-field">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input type="text" id="filterInput" placeholder="Filter sequences..." spellcheck="false" />
+          </div>
+          <div class="chip-group" id="pamFilter">
+            <button class="chip active" data-pam="all">All</button>
+            <button class="chip" data-pam="NGG">NGG <small>SpCas9</small></button>
+            <button class="chip" data-pam="TTTN">TTTN <small>Cas12a</small></button>
+            <button class="chip" data-pam="none">No PAM</button>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-icon" id="exportCsv" title="Export as CSV" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            CSV
+          </button>
+          <button class="btn-icon" id="exportJson" title="Export as JSON" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            JSON
+          </button>
+        </div>
+      </div>
+
+      <div class="results-status" id="resultsStatus">
+        <span class="status-text">Select an animal host to view off-target matches</span>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="targetsTable">
+          <thead>
+            <tr>
+              <th class="col-num">#</th>
+              <th class="col-seq sortable" data-col="s">Sequence (23-mer)</th>
+              <th class="col-pos sortable" data-col="p">Position</th>
+              <th class="col-pam sortable" data-col="m">PAM</th>
+              <th class="col-occ sortable" data-col="o" id="coverageHeader">Matches</th>
+            </tr>
+          </thead>
+          <tbody id="targetsBody"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M18 24h12M24 18v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p>Select an animal host above to view off-target CRISPR matches in its genome</p>
+        </div>
+      </div>
+
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+    <!-- ========== LIVE SEARCH TAB ========== -->
+    <section class="tab-panel" id="searchPanel">
+      <div class="search-hero">
+        <div class="index-badge" id="indexBadge">
+          <span class="badge-dot"></span>
+          <span id="indexStatusText">No index loaded</span>
+        </div>
+
+        <div class="search-box">
+          <label for="sequenceInput" class="search-label">Paste or type a DNA sequence to check for off-targets</label>
+          <div class="sequence-input-wrap">
+            <textarea id="sequenceInput" placeholder="ATCGATCGATCGATCG..." rows="3" spellcheck="false" disabled></textarea>
+            <div class="sequence-info" id="sequenceInfo"></div>
+          </div>
+          <button class="btn btn-primary" id="loadIndexBtn" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Load FM-Index
+          </button>
+          <div class="progress-bar" id="loadProgress" hidden>
+            <div class="progress-fill" id="progressFill"></div>
+            <span class="progress-text" id="progressText">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="live-results" id="liveResults">
+        <div class="empty-state">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5"/><path d="M30 30l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p>Select an animal host, load its FM-index, then search any DNA sequence for off-target matches</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DATA SOURCES TAB ========== -->
+    <section class="tab-panel" id="sourcesPanel">
+      <div class="sources-grid">
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ncbi">NCBI</div>
+            <h3>NCBI RefSeq Animal Genomes</h3>
+          </div>
+          <p>Reference assemblies for key zoonotic reservoir hosts and livestock species. Used for CRISPR off-target screening.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>RefSeq Representative Genomes</dd>
+            <dt>Species</dt><dd>Bat (Rousettus), Chicken, Pig, Cow, Camel, Mouse</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>License</dt><dd>Public domain (US Government work)</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/datasets/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/datasets</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Sayers EW, et al. "Database resources of the National Center for Biotechnology Information." <em>Nucleic Acids Research</em>, 2024, 52(D1):D33-D43.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon tool">LOOM</div>
+            <h3>LOOM FM-Index Engine</h3>
+          </div>
+          <p>The search engine powering this tool. A Burrows-Wheeler Transform (BWT) based FM-index compiled to 195 KB of WebAssembly, enabling sub-millisecond exact-match search in the browser.</p>
+          <dl class="source-details">
+            <dt>Library</dt><dd><code>brenda</code> (Rust crate)</dd>
+            <dt>Binary</dt><dd>195 KB WASM</dd>
+            <dt>Method</dt><dd>FM-index with suffix array sampling</dd>
+            <dt>License</dt><dd>Open source</dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Method:</strong> Ferragina P, Manzini G. "Opportunistic data structures with applications." <em>FOCS 2000</em>. IEEE, 2000, pp. 390-398.
+          </div>
+        </div>
+
+        <div class="source-card source-card-how">
+          <div class="source-header">
+            <div class="source-icon how">?</div>
+            <h3>Why Animal Genomes?</h3>
+          </div>
+          <p>When designing CRISPR diagnostics for zoonotic pathogens, guides must not cross-react with host animal DNA. For example, an Ebola diagnostic used in a bat habitat shouldn't match bat genomic sequences. This database enables that off-target screening.</p>
+          <dl class="source-details">
+            <dt>Use case</dt><dd>Off-target validation for field diagnostics</dd>
+            <dt>Coverage</dt><dd>Key reservoir hosts for each WHO priority pathogen</dd>
+            <dt>Cross-reference</dt><dd>Use with <a href="crispr-search.html">Human Pathogens</a> database</dd>
+          </dl>
+        </div>
+
+      </div>
+
+      <!-- Glossary -->
+      <div class="glossary">
+        <h2 class="glossary-title">Off-Target Analysis Glossary</h2>
+        <p class="section-sub">Key concepts for animal genome screening</p>
+        <div class="glossary-grid">
+
+          <div class="glossary-card">
+            <dt>Off-target Match</dt>
+            <dd>A location in a non-target genome where a CRISPR guide sequence has exact or near-exact complementarity. In diagnostic contexts, off-target matches in host animal DNA could cause false positives.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>Zoonotic Reservoir</dt>
+            <dd>An animal species that naturally harbors a pathogen without showing disease. Examples: bats for Ebola/Nipah, camels for MERS, waterfowl for influenza A. Field diagnostics deployed in these environments must avoid host DNA cross-reactivity.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>Host Specificity</dt>
+            <dd>The degree to which a CRISPR guide targets only the intended pathogen and not the host genome. A guide with <strong>zero off-target matches</strong> in both human and relevant animal genomes has the highest host specificity.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>Cross-reactivity</dt>
+            <dd>When a diagnostic assay produces a signal from non-target nucleic acid. CRISPR diagnostics can cross-react if guide sequences match host DNA — this is precisely what this tool helps detect and avoid.</dd>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <strong>LOOM Animal Genomes</strong> — Off-target screening for zoonotic CRISPR diagnostics
+      </div>
+      <div class="footer-right">
+        Built on the <em>brenda</em> FM-index library &middot; No data leaves your browser &middot;
+        <a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-attribution">Alvaro Videla Godoy &mdash; 2026</div>
+  </footer>
+
+  <script type="module" src="crispr-app.js"></script>
+</body>
+</html>

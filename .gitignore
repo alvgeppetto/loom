@@ -1,0 +1,50 @@
+# Build artifacts
+/target
+/pkg/
+
+# Python
+**/__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Pre-pivot archive (local only)
+/archive/
+
+# Runtime logs
+/logs/
+.DS_Store
+
+# Publications LaTeX build artifacts
+publications/**/*.aux
+publications/**/*.bbl
+publications/**/*.bcf
+publications/**/*.blg
+publications/**/*.fdb_latexmk
+publications/**/*.fls
+publications/**/*.log
+publications/**/*.out
+publications/**/*.pdf
+# But include final preprints
+!publications/preprints/*.pdf
+publications/**/*.run.xml
+publications/**/*.toc
+
+# Legacy source dirs (local only)
+src/bin/
+src/bitloom/
+
+# Generated demo package (untracked)
+demo/
+
+# Editor / IDE
+.vscode/
+*.swp
+*.swo
+
+# MCP server (personal tooling, not research)
+mcp/
+
+# Environment files (never commit secrets)
+.env
+.env.*

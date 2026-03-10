@@ -1,0 +1,435 @@
+{
+  "generated": "2026-03-04T23:34:35Z",
+  "version": "1.0",
+  "description": "Drug-resistance and diagnostic-relevant variant regions mapped to CRISPR guide target coordinates",
+  "pathogens": {
+    "tuberculosis": {
+      "source": "WHO Catalogue of Mutations (2021)",
+      "source_url": "https://www.who.int/publications/i/item/9789240028173",
+      "mutations": [
+        {
+          "gene": "rpoB",
+          "name": "Rifampicin resistance (RRDR)",
+          "drug": "Rifampicin",
+          "significance": "high",
+          "region": "759807-760353",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "katG",
+          "name": "Isoniazid resistance (S315T)",
+          "drug": "Isoniazid",
+          "significance": "high",
+          "region": "2155168-2156111",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "inhA",
+          "name": "Isoniazid/Ethionamide resistance",
+          "drug": "Isoniazid/Ethionamide",
+          "significance": "high",
+          "region": "1674202-1675011",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "embB",
+          "name": "Ethambutol resistance",
+          "drug": "Ethambutol",
+          "significance": "high",
+          "region": "4247429-4249810",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "pncA",
+          "name": "Pyrazinamide resistance",
+          "drug": "Pyrazinamide",
+          "significance": "high",
+          "region": "2288681-2289241",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "gyrA",
+          "name": "Fluoroquinolone resistance (QRDR)",
+          "drug": "Fluoroquinolones",
+          "significance": "high",
+          "region": "7302-9818",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "gyrB",
+          "name": "Fluoroquinolone resistance",
+          "drug": "Fluoroquinolones",
+          "significance": "moderate",
+          "region": "5240-7267",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "rrs",
+          "name": "Aminoglycoside resistance",
+          "drug": "Streptomycin/Kanamycin",
+          "significance": "high",
+          "region": "1471846-1473382",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "eis",
+          "name": "Kanamycin resistance (promoter)",
+          "drug": "Kanamycin",
+          "significance": "moderate",
+          "region": "2714124-2715332",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        }
+      ],
+      "total_resistance_regions": 9,
+      "total_overlapping_guides": 0
+    },
+    "hiv-1": {
+      "source": "Stanford HIV Drug Resistance Database (HIVDB)",
+      "source_url": "https://hivdb.stanford.edu/",
+      "mutations": [
+        {
+          "gene": "RT",
+          "name": "Reverse transcriptase NRTI resistance",
+          "drug": "NRTIs (AZT, 3TC, TDF)",
+          "significance": "high",
+          "region": "2550-3869",
+          "overlapping_guides": 29,
+          "ngg_overlapping_guides": 0,
+          "top_guides": [
+            {
+              "seq": "AATGCTAAAACCATAATAGTACA",
+              "pos": 3060,
+              "pam": "none",
+              "occ": 75899
+            },
+            {
+              "seq": "TCAGGAGGGGACCCAGAAATTGT",
+              "pos": 3306,
+              "pam": "none",
+              "occ": 73065
+            },
+            {
+              "seq": "CAGGAGGGGACCCAGAAATTGTA",
+              "pos": 3307,
+              "pam": "none",
+              "occ": 72444
+            },
+            {
+              "seq": "ACAATGCTAAAACCATAATAGTA",
+              "pos": 3058,
+              "pam": "none",
+              "occ": 70168
+            },
+            {
+              "seq": "AGGAGGGGACCCAGAAATTGTAA",
+              "pos": 3308,
+              "pam": "none",
+              "occ": 70082
+            }
+          ]
+        },
+        {
+          "gene": "RT",
+          "name": "Reverse transcriptase NNRTI resistance",
+          "drug": "NNRTIs (EFV, NVP)",
+          "significance": "high",
+          "region": "2550-3869",
+          "overlapping_guides": 29,
+          "ngg_overlapping_guides": 0,
+          "top_guides": [
+            {
+              "seq": "AATGCTAAAACCATAATAGTACA",
+              "pos": 3060,
+              "pam": "none",
+              "occ": 75899
+            },
+            {
+              "seq": "TCAGGAGGGGACCCAGAAATTGT",
+              "pos": 3306,
+              "pam": "none",
+              "occ": 73065
+            },
+            {
+              "seq": "CAGGAGGGGACCCAGAAATTGTA",
+              "pos": 3307,
+              "pam": "none",
+              "occ": 72444
+            },
+            {
+              "seq": "ACAATGCTAAAACCATAATAGTA",
+              "pos": 3058,
+              "pam": "none",
+              "occ": 70168
+            },
+            {
+              "seq": "AGGAGGGGACCCAGAAATTGTAA",
+              "pos": 3308,
+              "pam": "none",
+              "occ": 70082
+            }
+          ]
+        },
+        {
+          "gene": "PR",
+          "name": "Protease inhibitor resistance",
+          "drug": "PIs (LPV, ATV, DRV)",
+          "significance": "high",
+          "region": "2253-2549",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        },
+        {
+          "gene": "IN",
+          "name": "Integrase inhibitor resistance",
+          "drug": "INSTIs (DTG, RAL, BIC)",
+          "significance": "high",
+          "region": "4230-5096",
+          "overlapping_guides": 0,
+          "ngg_overlapping_guides": 0,
+          "top_guides": []
+        }
+      ],
+      "total_resistance_regions": 4,
+      "total_overlapping_guides": 58
+    },
+    "influenza-a": {
+      "source": "WHO Antiviral Resistance Monitoring",
+      "source_url": "https://www.who.int/teams/global-influenza-programme",
+      "mutations": [
+        {
+          "gene": "NA",
+          "name": "Neuraminidase inhibitor resistance (H275Y)",
+          "drug": "Oseltamivir/Zanamivir",
+          "significance": "high",
+          "region": "0-1410",
+          "overlapping_guides": 285,
+          "ngg_overlapping_guides": 13,
+          "top_guides": [
+            {
+              "seq": "AAAATAACATTCGAAGCAACTGG",
+              "pos": 765,
+              "pam": "NGG",
+              "occ": 57052
+            },
+            {
+              "seq": "ATACAGCAAGAAGTTCAAGCCGG",
+              "pos": 665,
+              "pam": "NGG",
+              "occ": 53882
+            },
+            {
+              "seq": "AATGCAGACACATTATGTATAGG",
+              "pos": 45,
+              "pam": "NGG",
+              "occ": 53811
+            },
+            {
+              "seq": "GCTCAGTGTCATCATTTGAAAGG",
+              "pos": 367,
+              "pam": "NGG",
+              "occ": 50595
+            },
+            {
+              "seq": "GGGGTAGCCCCATTGCATTTGGG",
+              "pos": 186,
+              "pam": "NGG",
+              "occ": 49968
+            }
+          ]
+        },
+        {
+          "gene": "M2",
+          "name": "M2 ion channel blocker resistance (S31N)",
+          "drug": "Amantadine/Rimantadine",
+          "significance": "high",
+          "region": "0-294",
+          "overlapping_guides": 88,
+          "ngg_overlapping_guides": 4,
+          "top_guides": [
+            {
+              "seq": "AATGCAGACACATTATGTATAGG",
+              "pos": 45,
+              "pam": "NGG",
+              "occ": 53811
+            },
+            {
+              "seq": "GGGGTAGCCCCATTGCATTTGGG",
+              "pos": 186,
+              "pam": "NGG",
+              "occ": 49968
+            },
+            {
+              "seq": "AGGGGTAGCCCCATTGCATTTGG",
+              "pos": 185,
+              "pam": "NGG",
+              "occ": 49808
+            },
+            {
+              "seq": "AACATTGCTGGCTGGATCCTGGG",
+              "pos": 216,
+              "pam": "NGG",
+              "occ": 46533
+            }
+          ]
+        },
+        {
+          "gene": "PA",
+          "name": "Baloxavir resistance (I38T)",
+          "drug": "Baloxavir",
+          "significance": "moderate",
+          "region": "0-2151",
+          "overlapping_guides": 381,
+          "ngg_overlapping_guides": 18,
+          "top_guides": [
+            {
+              "seq": "AAAATAACATTCGAAGCAACTGG",
+              "pos": 765,
+              "pam": "NGG",
+              "occ": 57052
+            },
+            {
+              "seq": "ATACAGCAAGAAGTTCAAGCCGG",
+              "pos": 665,
+              "pam": "NGG",
+              "occ": 53882
+            },
+            {
+              "seq": "AATGCAGACACATTATGTATAGG",
+              "pos": 45,
+              "pam": "NGG",
+              "occ": 53811
+            },
+            {
+              "seq": "TGACTACCCAAAATACTCAGAGG",
+              "pos": 1502,
+              "pam": "NGG",
+              "occ": 51349
+            },
+            {
+              "seq": "GCTCAGTGTCATCATTTGAAAGG",
+              "pos": 367,
+              "pam": "NGG",
+              "occ": 50595
+            }
+          ]
+        }
+      ],
+      "total_resistance_regions": 3,
+      "total_overlapping_guides": 754
+    },
+    "hepatitis-b": {
+      "source": "EASL Clinical Practice Guidelines (2017)",
+      "source_url": "https://www.journal-of-hepatology.eu/article/S0168-8278(17)30185-X",
+      "mutations": [
+        {
+          "gene": "P (polymerase)",
+          "name": "Nucleos(t)ide analogue resistance",
+          "drug": "Entecavir/Tenofovir/Lamivudine",
+          "significance": "high",
+          "region": "2307-3215",
+          "overlapping_guides": 442,
+          "ngg_overlapping_guides": 36,
+          "top_guides": [
+            {
+              "seq": "TACTAGTGCCATTTGTTCAGTGG",
+              "pos": 2362,
+              "pam": "NGG",
+              "occ": 60805
+            },
+            {
+              "seq": "CCATTTGTTCAGTGGTTCGTAGG",
+              "pos": 2370,
+              "pam": "NGG",
+              "occ": 55957
+            },
+            {
+              "seq": "CATTTGTTCAGTGGTTCGTAGGG",
+              "pos": 2371,
+              "pam": "NGG",
+              "occ": 55842
+            },
+            {
+              "seq": "TAGGGCTTTCCCCCACTGTTTGG",
+              "pos": 2389,
+              "pam": "NGG",
+              "occ": 44750
+            },
+            {
+              "seq": "GGCTTTCGCAAAATACCTATGGG",
+              "pos": 2306,
+              "pam": "NGG",
+              "occ": 25664
+            }
+          ]
+        },
+        {
+          "gene": "preS/S",
+          "name": "Vaccine escape mutations",
+          "drug": "Vaccine/HBIg",
+          "significance": "moderate",
+          "region": "2848-835",
+          "overlapping_guides": 8856,
+          "ngg_overlapping_guides": 633,
+          "top_guides": [
+            {
+              "seq": "GCTATGCCTCATCTTCTTGTTGG",
+              "pos": 782,
+              "pam": "NGG",
+              "occ": 54087
+            },
+            {
+              "seq": "GACTTCTCTCAATTTTCTAGGGG",
+              "pos": 626,
+              "pam": "NGG",
+              "occ": 53553
+            },
+            {
+              "seq": "GGACTTCTCTCAATTTTCTAGGG",
+              "pos": 625,
+              "pam": "NGG",
+              "occ": 53429
+            },
+            {
+              "seq": "TGGACTTCTCTCAATTTTCTAGG",
+              "pos": 624,
+              "pam": "NGG",
+              "occ": 53314
+            },
+            {
+              "seq": "CATCTTCTTGTTGGTTCTTCTGG",
+              "pos": 3400,
+              "pam": "NGG",
+              "occ": 52829
+            }
+          ]
+        }
+      ],
+      "total_resistance_regions": 2,
+      "total_overlapping_guides": 9298
+    }
+  },
+  "summary": {
+    "pathogens_with_resistance_data": 4,
+    "total_resistance_regions": 18,
+    "total_overlapping_guides": 10110
+  }
+}

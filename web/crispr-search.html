@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOOM CRISPR Search — Open-Science Target Discovery</title>
+  <meta name="description" content="Search 700K+ pathogen genomes for CRISPR diagnostic targets. 195 KB WASM engine, sub-millisecond search, entirely in your browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crispr-styles.css?v=20260305" />
+</head>
+<body class="has-top-nav">
+  <div class="grid-bg"></div>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="container">
+      <a href="crispr-search.html" class="top-nav-brand">LOOM</a>
+      <a href="crispr-search.html" class="top-nav-link active">
+        <span class="nav-dot blue"></span>
+        Human Pathogens
+      </a>
+      <a href="crispr-animal.html" class="top-nav-link">
+        <span class="nav-dot green"></span>
+        Animal Genomes
+      </a>
+      <a href="learn.html" class="top-nav-link">Learn</a>
+      <a href="methodology.html" class="top-nav-link">Methodology</a>
+      <a href="help.html" class="top-nav-link top-nav-help" title="Help — How it works">? Help</a>
+    </div>
+  </nav>
+  <a href="help.html" class="mobile-help-fab" aria-label="Help">?</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-left">
+        <div class="logo">
+          <span class="logo-mark">&#x2699;</span>
+          <h1 class="logo-text">LOOM<span class="logo-accent">CRISPR</span></h1>
+        </div>
+        <p class="tagline">Open-science CRISPR target discovery — entirely in your browser</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat-chip"><span class="stat-val">195 KB</span><span class="stat-lbl">WASM</span></div>
+        <div class="stat-chip"><span class="stat-val">&lt;1 ms</span><span class="stat-lbl">Search</span></div>
+        <div class="stat-chip"><span class="stat-val" id="totalTargets">—</span><span class="stat-lbl">Targets</span></div>
+        <div class="stat-chip"><span class="stat-val" id="totalGenomes">—</span><span class="stat-lbl">Genomes</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Pathogen Selector -->
+    <section class="section" id="pathogenSection">
+      <div class="section-header">
+        <h2>Pathogens</h2>
+        <p class="section-sub">Select a pathogen to browse pre-computed CRISPR targets or load its FM-index for live search</p>
+      </div>
+      <div class="top-opportunities" id="topOpportunities" style="display:none"></div>
+      <div class="pathogen-grid" id="pathogenGrid">
+        <!-- JS populates -->
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <nav class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-tab="database">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3h12M2 8h12M2 13h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Targets Database
+      </button>
+      <button class="tab-btn" data-tab="search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Live Search
+      </button>
+      <button class="tab-btn" data-tab="literature">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h5l1 1.5L9 2h5v11H9l-1 1.5L7 13H2V2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 3.5V13" stroke="currentColor" stroke-width="1.3"/></svg>
+        Literature Scanner
+      </button>
+      <button class="tab-btn" data-tab="context">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Disease Context
+      </button>
+      <button class="tab-btn" data-tab="sources">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2h8a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M6 5h4M6 8h4M6 11h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Data Sources
+      </button>
+      <button class="tab-btn" data-tab="panel">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+        Panel Designer
+      </button>
+    </nav>
+
+    <!-- ========== DATABASE TAB ========== -->
+    <section class="tab-panel active" id="databasePanel">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="search-field">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input type="text" id="filterInput" placeholder="Filter sequences..." spellcheck="false" />
+          </div>
+          <div class="chip-group" id="pamFilter">
+            <button class="chip active" data-pam="all">All</button>
+            <button class="chip" data-pam="NGG">NGG <small>SpCas9</small></button>
+            <button class="chip" data-pam="TTTN">TTTN <small>Cas12a</small></button>
+            <button class="chip" data-pam="none">No PAM</button>
+          </div>
+          <select class="gene-filter-select" id="geneFilter" title="Filter by gene">
+            <option value="all">All genes</option>
+            <option value="protein-coding">Protein-coding only</option>
+          </select>
+          <select class="gene-filter-select" id="noveltyFilter" title="Filter by research novelty. 'Confirmed gap' = gene verified as unstudied by 4-strategy PubMed + Europe PMC scan with ontology synonyms (v4, March 2026)">
+            <option value="all">All targets</option>
+            <option value="novel">Confirmed gap (v4 verified)</option>
+            <option value="published">Published (studied genes)</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-icon" id="exportCsv" title="Export as CSV" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            CSV
+          </button>
+          <button class="btn-icon" id="exportJson" title="Export as JSON" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            JSON
+          </button>
+        </div>
+      </div>
+
+      <div class="results-status" id="resultsStatus">
+        <span class="status-text">Select a pathogen to view CRISPR targets</span>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="targetsTable">
+          <thead>
+            <tr>
+              <th class="col-num">#</th>
+              <th class="col-seq sortable" data-col="s">Sequence (23-mer)</th>
+              <th class="col-gene sortable" data-col="g">Gene</th>
+              <th class="col-pos sortable" data-col="p">Position</th>
+              <th class="col-pam sortable" data-col="m">PAM</th>
+              <th class="col-occ sortable" data-col="o" id="coverageHeader">Coverage</th>
+              <th class="col-score sortable" data-col="sc" title="Composite guide quality score (GC, seed, homopolymer, self-comp)">Score</th>
+              <th class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="targetsBody"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M18 24h12M24 18v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p>Select a pathogen above to view its CRISPR targets</p>
+        </div>
+      </div>
+
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+    <!-- ========== LIVE SEARCH TAB ========== -->
+    <section class="tab-panel" id="searchPanel">
+      <div class="search-hero">
+        <div class="index-badge" id="indexBadge">
+          <span class="badge-dot"></span>
+          <span id="indexStatusText">No index loaded</span>
+        </div>
+
+        <div class="search-box">
+          <label for="sequenceInput" class="search-label">Paste or type a DNA sequence</label>
+          <div class="sequence-input-wrap">
+            <textarea id="sequenceInput" placeholder="ATCGATCGATCGATCG..." rows="3" spellcheck="false" disabled></textarea>
+            <div class="sequence-info" id="sequenceInfo"></div>
+          </div>
+          <button class="btn btn-primary" id="loadIndexBtn" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Load FM-Index
+          </button>
+          <div class="progress-bar" id="loadProgress" hidden>
+            <div class="progress-fill" id="progressFill"></div>
+            <span class="progress-text" id="progressText">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="live-results" id="liveResults">
+        <div class="empty-state">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5"/><path d="M30 30l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p>Select a pathogen, load its FM-index, then search any DNA sequence for exact matches across all genomes</p>
+        </div>
+      </div>
+    </section>
+    <!-- ========== LITERATURE SCANNER TAB ========== -->
+    <section class="tab-panel" id="literaturePanel">
+      <div class="lit-intro">
+        <h3>PubMed Literature Scanner</h3>
+        <p class="section-sub">Search NCBI PubMed for published research on any CRISPR target sequence. Identify which targets are novel (no prior publications) and which have existing literature — helping prioritize targets for new papers.</p>
+      </div>
+
+      <div class="lit-search-box">
+        <div class="lit-input-row">
+          <div class="search-field lit-search-field">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input type="text" id="litSequenceInput" placeholder="Paste a 20-23mer sequence or gene name..." spellcheck="false" />
+          </div>
+          <button class="btn btn-primary" id="litSearchBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Search PubMed
+          </button>
+        </div>
+        <div class="lit-quick-actions">
+          <span class="lit-quick-label">Quick scan:</span>
+          <button class="btn-icon lit-scan-btn" id="litScanSelected" disabled>Scan all <strong id="litScanPathogen">—</strong> targets</button>
+          <button class="btn-icon lit-scan-btn" id="litScanNGG" disabled>Scan NGG targets only</button>
+        </div>
+      </div>
+
+      <div class="lit-status" id="litStatus" hidden>
+        <div class="progress-bar">
+          <div class="progress-fill" id="litProgressFill"></div>
+          <span class="progress-text" id="litProgressText">Scanning...</span>
+        </div>
+      </div>
+
+      <div class="lit-results" id="litResults">
+        <div class="empty-state">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 8h14l2 3 2-3h14v28H26l-2 3-2-3H8V8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="4 3"/><path d="M24 11v26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+          <p>Enter a sequence or gene name to search published CRISPR literature, or use "Quick scan" to check all targets for a selected pathogen</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DISEASE CONTEXT TAB ========== -->
+    <section class="tab-panel" id="contextPanel">
+      <div class="context-intro">
+        <h3>Disease &amp; Epidemiological Context</h3>
+        <p class="section-sub">Biomedical ontology data linking each pathogen to standardized disease classifications, WHO surveillance context, gene annotations, and diagnostic landscape. All data is bundled — works fully offline.</p>
+      </div>
+      <div id="contextContent">
+        <div class="empty-state">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M18 24h12M24 18v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p>Select a pathogen to view disease context and ontology data</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DATA SOURCES TAB ========== -->
+    <section class="tab-panel" id="sourcesPanel">
+      <div class="sources-grid">
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ncbi">NCBI</div>
+            <h3>NCBI RefSeq Viral</h3>
+          </div>
+          <p>Complete reference sequences for all known viral genomes. The primary source for our viral pathogen indexes.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>RefSeq Viral Complete Genomes</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Sequences</dt><dd>703,000+</dd>
+            <dt>License</dt><dd>Public domain (US Government work)</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/datasets/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/datasets</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Sayers EW, et al. "Database resources of the National Center for Biotechnology Information." <em>Nucleic Acids Research</em>, 2024, 52(D1):D33-D43.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ncbi">NCBI</div>
+            <h3>NCBI RefSeq Bacterial</h3>
+          </div>
+          <p>Reference genomes for bacterial pathogens including <em>M. tuberculosis</em> and <em>V. cholerae</em>.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>RefSeq Bacterial Genomes (selected pathogens)</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Pathogens</dt><dd>Cholera, Tuberculosis</dd>
+            <dt>License</dt><dd>Public domain (US Government work)</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/datasets/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/datasets</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> O'Leary NA, et al. "Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation." <em>Nucleic Acids Research</em>, 2016, 44(D1):D733-D745.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon grch">GRCh38</div>
+            <h3>Human Reference Genome</h3>
+          </div>
+          <p>GRCh38.p14 (Genome Reference Consortium Human Build 38) used for off-target analysis — ensuring CRISPR guides don't match human sequences.</p>
+          <dl class="source-details">
+            <dt>Assembly</dt><dd>GRCh38.p14 (GCF_000001405.40)</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Size</dt><dd>~3.1 Gbp</dd>
+            <dt>License</dt><dd>Public domain</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/" target="_blank" rel="noopener">GRCh38.p14 at NCBI</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Schneider VA, et al. "Evaluation of GRCh38 and de novo haploid genome assemblies demonstrates the enduring quality of the reference assembly." <em>Genome Research</em>, 2017, 27(5):849-864.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon tool">LOOM</div>
+            <h3>LOOM FM-Index Engine</h3>
+          </div>
+          <p>The search engine powering this tool. A Burrows-Wheeler Transform (BWT) based FM-index compiled to 195 KB of WebAssembly, enabling sub-millisecond exact-match search in the browser.</p>
+          <dl class="source-details">
+            <dt>Library</dt><dd><code>brenda</code> (Rust crate)</dd>
+            <dt>Binary</dt><dd>195 KB WASM</dd>
+            <dt>Method</dt><dd>FM-index with suffix array sampling</dd>
+            <dt>License</dt><dd>Open source</dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Method:</strong> Ferragina P, Manzini G. "Opportunistic data structures with applications." <em>FOCS 2000</em>. IEEE, 2000, pp. 390-398.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon pubmed">PM</div>
+            <h3>PubMed / NCBI E-utilities</h3>
+          </div>
+          <p>Literature searches use NCBI's public E-utilities API to query PubMed for published CRISPR research related to target sequences.</p>
+          <dl class="source-details">
+            <dt>API</dt><dd>NCBI E-utilities (esearch + esummary)</dd>
+            <dt>Rate limit</dt><dd>3 requests/sec (unauthenticated)</dd>
+            <dt>Data</dt><dd>PubMed article metadata</dd>
+            <dt>License</dt><dd>Public access (NLM Terms of Service)</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/books/NBK25501/" target="_blank" rel="noopener">E-utilities documentation</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Sayers E. "E-utilities Quick Start." <em>Entrez Programming Utilities Help</em>, NCBI, 2024.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ncbi">TAX</div>
+            <h3>NCBI Taxonomy</h3>
+          </div>
+          <p>Standardized taxonomic classification for every pathogen — species name, lineage, genome type, and transmission mode. Powers the Disease Context taxonomy chips.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>NCBI Taxonomy Database</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Pathogens</dt><dd>12 (all indexed species)</dd>
+            <dt>License</dt><dd>Public domain (US Government work)</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/taxonomy" target="_blank" rel="noopener">ncbi.nlm.nih.gov/taxonomy</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Schoch CL, et al. "NCBI Taxonomy: a comprehensive update on curation, resources and tools." <em>Database</em>, 2020, baaa062.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ontology">DO</div>
+            <h3>Disease Ontology</h3>
+          </div>
+          <p>Standardized disease definitions, synonyms, and cross-references for each pathogen's primary disease. Provides the "What is it?" descriptions and alternative names in the Disease Context tab.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>Disease Ontology (DO)</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Terms</dt><dd>12 disease terms (DOID mapped)</dd>
+            <dt>License</dt><dd>CC0 1.0 (Public Domain)</dd>
+            <dt>URL</dt><dd><a href="https://disease-ontology.org/" target="_blank" rel="noopener">disease-ontology.org</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Schriml LM, et al. "The Human Disease Ontology 2022 update." <em>Nucleic Acids Research</em>, 2022, 50(D1):D1255-D1261.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ontology">MO</div>
+            <h3>MONDO Disease Ontology</h3>
+          </div>
+          <p>Cross-ontology disease mappings linking Disease Ontology, OMIM, Orphanet, and other vocabularies. Provides additional cross-references for each pathogen's disease.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>Monarch Disease Ontology (MONDO)</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Terms</dt><dd>12 disease terms (MONDO mapped)</dd>
+            <dt>License</dt><dd>CC BY 4.0</dd>
+            <dt>URL</dt><dd><a href="https://mondo.monarchinitiative.org/" target="_blank" rel="noopener">mondo.monarchinitiative.org</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> Vasilevsky NA, et al. "Mondo: Unifying diseases for the world, by the world." <em>medRxiv</em>, 2022.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon who">WHO</div>
+            <h3>WHO Disease Surveillance</h3>
+          </div>
+          <p>Epidemiological context from the World Health Organization — case fatality rates, annual case/death estimates, geographic spread, diagnostic landscape, and CRISPR diagnostic status.</p>
+          <dl class="source-details">
+            <dt>Dataset</dt><dd>WHO Disease Outbreak News &amp; fact sheets</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Data</dt><dd>Epi stats for 12 pathogens</dd>
+            <dt>License</dt><dd>CC BY-NC-SA 3.0 IGO</dd>
+            <dt>URL</dt><dd><a href="https://www.who.int/emergencies/disease-outbreak-news" target="_blank" rel="noopener">who.int/disease-outbreak-news</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> World Health Organization. "Disease Outbreak News." WHO, 2024-2026.
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="source-header">
+            <div class="source-icon ncbi">GENE</div>
+            <h3>NCBI Gene / Datasets V2</h3>
+          </div>
+          <p>Complete gene annotations for each pathogen's reference genome — gene symbols, names, positions, and types. Powers the Gene Map section with 8,283 annotated genes across all 12 pathogens.</p>
+          <dl class="source-details">
+            <dt>API</dt><dd>NCBI Datasets V2 (annotation_report)</dd>
+            <dt>Accessed</dt><dd>March 2026</dd>
+            <dt>Genes</dt><dd>8,283 across 12 pathogens</dd>
+            <dt>License</dt><dd>Public domain (US Government work)</dd>
+            <dt>URL</dt><dd><a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/" target="_blank" rel="noopener">NCBI Datasets V2 API</a></dd>
+          </dl>
+          <div class="source-cite">
+            <strong>Citation:</strong> NCBI Resource Coordinators. "Database resources of the National Center for Biotechnology Information." <em>Nucleic Acids Research</em>, 2024, 52(D1):D33-D43.
+          </div>
+        </div>
+
+        <div class="source-card source-card-methods">
+          <div class="source-header">
+            <div class="source-icon methods">M</div>
+            <h3>Methods (Copy for Your Paper)</h3>
+          </div>
+          <p>Copy this methods paragraph into your manuscript's Materials &amp; Methods section:</p>
+          <div class="cite-block" id="methodsBlock">
+            <code>CRISPR diagnostic target candidates were identified using LOOM CRISPR Search
+(https://calm-mushroom-0185d800f.4.azurestaticapps.net), a BWT/FM-index based pangenomic scanning tool.
+For each pathogen, all available genome assemblies were downloaded from NCBI
+RefSeq (accessed March 2026) and concatenated into a single corpus. A 23-mer
+sliding window (20 bp guide + 3 bp PAM context) was applied to extract all
+candidate target sequences. PAM classification identified NGG (SpCas9) and
+TTTN (Cas12a/Cpf1) compatible sites. Targets were ranked by genome conservation
+(occurrence count across all assemblies). Guide quality scores were computed
+based on GC content (optimal 40-70%), seed region GC (last 12 nt), poly-T
+terminator absence, homopolymer run length, and self-complementarity.
+Off-target specificity was assessed by searching each candidate against 7
+host reference genomes (human GRCh38, pig, bat, chicken, cow, camel, mouse)
+using exact-match FM-index queries. Literature coverage was assessed by
+automated PubMed scanning with ontology-enhanced synonym expansion (NCBI
+Taxonomy, Disease Ontology, MONDO). Drug-resistance region overlap was
+annotated using coordinates from WHO mutation catalogs and Stanford HIVDB.</code>
+          </div>
+          <button class="btn-icon" onclick="navigator.clipboard.writeText(document.getElementById('methodsBlock').textContent).then(()=>this.textContent='Copied!')">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M3 11V3a1 1 0 011-1h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Copy methods text
+          </button>
+        </div>
+
+        <div class="source-card source-card-how">
+          <div class="source-header">
+            <div class="source-icon how">?</div>
+            <h3>How To Cite This Tool</h3>
+          </div>
+          <p>If you use LOOM CRISPR Search or data from this tool in your research, please cite:</p>
+          <div class="cite-block" id="citeBlock">
+            <code>LOOM CRISPR Search: Open-science CRISPR target discovery tool.
+https://calm-mushroom-0185d800f.4.azurestaticapps.net (2026).
+Genome data: NCBI RefSeq Viral &amp; Bacterial, GRCh38.p14.
+Disease context: Disease Ontology (CC0), MONDO (CC BY 4.0),
+  WHO Disease Surveillance, NCBI Taxonomy, NCBI Gene.
+Search engine: brenda FM-index (195 KB WASM).</code>
+          </div>
+          <button class="btn-icon" id="copyCitation">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M3 11V3a1 1 0 011-1h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Copy citation
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Glossary -->
+      <div class="glossary">
+        <h2 class="glossary-title">CRISPR Glossary</h2>
+        <p class="section-sub">Key terms used throughout this tool</p>
+        <div class="glossary-grid">
+
+          <div class="glossary-card">
+            <dt>PAM <span class="glossary-aka">(Protospacer Adjacent Motif)</span></dt>
+            <dd>A short DNA sequence (2–6 bp) immediately adjacent to the target site that the CRISPR-Cas protein must recognize before it can bind and cut. Without the correct PAM, the enzyme ignores the target — even if the guide RNA matches perfectly. Different Cas enzymes require different PAMs.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>NGG <span class="glossary-aka">(SpCas9 PAM)</span></dt>
+            <dd>The PAM sequence required by <strong>SpCas9</strong> (from <em>S. pyogenes</em>), the most widely used CRISPR nuclease. "N" = any nucleotide, "GG" = two guanines. The NGG must appear on the 3′ side of the 20-bp target. Example: <code class="dna-example">...ATCGATCGATCGATCGATCG<strong>AGG</strong></code></dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>TTTN <span class="glossary-aka">(Cas12a / Cpf1 PAM)</span></dt>
+            <dd>The PAM sequence required by <strong>Cas12a</strong> (also called Cpf1), often used in SHERLOCK/DETECTR diagnostic assays. "TTT" = three thymines, "N" = any nucleotide. Unlike SpCas9, this PAM sits on the <strong>5′ side</strong> of the target. Example: <code class="dna-example"><strong>TTTG</strong>ATCGATCGATCGATCGATCG...</code></dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>Guide RNA <span class="glossary-aka">(gRNA / sgRNA)</span></dt>
+            <dd>A short RNA molecule (~20 nt) that directs the Cas enzyme to a specific DNA target via Watson-Crick base pairing. In this tool, each 23-mer target represents a potential guide: 20 bp of targeting sequence + 3 bp PAM.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>23-mer</dt>
+            <dd>A 23-nucleotide DNA sequence. In CRISPR target design, a 23-mer typically means the 20 bp guide sequence plus a 3 bp PAM (e.g., 20 bp + NGG). This is the standard targeting unit for SpCas9.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>Off-target</dt>
+            <dd>An unintended genomic site where a CRISPR guide could bind and cut due to partial sequence similarity. Good diagnostic guides should have <strong>zero off-targets in the human genome</strong> — which is why this tool can cross-check against GRCh38.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>FM-index</dt>
+            <dd>A compressed full-text index based on the Burrows-Wheeler Transform (BWT). It enables exact substring matching in sub-millisecond time across gigabytes of genome data. LOOM uses a 195 KB WASM FM-index to search pathogen genomes entirely in your browser.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>SpCas9</dt>
+            <dd><em>Streptococcus pyogenes</em> Cas9 — the original and most commonly used CRISPR nuclease. Recognizes NGG PAM. Widely validated in diagnostics (e.g., SHERLOCK) and therapeutics.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>Cas12a <span class="glossary-aka">(Cpf1)</span></dt>
+            <dd>An alternative CRISPR nuclease that recognizes TTTN PAMs and creates staggered (sticky-end) cuts. Used in the DETECTR diagnostic platform. Offers different targeting range compared to SpCas9.</dd>
+          </div>
+
+          <div class="glossary-card">
+            <dt>SHERLOCK / DETECTR</dt>
+            <dd>CRISPR-based diagnostic platforms. <strong>SHERLOCK</strong> (Cas13) and <strong>DETECTR</strong> (Cas12a) detect specific nucleic acid sequences with high sensitivity, used for rapid pathogen detection (e.g., SARS-CoV-2, Zika, Dengue).</dd>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PANEL DESIGNER TAB ========== -->
+    <section class="tab-panel" id="panelPanel">
+      <div class="section-header">
+        <h2>Multiplexed Diagnostic Panel Designer</h2>
+        <p class="section-sub">Select pathogens to build a syndromic diagnostic panel. The algorithm finds the minimum set of non-cross-reactive NGG guides that uniquely identifies each pathogen.</p>
+      </div>
+
+      <div class="panel-config">
+        <div class="panel-pathogen-selector">
+          <h3>Select Pathogens for Panel</h3>
+          <div class="panel-pathogen-grid" id="panelPathogenGrid">
+            <!-- JS populates checkboxes -->
+          </div>
+          <div class="panel-presets">
+            <button class="btn-sm" onclick="selectPanelPreset('respiratory')">Respiratory Panel</button>
+            <button class="btn-sm" onclick="selectPanelPreset('hemorrhagic')">Hemorrhagic Fever Panel</button>
+            <button class="btn-sm" onclick="selectPanelPreset('all')">All Pathogens</button>
+          </div>
+        </div>
+        <div class="panel-options">
+          <label><strong>Min conservation:</strong>
+            <select id="panelMinConservation">
+              <option value="50">≥50%</option>
+              <option value="70" selected>≥70%</option>
+              <option value="90">≥90%</option>
+            </select>
+          </label>
+          <label><strong>Min guide score:</strong>
+            <select id="panelMinScore">
+              <option value="0">Any</option>
+              <option value="50">≥50</option>
+              <option value="70" selected>≥70</option>
+            </select>
+          </label>
+          <label><strong>Host-specific only:</strong>
+            <input type="checkbox" id="panelHostSpecific" checked />
+          </label>
+          <button class="btn-primary" id="designPanelBtn" onclick="designPanel()">Design Panel</button>
+        </div>
+      </div>
+
+      <div id="panelResults" class="panel-results" style="display:none">
+        <!-- JS populates -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Research Papers -->
+  <section class="preprint-banner">
+    <div class="container">
+      <h2 class="preprint-title">Methodology &amp; Verification</h2>
+      <p class="preprint-subtitle">How targets are scored, how literature gaps are verified, and what was retracted</p>
+      <div class="preprint-cards">
+        <a href="methodology.html" class="preprint-card">
+          <span class="preprint-tag">Documentation</span>
+          <strong>v4 Scan Methodology &amp; Integrity Report</strong>
+          <span class="preprint-desc">Four-strategy PubMed + Europe PMC pipeline with ontology synonyms &middot; 6 confirmed gene gaps &middot; 61 retracted false claims</span>
+          <span class="preprint-cta">Read methodology &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <strong>LOOM CRISPR Search</strong> — 195 KB WASM binary, entirely in-browser, no server required
+      </div>
+      <div class="footer-right">
+        Built on the <em>brenda</em> FM-index library &middot; No data leaves your browser &middot;
+        <a href="https://github.com/alvgeppetto/loom" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-attribution">Alvaro Videla Godoy &mdash; 2026</div>
+  </footer>
+
+  <script type="module" src="crispr-app.js"></script>
+</body>
+</html>

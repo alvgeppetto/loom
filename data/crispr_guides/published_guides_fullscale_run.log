@@ -1,0 +1,28 @@
+[guide-conservation] Loaded 10 guides from data/crispr_guides/published_guides.tsv
+[guide-conservation] Built Aho-Corasick automaton for 20 patterns (10 guides × 2)
+[guide-conservation] Scanning /Volumes/T9/loom-openscience/raw/sars-cov-2/ncbi_dataset/data/genomic.fna...
+[guide-conservation]    1000000 genomes scanned  (9548 genomes/s, 1.7 min elapsed)
+[guide-conservation]    2000000 genomes scanned  (9530 genomes/s, 3.5 min elapsed)
+[guide-conservation]    3000000 genomes scanned  (9391 genomes/s, 5.3 min elapsed)
+[guide-conservation]    4000000 genomes scanned  (9340 genomes/s, 7.1 min elapsed)
+[guide-conservation]    5000000 genomes scanned  (9163 genomes/s, 9.1 min elapsed)
+[guide-conservation]    6000000 genomes scanned  (9213 genomes/s, 10.9 min elapsed)
+[guide-conservation]    7000000 genomes scanned  (9195 genomes/s, 12.7 min elapsed)
+[guide-conservation]    8000000 genomes scanned  (9165 genomes/s, 14.5 min elapsed)
+[guide-conservation]    9000000 genomes scanned  (9193 genomes/s, 16.3 min elapsed)
+[guide-conservation] Done: 9193298 genomes in 998.8s (9204 genomes/s)
+
+Guide                             Hits        Total       Rate
+--------------------------------------------------------------
+DETECTR_N                      8660883      9193298     94.21%
+DETECTR_E                      9040944      9193298     98.34%
+PACMAN_N1                      8975370      9193298     97.63%
+PACMAN_N2                      9039127      9193298     98.32%
+PACMAN_RdRp1                         0      9193298      0.00%
+PACMAN_RdRp2                   8847364      9193298     96.24%
+SHERLOCK_S                     5817562      9193298     63.28%
+SHERLOCK_Orf1ab                8967912      9193298     97.55%
+CARVER_CoV_con1                     78      9193298      0.00%
+CARVER_CoV_con2                      0      9193298      0.00%
+
+[guide-conservation] Results written to data/crispr_guides/published_guides_fullscale.json

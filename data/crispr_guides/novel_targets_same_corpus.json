@@ -1,0 +1,366 @@
+[
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_16813",
+    "sequence": "GAGAGTACACCTTTGAAAAA",
+    "hits": 9107946,
+    "total_genomes": 9193298,
+    "conservation_pct": 99.07
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17078",
+    "sequence": "TGGTACTGGTAAGAGTCATT",
+    "hits": 9099697,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.98
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17431",
+    "sequence": "CTGCTCAATTACCTGCACCA",
+    "hits": 9114200,
+    "total_genomes": 9193298,
+    "conservation_pct": 99.14
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_19218",
+    "sequence": "ATTGTTTGTAGATTTGACAC",
+    "hits": 9111224,
+    "total_genomes": 9193298,
+    "conservation_pct": 99.11
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_3614",
+    "sequence": "TTGTCGGCCCAAATGTTAAC",
+    "hits": 8996611,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.86
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17592",
+    "sequence": "GTTTATGATAATAAGCTTAA",
+    "hits": 8961328,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.48
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17761",
+    "sequence": "TTTCACCTTATAATTCACAG",
+    "hits": 9013531,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.04
+  },
+  {
+    "guide_id": "ORF3a_26220",
+    "sequence": "CTTATGTACTCATTCGTTTC",
+    "hits": 9093123,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.91
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_1127",
+    "sequence": "TTGAAAAGAAAAAGCTTGAT",
+    "hits": 9072761,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.69
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_5744",
+    "sequence": "ACACTGGTAATTACCAGTGT",
+    "hits": 9066984,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.63
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_9897",
+    "sequence": "TAATAAGTACAAGTATTTTA",
+    "hits": 9087164,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.85
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_10456",
+    "sequence": "ACTATTAAGGGTTCATTCCT",
+    "hits": 9116902,
+    "total_genomes": 9193298,
+    "conservation_pct": 99.17
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_10531",
+    "sequence": "TGTTACATGCACCATATGGA",
+    "hits": 9102615,
+    "total_genomes": 9193298,
+    "conservation_pct": 99.01
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_12015",
+    "sequence": "CATGCAGGGTGCTGTAGACA",
+    "hits": 9086668,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.84
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_12208",
+    "sequence": "AATGTGGCTAAATCTGAATT",
+    "hits": 9066438,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.62
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_12244",
+    "sequence": "ATGCAACGTAAGTTGGAAAA",
+    "hits": 9067595,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.63
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_12829",
+    "sequence": "AAATGGGCTAGATTCCCTAA",
+    "hits": 9072276,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.68
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_12888",
+    "sequence": "ACCTTGTAGGTTTGTTACAG",
+    "hits": 9094618,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.93
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_13142",
+    "sequence": "AGATGTTGTGTACACACACT",
+    "hits": 9090035,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.88
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17007",
+    "sequence": "GAGTTTTCTAGCAATGTTGC",
+    "hits": 9075337,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.72
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17561",
+    "sequence": "TGCTGAAATTGTTGACACTG",
+    "hits": 9111394,
+    "total_genomes": 9193298,
+    "conservation_pct": 99.11
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_19617",
+    "sequence": "GAAAATGTGGCTTTTAATGT",
+    "hits": 9087604,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.85
+  },
+  {
+    "guide_id": "5'UTR_241",
+    "sequence": "GTCCGGGTGTGACCGAAAGG",
+    "hits": 8322847,
+    "total_genomes": 9193298,
+    "conservation_pct": 90.53
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_4526",
+    "sequence": "GATTTTACTTTTACACCAGT",
+    "hits": 8775711,
+    "total_genomes": 9193298,
+    "conservation_pct": 95.46
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_7870",
+    "sequence": "TTGCCTATTAATGTTATAGT",
+    "hits": 8991930,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.81
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_8909",
+    "sequence": "TGCATTTCTTACCTAGAGTT",
+    "hits": 8776049,
+    "total_genomes": 9193298,
+    "conservation_pct": 95.46
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_9727",
+    "sequence": "TGGTTCTTTAGTAATTACCT",
+    "hits": 9009809,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.0
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_9949",
+    "sequence": "GCTGCTTGTTGTCATCTCGC",
+    "hits": 9044380,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.38
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_12958",
+    "sequence": "AACAACCTAAATAGAGGTAT",
+    "hits": 9047695,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.42
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_13355",
+    "sequence": "ACACAGTCTGTACCGTCTGC",
+    "hits": 8888354,
+    "total_genomes": 9193298,
+    "conservation_pct": 96.68
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_17245",
+    "sequence": "TAGAGTGTTTTGATAAATTC",
+    "hits": 9057641,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.52
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_18089",
+    "sequence": "TACACAGGCACCTACACACC",
+    "hits": 8776226,
+    "total_genomes": 9193298,
+    "conservation_pct": 95.46
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_18190",
+    "sequence": "TCATCTCTATGATGGGTTTT",
+    "hits": 8819877,
+    "total_genomes": 9193298,
+    "conservation_pct": 95.94
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_19821",
+    "sequence": "ATACTCAATAATTTGGGTGT",
+    "hits": 9005040,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.95
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_20590",
+    "sequence": "TTTCATTTATGCTTTGGTGT",
+    "hits": 9044190,
+    "total_genomes": 9193298,
+    "conservation_pct": 98.38
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_21110",
+    "sequence": "TGGGTTTATACAACAAAAGC",
+    "hits": 8875529,
+    "total_genomes": 9193298,
+    "conservation_pct": 96.54
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_21147",
+    "sequence": "GTGGCTATAAAGATAACAGA",
+    "hits": 8796243,
+    "total_genomes": 9193298,
+    "conservation_pct": 95.68
+  },
+  {
+    "guide_id": "M (Membrane)_26565",
+    "sequence": "TAGTAATAGGTTTCCTATTC",
+    "hits": 8948944,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.34
+  },
+  {
+    "guide_id": "ORF1a (nsp1-11)_6419",
+    "sequence": "TGGAAAATCCTACCATACAG",
+    "hits": 8573069,
+    "total_genomes": 9193298,
+    "conservation_pct": 93.25
+  },
+  {
+    "guide_id": "ORF1b (nsp12-16, RdRp)_19287",
+    "sequence": "TATGTAAATAAACATGCATT",
+    "hits": 8230004,
+    "total_genomes": 9193298,
+    "conservation_pct": 89.52
+  },
+  {
+    "guide_id": "ORF3a_25784",
+    "sequence": "ATTACTTTATGATGCCAACT",
+    "hits": 8850796,
+    "total_genomes": 9193298,
+    "conservation_pct": 96.27
+  },
+  {
+    "guide_id": "intergenic_26513",
+    "sequence": "AACGGTACTATTACCGTTGA",
+    "hits": 8984429,
+    "total_genomes": 9193298,
+    "conservation_pct": 97.73
+  },
+  {
+    "guide_id": "ORF10_29633",
+    "sequence": "ATCTCACATAGCAATCTTTA",
+    "hits": 8567214,
+    "total_genomes": 9193298,
+    "conservation_pct": 93.19
+  },
+  {
+    "guide_id": "ORF10_29661",
+    "sequence": "GTAACATTAGGGAGGACTTG",
+    "hits": 8346696,
+    "total_genomes": 9193298,
+    "conservation_pct": 90.79
+  },
+  {
+    "guide_id": "3'UTR_29717",
+    "sequence": "CTAGGGAGAGCTGCCTATAT",
+    "hits": 7820975,
+    "total_genomes": 9193298,
+    "conservation_pct": 85.07
+  },
+  {
+    "guide_id": "M (Membrane)_26995",
+    "sequence": "TAAAGAAATCACTGTTGCTA",
+    "hits": 8260451,
+    "total_genomes": 9193298,
+    "conservation_pct": 89.85
+  },
+  {
+    "guide_id": "M (Membrane)_27023",
+    "sequence": "ACGCTTTCTTATTACAAATT",
+    "hits": 8276633,
+    "total_genomes": 9193298,
+    "conservation_pct": 90.03
+  },
+  {
+    "guide_id": "5'UTR_167",
+    "sequence": "TAACTCGTCTATCTTCTGCA",
+    "hits": 8260501,
+    "total_genomes": 9193298,
+    "conservation_pct": 89.85
+  },
+  {
+    "guide_id": "ORF8_28251",
+    "sequence": "AATGTCTGATAATGGACCCC",
+    "hits": 8368243,
+    "total_genomes": 9193298,
+    "conservation_pct": 91.03
+  },
+  {
+    "guide_id": "5'UTR_44",
+    "sequence": "GATCTCTTGTAGATCTGTTC",
+    "hits": 3374446,
+    "total_genomes": 9193298,
+    "conservation_pct": 36.71
+  },
+  {
+    "guide_id": "5'UTR_203",
+    "sequence": "GTCCGTGTTGCAGCCGATCA",
+    "hits": 5389869,
+    "total_genomes": 9193298,
+    "conservation_pct": 58.63
+  },
+  {
+    "guide_id": "ORF7b_27863",
+    "sequence": "TAAACGAACATGAAATTTCT",
+    "hits": 7808010,
+    "total_genomes": 9193298,
+    "conservation_pct": 84.93
+  }
+]
