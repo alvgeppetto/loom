@@ -31,19 +31,11 @@ CRISPR target discovery and an in-browser search tool for pathogen genomics.
 
 ### Task Flow
 
-1. Check `TODO-v3.md` for current priorities
-2. Pick a task, create branch
-3. Implement with tests (Cucumber specs where applicable)
-4. Update `docs/decisions/` if architectural choices made
-5. Update `docs/lessons/` if something was learned
-6. Mark task complete in `TODO-v3.md`
-7. Merge to main
-
-### After Each Task
-
-Always:
-1. Show current `TODO-v3.md` state
-2. Propose specific next task from TODO-v3
+1. Pick a task, create branch
+2. Implement with tests (Cucumber specs where applicable)
+3. Update `docs/decisions/` if architectural choices made
+4. Update `docs/lessons/` if something was learned
+5. Merge to main
 
 ## Code Style
 
@@ -85,10 +77,6 @@ docs/
 data/
   crispr_guides/  # CRISPR reference data
 ```
-
-## Reference Files
-
-- [TODO-v3.md](TODO-v3.md) — Current task list
 
 ## Agent Skills
 
